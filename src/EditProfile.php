@@ -21,13 +21,11 @@
       
       function profileTextField($itemValue, $itemTitle, $itemKey) {
         echo "<label for='$itemKey' class='form-label'>$itemTitle</label>";
-        echo "<input type='text' class='form-control form-control-lg' 
-          name='$itemKey' placeholder='$itemTitle"."を入力して下さい' value='$itemValue'>";
+        echo "<input type='text' class='form-control form-control-lg' name='$itemKey' value='$itemValue'>";
       }
       function profileTextArea($itemValue, $itemTitle, $itemKey) {
         echo "<label for='$itemKey' class='form-label'>$itemTitle</label>";
-        echo "<textarea class='form-control form-control-lg' name='$itemKey' 
-          placeholder='$itemTitle"."を入力して下さい'>$itemValue</textarea>";
+        echo "<textarea class='form-control form-control-lg' name='$itemKey'>$itemValue</textarea>";
       }
       
       try {
@@ -37,7 +35,7 @@
             ($_POST["age"] !== "年齢を選択していください")) {
               $updateProfileSql = 
                 "UPDATE Users SET username = ?, age = ?, gender = ?,
-                location = ?, interests = ?,
+                bloodType = ?, location = ?, interests = ?,
                 description = ? WHERE userId = ?";
               $stmt = $conn->prepare($updateProfileSql);
               
@@ -105,8 +103,12 @@
             </div>
           </div>
         </div>
+        <!-- bloodType -->
+        <div class="col-md-6">
+          <?php profileTextField($result["bloodType"], "血液型", "bloodType"); ?>
+        </div>
         <!-- location -->
-        <div class="col-md-3">
+        <div class="col-md-6">
           <?php profileTextField($result["location"], "出身地", "location"); ?>
         </div>
         <!-- interests -->
@@ -118,13 +120,13 @@
           <?php profileTextArea($result["description"], "自己紹介", "description"); ?>
         </div>
         <!-- profile picture -->
-        <!-- <div class="col-md-12">
-          <label for="profilePicture" class="form-label">Profile Picture</label>
+        <div class="col-md-12">
+          <label for="profilePicture" class="form-label">プロフィール写真</label>
           <input 
             type="file" class="form-control form-control-lg" 
             id="profilePicture" name="profilePicture"
           >
-        </div> -->
+        </div>
         <div class="col-12 text-center text-danger"><?php echo $errorMessage;?></div>
         <!-- submit -->
         <div class="col-md-6 d-grid">
