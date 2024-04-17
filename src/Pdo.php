@@ -1,7 +1,7 @@
 <?php
-  $host = ''; // Hostname
-  $dbname = ''; // Database name
-  $dbUsername = ''; // Username
+  $host = 'localhost'; // Hostname
+  $dbname = 'dating_website_db'; // Database name
+  $dbUsername = 'root'; // Username
   $dbPassword = ''; // Password
   
   try {
