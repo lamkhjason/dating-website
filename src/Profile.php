@@ -14,52 +14,8 @@
       include_once("CommonTools.php");
       // include_once("LoginStatus.php");
       include_once("CheckInput.php");
-      // include_once("SelectProfileItem.php");
+      include_once("SelectProfileItem.php");
     ?>
-
-    <!-- menubarのコード -->
-    <div class="sticky-top container-fluid bg-info py-3">
-      <div class="row g-2">
-        <div class="col-2">
-          <img 
-            src="../icon/calendar-heart-fill.svg" 
-            width="40" height="40" class="mx-5"
-          >
-        </div>
-        <?php 
-          if ($_SERVER["SCRIPT_NAME"] !== "/dating-website/src/Login.php" && 
-            $_SERVER["SCRIPT_NAME"] !== "/dating-website/src/Register.php") { 
-        ?>
-          <div class="col-8">
-            <div class="btn-group container">
-              <?php 
-                foreach ($menubar as $fileName => $value) {
-                  $btnClass = checkActivePage($fileName);
-                  echo "<a href='$fileName' class='$btnClass'>$value</a>";
-                }
-              ?>
-              <a href="" class="btn btn-outline-dark">マッチング一覧</a>
-              <a href="" class="btn btn-outline-dark">いいね</a>
-              <a href="" class="btn btn-outline-dark active">プロフィール</a>
-            </div>
-          </div>
-          
-          <div class="col-2">
-            <div class="btn-group container justify-content-end">
-              <form method="POST" action="<?php echo htmlspecialchars($_SERVER["SCRIPT_NAME"]);?>">
-              <form method="POST" action="">
-                <button type="submit" name="logoutSubmit" class="btn btn-link p-0">
-                  <img src="../icon/box-arrow-right.svg" width="40" height="40" class="mx-5">
-                </button>
-              </form>
-            </div>
-          </div>
-        <?php } ?>
-      </div>
-    </div>
-
-    <!-- menubarのコード -->
-
     <div class="container p-4 bg-light">
       <div class="row">
         <div class="col-md-6 text-center mb-3">
