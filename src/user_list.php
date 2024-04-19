@@ -14,7 +14,7 @@
 
     //ログインがされていない時はログイン画面に遷移する
     try {
-      D interaction_type =’yes’) AND (target_user_id = ? AND interaction_type = ‘yes’) ";  $checkSql = "SELECT username,age,gender FROM Users INNER JOIN Interactions on user_id  = user_id WHERE (user_id=? AN
+      $checkSql = "SELECT username,age,gender FROM Users INNER JOIN Interactions on user_id  = user_id WHERE (user_id=? AND interaction_type =’yes’) AND (target_user_id = ? AND interaction_type = ‘yes’) ";  
         $stmt     = $pdo->prepare($checkSql);
 
 $stmt->bindValue(1,$_SESSION["user_id"]);
