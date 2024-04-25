@@ -1,6 +1,7 @@
 <?php
 session_start();
-// include_once
+include_once("Pdo.php");
+include_once("CommonTools.php");
 ?>
 <?php
 $loginID = $_SESSION['user_id'];
