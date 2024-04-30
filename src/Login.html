@@ -1,4 +1,6 @@
-
+<!--<?php
+  session_start();
+?>-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,10 +12,50 @@
     <title>ログイン画面</title>
   </head>
   <body class="bg-info-subtle">
-    <!-- <?php
+  <!--  <?php
       include_once("Pdo.php");
-      include_once("LoginStatus.php");
+      include_once("CommonTools.php");
       include_once("CheckInput.php");
+
+      $errorMessage = "";
+      $loginid = $_POST["id"];
+      $password = $_POST["pass"];
+    
+    if ($_SERVER["REQUEST_METHOD"] === "POST") 
+    {  
+      if (isset($_POST["login"])) 
+      {
+        // ログインボタンを押したら
+        try
+        {
+          if(empty($loginid) || empty($password))
+          {
+            $errorMessage = "ユーザー名またはパスワードが正しくありません。";
+          }
+          else
+          {
+            $sql = "SELECT * FROM Users WHERE login_id=? AND password=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(1, $id);
+            $stmt->bindValue(2, $password);
+            $stmt->execute();
+            $user = $stmt->fetch();
+          }
+            if($user)
+            {
+              $_SESSION['user_id'] = $user['user_id'];
+              header('Location:Interation.php ');
+              exit;
+            }
+            else 
+            {
+              $errorMessage = "ユーザー名またはパスワードが正しくありません。";
+            }
+        }catch(PDOException $e) {
+          $errorMessage = "ログインに失敗しました。";
+        }
+      }
+    }
     ?> -->
 
     <!-- menubarのコード -->
@@ -27,27 +69,38 @@
         </div>
       </div>
     </div>
-
-    <body class="d-flex align-items-center py-4 bg-body-tertiary">
-        <main class="position-relative container">
-        <form class="text-center" style="margin-top: 100px;">
-            <div class="row my-4">
-              <div class="position-static h3">
-              <span class="m-2"> ログインID </span> <input type="text"style="margin-left:14px;"/>
-              </div>
-            </div>
-
-            <div class="row my-4">
-              <div class="position-static h3">
-              <span class="m-2"> パスワード </span> <input type="password" style="margin-left:20px;"/>
-              </div>
-            </div>
-          <div>
-            <span class="m-4"><but<button class="btn btn-primary w-10" type="submit" style="border-right-width: 10px;border-left-width: 10px;">ログイン</button></span>
-          </div><br>
-          <div>
-            <button class="btn btn-primary w-10" type="submit">新規登録</button>
+    <!-- ログインのコード -->
+    <main class="bg-info-subtle d-flex align-items-center py-4 bg-body-tertiary">
+      <div class="position-relative container text-center">
+      <form action="login.php" method="post" style="margin-top: 100px;">
+        <div class="row my-4">
+          <div class="position-static h1">
+            <span class="m-2"> ログイン </span>
           </div>
-        </form>
-        </main>
-    </body>
+        </div>
+        <div class="row my-4">
+          <div class="position-static h3">
+            <span class="m-2"> ログインID </span> <input name="id" type="text"style="margin-left:14px;"/>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="position-static h3">
+            <span class="m-2"> パスワード </span> <input name="pass" type="password" style="margin-left:20px;"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="text-danger"><!--<?php echo $errorMessage ?>--></span>
+          </div>
+        </div>
+        <div>
+          <span class="m-4"><button class="btn btn-primary w-10" name="login" type="submit" style="border-right-width: 10px;border-left-width: 10px;">ログイン</button></span>
+        </div><br>
+      </form>
+        <div>
+          <a href="Regiter.php" class="btn btn-primary w-10" name="register" type="submit">新規登録</a>
+        </div>
+      </div> 
+    </main>
+  </body>
