@@ -28,8 +28,6 @@
   }
   if (isset($_POST["logoutSubmit"]))
   {
-    // セッションデータをクリア
-    $_SESSION = array();
     // セッションを破棄
     session_destroy();
     // ログインページにリダイレクト
