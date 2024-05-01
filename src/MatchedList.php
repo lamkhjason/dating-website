@@ -16,7 +16,7 @@ session_start(); // session開始
 
 // 定数を定義
 define("LOGIN_URL", "./login.php"); // ログイン画面のリンク
-define("USER_URL", "./user_list.php"); // ユーザ一覧画面のリンク
+define("USER_URL", "./MatchedList.php"); // ユーザ一覧画面のリンク
 
 
 // ログインがされていない時はログイン画面に遷移する
