@@ -36,7 +36,7 @@
           {
             $sql = "SELECT * FROM Users WHERE login_id=? AND password=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(1, $id);
+            $stmt->bindValue(1, $loginid);
             $stmt->bindValue(2, $password);
             $stmt->execute();
             $user = $stmt->fetch();
@@ -57,18 +57,6 @@
       }
     }
     ?> -->
-
-    <!-- menubarのコード -->
-    <div class="sticky-top container-fluid bg-info py-3">
-      <div class="row g-2">
-        <div class="col-2">
-          <img 
-            src="../icon/calendar-heart-fill.svg" 
-            width="40" height="40" class="mx-5"
-          >
-        </div>
-      </div>
-    </div>
     <!-- ログインのコード -->
     <main class="bg-info-subtle d-flex align-items-center py-4 bg-body-tertiary">
       <div class="position-relative container text-center">
