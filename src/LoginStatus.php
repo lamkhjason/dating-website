@@ -1,43 +1,39 @@
 <?php
-  session_start();
+session_start();
+include_once("Pdo.php");
+include_once("CheckValue.php");
 
-  try
-  {
-    $is_logged_in = isset($_SESSION['user_id']);
-
-    if ($is_logged_in)
-    {
-        // データベースからユーザー情報を取得
-        $sql = "SELECT * FROM Users WHERE user_id=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindValue(1, $is_logged_in);
-        $stmt->execute();
-        $user = $stmt->fetch();
-
-        if (!$user)
-        {
-            // データベース内でユーザーが見つからない場合はログアウト
-            session_destroy();
-            header('Location: Login.php');
-            exit;
-        }
-    }else
-    {
-        // ログインされていない場合はログインページにリダイレクト
-        header('Location: Login.php');
-        exit;
+try {
+  $isLoggingIn = getUserIdSession();
+  if ($isLoggingIn) {
+    // データベースからユーザーID情報を取得
+    $checkUserSql = "SELECT user_id FROM Users WHERE user_id = ?";
+    $stmt = $conn->prepare($checkUserSql);
+    $stmt->bindValue(1, $isLoggingIn);
+    $stmt->execute();
+    
+    $loginUser = $stmt->rowCount();
+    if ($loginUser === 0) {
+      // データベース内でユーザーが見つからない
+      setErrorMessage("ユーザ情報がありません");
     }
-    if (isset($_POST["logoutSubmit"]))
-    {
-        // セッションを破棄
-        session_destroy();
-        // ログインページにリダイレクト
-        header('Location: Login.php');
-        exit;
-    }
-  }catch(PDOException $e)
-  {
-      $errorMessage = "ユーザ情報に不具合がありました。";
-      echo $e->getMessage();
+  } else {
+    // ログインされていない場合はログインページにリダイレクト
+    setErrorMessage("ログインしていません");
   }
-?>
+  header('Location: Login.php');
+  exit;
+} catch (PDOException $e) {
+  setErrorMessage("DBエラー：".$e->getMessage());
+  header("Location:". $_SERVER["SCRIPT_NAME"]);
+  exit;
+}
+
+// ログアウトボタンをクリック
+if (isset($_POST["logoutSubmit"])) {
+  // セッションを破棄
+  session_destroy();
+  // ログインページにリダイレクト
+  header('Location: Login.php');
+  exit;
+}
