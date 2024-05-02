@@ -22,8 +22,8 @@ function checkActivePage($directory) {
     </div>
     <?php 
     $showMenubar = 
-      $_SERVER["SCRIPT_NAME"] !== "Login.php" && 
-      $_SERVER["SCRIPT_NAME"] !== "Register.php";
+      $_SERVER["SCRIPT_NAME"] !== "/dating-website/src/Login.php" && 
+      $_SERVER["SCRIPT_NAME"] !== "/dating-website/src/Register.php";
     if ($showMenubar):
     ?>
       <nav class="col-9 m-0">
