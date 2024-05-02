@@ -1,54 +1,52 @@
 <?php
-  session_start();
+$menubar = [
+  "マッチング一覧" => "/dating-website/src/MatchedList.php",
+  "いいね" => "/dating-website/src/Interaction.php",
+  "プロフィール" => "/dating-website/src/Profile.php",
+];
 
-  $menuBar = [
-    "dating-website/src/MatchedList.php" => "マッチング一覧",
-    "dating-website/src/Interaction.php"=> "いいね",
-    "dating-website/src/Profile.php"=> "プロフィール",
-  ];
-
-  function checkActivePage($url) {
-    if ($url === $_SERVER["SCRIPT_NAME"]) {
-      $mode = "btn btn-outline-dark active";
-    } else {
-      $mode = "btn btn-outline-dark";
-    }
-    return $mode;
+function checkActivePage($directory) {
+  if ($directory === $_SERVER["SCRIPT_NAME"] && !isset($_GET["targetUserId"])) {
+    $mode = "btn btn-outline-light active mt-2";
+  } else {
+    $mode = "btn btn-outline-light mt-2";
   }
+  return $mode;
+}
 ?>
 
-<div class="sticky-top container-fluid bg-info py-3">
-  <div class="row g-2">
-    <div class="col-2">
-      <img 
-        src="../icon/calendar-heart-fill.svg" 
-        width="40" height="40" class="mx-5"
-      >
+<header class="sticky-top container-fluid bg-info p-2">
+  <div class="row justify-content-around">
+    <div class="col-auto m-0">
+      <i class="bi-calendar-heart-fill text-light" style="font-size: 35px;"></i>
     </div>
     <?php 
-      if ($_SERVER["SCRIPT_NAME"] !== "dating-website/src/Login.php" && 
-        $_SERVER["SCRIPT_NAME"] !== "dating-website/src/Register.php") {
+    $showMenubar = 
+      $_SERVER["SCRIPT_NAME"] !== "Login.php" && 
+      $_SERVER["SCRIPT_NAME"] !== "Register.php";
+    if ($showMenubar):
     ?>
-      <div class="col-8">
+      <nav class="col-9 m-0">
         <div class="btn-group container">
           <?php 
-            foreach ($menubar as $fileName => $value) {
-              $btnClass = checkActivePage($fileName);
-              echo "<a href='$fileName' class='$btnClass'>$value</a>";
-            }
+          include_once("LoginStatus.php");
+          foreach ($menubar as $title => $directory) {
+            $btnClass = checkActivePage($directory);
+            echo "<a href='$directory' class='$btnClass'>$title</a>";
+          }
           ?>
         </div>
+      </nav>
+      <div class="col-auto m-0">
+        <form method="POST" action="<?php $_SERVER["SCRIPT_NAME"];?>">
+          <input type="hidden" name="logoutSubmit">
+            <i 
+              class="bi-box-arrow-right text-light" 
+              onclick="this.parentNode.submit()" 
+              style="cursor: pointer; font-size: 35px;"
+            ></i>
+        </form>
       </div>
-      
-      <div class="col-2">
-        <div class="btn-group container justify-content-end">
-          <form method="POST" action="<?php echo htmlspecialchars($_SERVER["SCRIPT_NAME"]);?>">
-            <button type="submit" name="logoutSubmit" class="btn btn-link p-0">
-              <img src="../icon/box-arrow-in-right.svg" width="40" height="40" class="mx-5">
-            </button>
-          </form>
-        </div>
-      </div>
-    <?php } ?>
+    <?php endif; ?>
   </div>
-</div>
+</header>
