@@ -1,7 +1,7 @@
 <?php
 $menubar = [
   "マッチング一覧" => "/dating-website/src/MatchedList.php",
-  "いいね" => "/dating-website/src/Interaction.php",
+  "いいね" => "/dating-website/src/Interactions.php",
   "プロフィール" => "/dating-website/src/Profile.php",
 ];
 
