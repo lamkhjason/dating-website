@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../css/Style.css">
+    <link rel="stylesheet" href="../../assets/css/Style.css">
     <title>プロフィール</title>
   </head>
   <body class="bg-info-subtle">
     <?php
-    include_once("CheckValue.php");
-    include_once("SelectProfileItem.php");
-    include_once("CommonTools.php");
+    include_once("../components/CheckValue.php");
+    include_once("../database/SelectProfileItem.php");
+    include_once("../components/CommonTools.php");
     // プロフィールの連想配列
     $profileArray = [
       "性別" => $gender, 
