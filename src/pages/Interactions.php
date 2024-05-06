@@ -1,79 +1,17 @@
-<?php
-include_once("Pdo.php");
-include_once("CheckValue.php");
-
-$loginUserId = getUserIdSession();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $targetUserId = $_POST["targetUserId"];
-  $likeSubmit = $_POST["likeSubmit"];
-  if (isset($likeSubmit)) {
-    try{
-      // いいねをDBに登録
-      $likeSql = 
-        "INSERT INTO Interactions (user_id, target_user_id, interaction_type) 
-        VALUES (:user_id, :target_user_id, :interaction_type)";
-      $insert = $conn->prepare($likeSql);
-      $insert->bindValue(':user_id', $loginUserId, PDO::PARAM_INT);
-      $insert->bindValue(':target_user_id', $targetUserId, PDO::PARAM_INT);
-      $insert->bindValue(':interaction_type', $likeSubmit, PDO::PARAM_STR);
-      $result = $insert->execute();
-      
-      if ($result) {
-        // 互いをいいねしたかを確認
-        $checkMatchingSql = 
-          "SELECT user_id FROM Interactions WHERE user_id = :target_user_id 
-          AND target_user_id = :user_id AND interaction_type = :interaction_type";
-        $select = $conn->prepare($checkMatchingSql);
-        $select->bindValue(':target_user_id', $targetUserId, PDO::PARAM_INT);
-        $select->bindValue(':user_id', $loginUserId, PDO::PARAM_INT);
-        $select->bindValue(':interaction_type', $likeSubmit, PDO::PARAM_STR);
-        $select->execute();
-        
-        $matched = $select->fetch(PDO::FETCH_ASSOC); 
-        if ($matched) {
-          // マッチング成立したらセッションに保存する
-          setMatchedUserSession();
-        }
-      }
-    } catch (PDOException $e) {
-      setErrorMessage("いいね登録が失敗しました: " . $e->getMessage());
-    }
-  }
-}
-
-try {
-  // いいねできるユーザ一覧を取得
-  $interactionListSql = 
-  "SELECT u.user_id, u.username, u.gender, u.age, p.picture_contents, p.picture_type
-  FROM Users u LEFT JOIN Profile_Pictures p ON u.user_id = p.user_id
-  LEFT JOIN interactions i ON u.user_id = i.target_user_id AND i.user_id = :LoginId
-  WHERE i.user_id IS NULL AND u.user_id != :LoginId;";
-  $stmt = $conn->prepare($interactionListSql);
-  $stmt->bindValue(':LoginId', $loginUserId, PDO::PARAM_INT);
-  $stmt->execute();
-  
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  $row = $stmt->rowCount();
-} catch (PDOException $e) {
-  setErrorMessage("いいねする一覧の取得失敗しました: " . $e->getMessage());
-}
-if ($row === 0) {
-  setErrorMessage("いいねする相手いません");
-}
-?>
 <!DOCTYPE html>
 <html>
   <head>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../css/Style.css">
+    <link rel="stylesheet" href="../../assets/css/Style.css">
     <title>いいね画面</title>
   </head>
   <body class="bg-info-subtle">
     <?php 
-    include_once("CommonTools.php");
+    include_once("../components/CheckValue.php");
+    include_once("../database/SelectInteractions.php");
+    include_once("../components/CommonTools.php");
     // マッチング成立しているなら、成立した画面を表示
     $isMatched = getMatchedUserSession();
     if (isset($isMatched)):
@@ -114,7 +52,7 @@ if ($row === 0) {
             <div class="card-body">
               <h5 class="card-title"><?php echo $username; ?></h5>
               <p class="card-text"><?php echo "$gender ($age)"; ?></p>
-              <form class="d-grid" method="POST" action="Interactions.php">
+              <form class="d-grid" method="POST" action="../database/ProcessInteractions.php">
                 <input 
                   type="hidden" name="targetUserId" 
                   value="<?php echo $targetUserId; ?>"
