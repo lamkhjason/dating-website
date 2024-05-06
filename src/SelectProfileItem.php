@@ -1,47 +1,44 @@
 <?php
-  session_start();
-  
-  if (isset($_GET["targetUserId"])) {
-    $displayUserId = $_GET["targetUserId"];
+include_once("Pdo.php");
+include_once("CheckValue.php");
+
+// 自分と他のユーザのプロフィールを判別する
+if (isset($_GET["targetUserId"])) {
+  if ($_GET["targetUserId"] == getUserIdSession()) {
+    header("Location: Profile.php");
+    exit();
   } else {
-    $displayUserId = $_SESSION["userId"];
+    $displayUserId = $_GET["targetUserId"];
   }
+} else {
+  $displayUserId = getUserIdSession();
+}
+
+try {
+  // 表示するユーザのプロフィールを取得
+  $profileSql = 
+    "SELECT u.user_id, u.username, u.gender, u.age, u.blood_type,
+    u.location, u.interests, u.description, pp.picture_contents, pp.picture_type
+    FROM Users u LEFT JOIN Profile_Pictures pp 
+    ON u.user_id = pp.user_id WHERE u.user_id = ?";
+  $stmt = $conn->prepare($profileSql);
+  $stmt->bindValue(1, $displayUserId);
+  $stmt->execute();
   
-  try {
-    $profileSql = 
-      "SELECT u.userId, u.username, u.gender, u.age, u.bloodType,
-      u.location, u.interests, u.description, up.pictureContents, up.pictureType
-      FROM Users u LEFT JOIN User_Pictures up 
-      ON u.userId = up.userId WHERE u.userId = ?";
-      
-    $stmt = $conn->prepare($profileSql);
-    
-    $stmt->bindValue(1, $displayUserId);
-    $stmt->execute();
-    
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-  } catch (PDOException $e) {
-    var_dump($e->getMessage());
-  }
+  $profileItem = $stmt->fetch(PDO::FETCH_ASSOC);
   
-  $username = checkValue($result['username']);
-  $gender = $result['gender'];
-  $age = $result['age'];
-  $bloodType = checkValue($result['bloodType']);
-  $location = checkValue($result['location']);
-  $interests = checkValue($result['interests']);
-  $description = checkValue($result['description']);
-  
-  $pictureContents = $result['pictureContents'];
-  $pictureType = $result['pictureType'];
-  
-  $profileArray = [
-    "性別" => $gender, 
-    "年齢" => $age, 
-    "血液型" => $bloodType,
-    "出身地" => $location, 
-    "趣味" => $interests, 
-    "自己紹介" => $description,
-  ];
-?>
+} catch (PDOException $e) {
+  setErrorMessage("プロフィール項目取得失敗：".$e->getMessage());
+}
+
+// プロフィール項目が入力されているかの確認
+$username = checkProfileItem($profileItem['username']);
+$gender = checkProfileItem($profileItem['gender']);
+$age = checkProfileItem($profileItem['age']);
+$bloodType = checkProfileItem($profileItem['blood_type']);
+$location = checkProfileItem($profileItem['location']);
+$interests = checkProfileItem($profileItem['interests']);
+$description = checkProfileItem($profileItem['description']);
+
+$pictureContents = $profileItem['picture_contents'];
+$pictureType = $profileItem['picture_type'];
