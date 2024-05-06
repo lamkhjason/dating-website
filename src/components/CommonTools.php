@@ -30,7 +30,7 @@ function checkActivePage($directory) {
     ?>
       <nav class="col-9 btn-group">
         <?php 
-        include_once("LoginStatus.php");
+        include_once("../database/LoginStatus.php");
         foreach ($menubar as $title => $directory) {
           $btnClass = checkActivePage($directory);
           echo "<a href='$directory' class='$btnClass'>$title</a>";
