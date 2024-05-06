@@ -16,16 +16,18 @@ try {
     if ($loginUser === 0) {
       // データベース内でユーザーが見つからない
       setErrorMessage("ユーザ情報がありません");
+      header('Location: Login.php');
+      exit;
     }
   } else {
     // ログインされていない場合はログインページにリダイレクト
     setErrorMessage("ログインしていません");
+    header('Location: Login.php');
+    exit;
   }
-  header('Location: Login.php');
-  exit;
 } catch (PDOException $e) {
   setErrorMessage("DBエラー：".$e->getMessage());
-  header("Location:". $_SERVER["SCRIPT_NAME"]);
+  header("Location: Login.php");
   exit;
 }
 
