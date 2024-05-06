@@ -1,76 +1,74 @@
 <?php
-/**
- * FileName   : MatchedList.php
- * ScreenName : マッチング一覧画面
- * DateTime   : 2024年4月
- */
+include_once("Pdo.php");
+include_once("CheckValue.php");
 
-
-include("pdo.php"); // pdoファイルをインポート
-include("CommonTools.php"); // CommonToolsファイルをインポート
-include("LoginStatus.php"); // LoginStatusファイルをインポート
-
-
-session_start(); // session開始
-
-
-// 定数を定義
-define("LOGIN_URL", "./login.php"); // ログイン画面のリンク
-define("USER_URL", "./MatchedList.php"); // ユーザ一覧画面のリンク
-
-
-// ログインがされていない時はログイン画面に遷移する
-$checkSql = "SELECT username,age,gender FROM Users INNER JOIN Interactions on user_id  = user_id WHERE (user_id=? AND interaction_type =’yes’) AND (target_user_id = ? AND interaction_type = ‘yes’)";
-    $stmt  = $pdo->prepare($checkSql);
- 
-    $stmt->bindValue(1, $_SESSION["user_id"]); // 自分がいいねした相手
-    $stmt->bindValue(2, $_SESSION["user_id"]); // 相手が自分にいいねした相手
-
-    $stmt->execute();
-
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+try {
+  // マッチ一覧を取得
+  $matchedSql = 
+    "SELECT i2.user_id, u.username, u.age, u.description, 
+    pp.picture_contents, pp.picture_type FROM Interactions i1 
+    INNER JOIN Interactions i2 ON i1.user_id = i2.target_user_id 
+    AND i1.target_user_id = i2.user_id
+    INNER JOIN Users u ON i2.user_id = u.user_id
+    INNER JOIN Profile_Pictures pp ON u.user_id = pp.user_id
+    WHERE i1.interaction_type = 'like' AND i2.interaction_type = 'like' 
+    AND i1.user_id = ?";
+  $stmt = $conn->prepare($matchedSql);
+  $stmt->bindValue(1, getUserIdSession());
+  $stmt->execute();
+  
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $row = $stmt->rowCount();
 } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+  setErrorMessage("マッチ一覧を取得失敗:" . $e->getMessage());
 }
-
+if ($row === 0) {
+  setErrorMessage("マッチした相手がいません");
+}
 ?>
-
-
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html>
+  <head>
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>マッチング成功画面</title>
-    <link rel="stylesheet" href="./css/CSS班が作った名前.css">
-</head>
-<body>
-    <div class="content">
-        <h1>ユーザ一覧</h1>
-        <table class="user-table">
-            <?php foreach ($data as $user): ?>
-                <tr>
-                    <td>
-                        <p><?php echo htmlspecialchars($user["age"], ENT_QUOTES, "UTF-8"); ?></p>
-                        <p><?php echo htmlspecialchars($user["gender"], ENT_QUOTES, "UTF-8"); ?></p>
-                        <!--NULLじゃなかったら -->
-                        <p><?php if (!empty($user["description"])) {
-                            echo htmlspecialchars($user["description"], ENT_QUOTES, "UTF-8");
-                        } ?></p>
-                        <!-- プロフィールへのリンク -->
-                        <form action="./profile.php" method="get">
-                            <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
-                            <button type="submit">プロフィールを見る</button>
-                        </form>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-    </div>
-</body>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../css/Style.css">
+    <title>マッチング一覧</title>
+  </head>
+  <body class="bg-info-subtle">
+    <?php include_once("CommonTools.php"); ?>
+    <main class="container p-4 bg-info-subtle">
+      <div class="text-center text-danger"><?php displayErrorMessage();?></div>
+      <?php 
+      // 異常入力を確認し、画面に表示する
+      foreach ($result as $users):
+        $targetUserId = testInputValue($users["user_id"]);
+        $username = testInputValue($users["username"]);
+        $age = testInputValue($users["age"]);
+        $description = testInputValue($users["description"]);
+        $pictureContents = testInputValue($users["picture_contents"]);
+        $pictureType = testInputValue($users["picture_type"]);
+      ?>
+        <form method="GET" action="Message.php" class="card mb-2">
+          <div class="row g-0">
+            <div class="col-auto">
+              <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
+                <img 
+                  <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?> 
+                  class="me-3 object-fit-scale border rounded"
+                  height="150px" width="150px"
+                >
+              </a>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h3 class="card-title"><?php echo "$username ($age) " ?></h3>
+                <p class="card-text text-truncate"><?php echo $description ?></p>
+              </div>
+            </div>
+          </div>
+        </form>
+      <?php endforeach; ?>
+    </main>
+  </body>
 </html>
-
-
-
