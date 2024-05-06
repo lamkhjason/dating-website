@@ -1,78 +1,87 @@
 <?php
-/*
- * FileName: Register.php
- * ScreenName: 新規登録画面
- */
-
-session_start(); // session開始
-
-include("Pdo.php"); // pdoファイルをインポート
-include("CommonTools.php");
-include("CheckInputValue.php");
-include_once("SelectProfileItem.php");
-
-// 定数定義
-define("MAX_SIZE", 1048576); // 画像の最大サイズ
-define("LOGIN_URL","./Login.php"); // ログイン画面のリンク
-
-// エラーメッセージの初期化
-$errorMessage = "";
+include("Pdo.php"); // Pdo.phpをインポート
+include("CheckValue.php"); // CheckValue.phpをインポート
 
 // 新規登録ボタンが押された場合
 if (isset($_POST["registerUserSubmit"])) {
-  // 入力値のチェック
-  if (empty($_POST["loginId"]) || empty($_POST["password"]) || empty($_POST["userName"]) || empty($_POST["gender"]) || empty($_POST["age"])) {
-    $errorMessage = "必須項目を全て入力してください";
+  // 異常入力確認
+  $loginId = testInputValue($_POST["loginId"]);
+  $userPass = testInputValue($_POST["password"]);
+  $userName = testInputValue($_POST["userName"]);
+  $age = testInputValue($_POST["age"]);
+  $gender = testInputValue($_POST["gender"]);
+  
+  // 入力値のチェックと画像のアップロードチェック
+  $inputValue = empty($loginId) || empty($userPass) || empty($userName) || 
+  $age === "年齢を選択してください" || empty($gender) || 
+  !is_uploaded_file($_FILES["profilePicture"]["tmp_name"]);
+  if ($inputValue) {
+    setErrorMessage("必須項目を全て入力してください");
   } else {
-    // 画像のアップロードチェック
-    if (!isset($_FILES["profilePicture"]["error"]) || !is_uploaded_file($_FILES["profilePicture"]["tmp_name"])) {
-      $errorMessage = "画像の登録は必須です";
-    } elseif ($_FILES["profilePicture"]["size"] > MAX_SIZE) {
-      $errorMessage = "画像サイズが1Mを超えました";
+    // アップロードした画像のサイズ確認
+    if ($_FILES["profilePicture"]["size"] > MAX_SIZE) {
+      setErrorMessage("画像サイズが1Mを超えました");
     } else {
-      // 入力された値を取得
-      $loginId = $_POST["loginId"];
-      $userPass = $_POST["password"];
-      $userName = $_POST["userName"];
-      $gender = $_POST["gender"];
-      $age = $_POST["age"];
-
-      // loginIdが一意か確認
-      $stmt = $pdo->prepare("SELECT * FROM Users WHERE user_id = ?");
-      $stmt->bindValue(1, $loginId);
-      $stmt->execute();
-      $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      if (!$admin) {
+      try {
+        // loginIdが一意か確認
+        $checkUserSql = "SELECT login_id FROM Users WHERE login_id = ?";
+        $stmt = $conn->prepare($checkUserSql);
+        $stmt->bindValue(1, $loginId);
+        $stmt->execute();
+        
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+      } catch (PDOException $e) {
+        setErrorMessage("新規登録に失敗しました" . $e->getMessage());
+      }
+      if (empty($user)) {
         try {
-          $pdo->beginTransaction();
-
-          // プロフィール情報を登録
-          $stmt = $pdo->prepare("INSERT INTO Users (user_id, password, username) VALUES (?, ?, ?)");
+          // トランザクション開始
+          $conn->beginTransaction();
+          // プロフィール情報をDBに登録
+          $registerSql = 
+            "INSERT INTO Users (login_id, password, username, gender, age) 
+            VALUES (?, ?, ?, ?, ?)";
+          $stmt = $conn->prepare($registerSql);
+          
           $stmt->bindValue(1, $loginId);
           $stmt->bindValue(2, $userPass);
           $stmt->bindValue(3, $userName);
+          $stmt->bindValue(4, $gender);
+          $stmt->bindValue(5, $age);
           $stmt->execute();
-
-          // 画像を登録
-          $pictureTmpName = $_FILES["profilePicture"]["tmp_name"]; // 画像のデータを取得
-          $pictureFile = file_get_contents($pictureTmpName); // 画像を取得
+          
+          // DBに登録されたuser_idを取得
+          $lastInsertId = $conn->lastInsertId();
+          
+          // 画像情報を取得し、DBに登録
+          $pictureName = $_FILES["profilePicture"]["name"]; // 画像名を取得
+          $pictureType = $_FILES["profilePicture"]["type"]; // 画像拡張子を取得
+          $pictureTmpName = $_FILES["profilePicture"]["tmp_name"];
+          $pictureFile = file_get_contents($pictureTmpName); // 画像のデータを取得
           $pictureContents = base64_encode($pictureFile); // 画像をエンコード
-          $stmt = $pdo->prepare("INSERT INTO ProfilePictures (user_id, picture, picture_type) VALUES (?, ?, ?)");
-          $stmt->bindValue(1, $loginId);
-          $stmt->bindValue(2, $pictureContents);
-          $stmt->bindValue(3, $_FILES["profilePicture"]["type"]);
+          
+          $uploadPictureSql = 
+            "INSERT INTO Profile_Pictures (user_id, picture_name, picture_type, picture_contents) 
+            VALUES (?, ?, ?, ?)";
+          $stmt = $conn->prepare($uploadPictureSql);
+          
+          $stmt->bindValue(1, $lastInsertId);
+          $stmt->bindValue(2, $pictureName);
+          $stmt->bindValue(3, $pictureType);
+          $stmt->bindValue(4, $pictureContents);
           $stmt->execute();
-
-          $pdo->commit();
-          header("Location:".LOGIN_URL);
+          
+          // 画像とプロフィール情報が登録成功したらコミットする
+          $conn->commit();
+          header("Location: Login.php");
           exit();
-        } catch (Exception $e) {
-          $errorMessage = "新規登録に失敗しました";
-          $pdo->rollback();
+        } catch (PDOException $e) {
+          setErrorMessage("新規登録に失敗しました" . $e->getMessage());
+          // 片方失敗したらロールバックする
+          $conn->rollback();
         }
       } else {
-        $errorMessage = "既に使用されているIDです";
+        setErrorMessage("既に使用されているログインIDです");
       }
     }
   }
@@ -81,70 +90,91 @@ if (isset($_POST["registerUserSubmit"])) {
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <title>新規登録画面</title>
-</head>
-<body>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <form action="./Register.php" method="POST" enctype="multipart/form-data" class="login-content">
-          <h1 class="text-center">Create an account</h1>
-          <div class="register-form">
-            <div class="mb-3">
-              <label for="loginId" class="form-label"><b>loginId</b></label>
-              <input type="text" name="loginId" class="form-control" placeholder="loginId">
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label"><b>Password</b></label>
-              <input type="password" name="password" class="form-control" placeholder="password">
-            </div>
-            <!-- username -->
-            <div class="col-md-5">
-              <label for="userName" class="form-label"><b>userName</b></label>
-              <input type="text" name="userName" class="form-control" placeholder="userName">
-            </div>
-            <!-- age -->
-            <div class="col-md-3">
-              <label for="age" class="form-label"><b>age</b></label>
-              <select class="form-select" name="age">
-                <option>年齢を選択してください</option>
-                <?php for ($ageRange = 18; $ageRange < 100; $ageRange++): ?>
-                  <option value="<?php echo $ageRange; ?>"><?php echo $ageRange; ?></option>
-                <?php endfor; ?>
-              </select>
-            </div>
-            <!-- gender -->
-            <div class="col-md-4">
-              <p><b>gender</b></p>
-              <div class="form-check">
-                <input type="radio" class="form-check-input" name="gender" id="male" value="男">
-                <label class="form-check-label" for="male">男</label>
-              </div>
-              <div class="form-check">
-                <input type="radio" class="form-check-input" name="gender" id="female" value="女">
-                <label class="form-check-label" for="female">女</label>
-              </div>
-            </div>
-            <!-- profile picture -->
-            <div class="col-md-12">
-              <p><b>profilePicture</b></p>
-              <label for="profilePicture" class="form-label">プロフィール写真</label>
-              <input type="file" class="form-control" id="profilePicture" name="profilePicture">
-            </div>
-            <!-- 新規登録ボタン -->
-            <div class="col-md-6 d-grid">
-              <input type="submit" class="btn btn-outline-primary btn-lg my-2" value="新規登録" name="registerUserSubmit" formenctype="multipart/form-data">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../css/Style.css">
+    <title>新規登録画面</title>
+  </head>
+  <body class="bg-info-subtle">
+    <?php include_once("CommonTools.php"); ?>
+    <main class="container p-4 bg-info-subtle">
+      <form method="POST" action="Register.php" class="row g-4">
+        <div class="col-12 text-center h2">新規アカウント作成</div>
+        <!-- ログインID -->
+        <div class="col-md-6">
+          <label for="loginId" class="form-label">ログインID</label>
+          <input 
+            type="text" name="loginId"
+            class="form-control form-control-lg" 
+          \>
+        </div>
+        <!-- バスワード -->
+        <div class="col-md-6">
+          <label for="password" class="form-label">バスワード</label>
+          <input 
+            type="password" name="password"
+            class="form-control form-control-lg" 
+          \>
+        </div>
+        <!-- 名前 -->
+        <div class="col-md-12">
+          <label for="userName" class="form-label">名前</label>
+          <input 
+            type="text" name="userName"
+            class="form-control form-control-lg" 
+          \>
+        </div>
+        <!-- 年齢 -->
+        <div class="col-md-6">
+          <label for="age" class="form-label">年齢</label>
+          <select class="form-select form-select-lg" name="age">
+            <option selected>年齢を選択してください</option>
+            <?php
+            // 年齢プルダウンの選択肢を生成
+            for ($ageRange = 18; $ageRange <= 100; $ageRange++) {
+              echo "<option value='$ageRange'>$ageRange</option>";
+            }
+            ?>
+          </select>
+        </div>
+        <!-- 性別 -->
+        <div class="col-md-6">
+          <label for="gender" class="form-label">性別</label>
+          <div class="form-check px-0">
+            <div class="btn-group btn-group-lg container px-0">
+              <input type="radio" class="btn-check" name="gender" id="male" value="男">
+              <label class="btn btn-outline-dark" for="male">男</label>
+              <input type="radio" class="btn-check" name="gender" id="female" value="女">
+              <label class="btn btn-outline-dark" for="female">女</label>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</body>
+        </div>
+        <!-- プロフィール写真 -->
+        <div class="col-md-12 mb-3">
+          <label for="profilePicture" class="form-label">プロフィール写真</label>
+          <input 
+            type="file" class="form-control form-control-lg" 
+            name="profilePicture" id="profilePicture"
+          \>
+        </div>
+        <!-- 新規登録ボタン -->
+        <div class="col-md-6 d-grid">
+          <input 
+            type="submit" class="btn btn-info btn-lg my-2" 
+            value="登録する" name="registerUserSubmit"
+            formenctype="multipart/form-data"
+          \>
+        </div>
+        <!-- ログイン画面に戻るボタン -->
+        <div class="col-md-6 d-grid">
+          <a type="button" href='Login.php' class="btn btn-dark btn-lg my-2">
+            ログイン画面に戻る
+          </a>
+        </div>
+        <div class="text-center text-danger"><?php displayErrorMessage();?></div>
+      </form>
+    </main>
+  </body>
 </html>
