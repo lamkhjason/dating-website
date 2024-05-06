@@ -40,3 +40,17 @@ function displayErrorMessage() {
     unset($_SESSION["error_message"]);
   }
 }
+
+// マッチ成立したユーザIDをセッションに保管
+function setMatchedUserSession() {
+  $_SESSION["matched"] = true; 
+}
+
+// マッチ成立の確認
+function getMatchedUserSession() {
+  if (isset($_SESSION["matched"])) {
+    $matched = true;
+    unset($_SESSION["matched"]);
+  }
+  return $matched;
+}
