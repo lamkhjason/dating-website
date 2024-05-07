@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once("Pdo.php");
 include_once("CheckValue.php");
 
