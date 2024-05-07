@@ -51,6 +51,8 @@ function getMatchedUserSession() {
   if (isset($_SESSION["matched"])) {
     $matched = true;
     unset($_SESSION["matched"]);
+  } else {
+    $matched = false;
   }
   return $matched;
 }
