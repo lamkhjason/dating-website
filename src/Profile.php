@@ -42,13 +42,13 @@
             </div>
           <?php endif; ?>
         </div>
-        <div class="col-md-6 p-4 card" style="height: 80vh; overflow-y: auto;">
+        <div class="col-md-6 p-4 card overflow-y-auto text-break" style="height: 80vh;">
           <!-- 全プロフィール項目 -->
           <div class="mb-3 h1 strong"><?php echo $username; ?></div>
           <?php foreach ($profileArray as $key => $value): ?>
             <div class='hstack py-2'>
               <div class='p-2 h5 strong' style='min-width: 25%;'><?php echo $key; ?></div>
-              <div class='vr'></div>
+              <div class='vr' style="padding-left: 1px;"></div>
               <div class='p-2 mx-2'><?php echo $value; ?></div>
             </div>
           <?php endforeach; ?>

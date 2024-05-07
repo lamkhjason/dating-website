@@ -107,9 +107,9 @@ if (isset($_POST["editProfileSubmit"])) {
             <select class="form-select form-select-lg" name="age">
               <option>年齢を選択していください</option>
               <?php
-              $age = $profileItem['age'];
+              $age = $profileItem["age"];
               for ($ageRange = 18; $ageRange < 100; $ageRange++) {
-                if ($ageRange === $age) {
+                if ($ageRange == $age) {
                   echo "<option selected value='$age'>$age</option>";
                 } else {
                   echo "<option value='$ageRange'>$ageRange</option>";
