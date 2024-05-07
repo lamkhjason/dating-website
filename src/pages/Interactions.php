@@ -14,7 +14,7 @@
     include_once("../components/CommonTools.php");
     // マッチング成立しているなら、成立した画面を表示
     $isMatched = getMatchedUserSession();
-    if (isset($isMatched)):
+    if ($isMatched):
     ?>
     <div class="z-3 bg-danger-subtle position-absolute w-100 h-100" id="success">
       <div 

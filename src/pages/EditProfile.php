@@ -38,7 +38,7 @@
               <?php
               $age = $profileItem['age'];
               for ($ageRange = 18; $ageRange < 100; $ageRange++) {
-                if ($ageRange === $age) {
+                if ($ageRange == $age) {
                   echo "<option selected value='$age'>$age</option>";
                 } else {
                   echo "<option value='$ageRange'>$ageRange</option>";
