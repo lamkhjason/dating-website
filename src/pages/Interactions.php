@@ -40,33 +40,33 @@
           $pictureType = testInputValue($user['picture_type']);
           $pictureContents = testInputValue($user['picture_contents']);
         ?>
-        <div class="col">
-          <div class="card h-100 text-center">
-            <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
-              <img 
-                <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?>
-                class="card-img-top object-fit-scale border rounded" 
-                alt="profilePicture" height="300px" width="200px"
-              >
-            </a>
-            <div class="card-body">
-              <h5 class="card-title"><?php echo $username; ?></h5>
-              <p class="card-text"><?php echo "$gender ($age)"; ?></p>
-              <form class="d-grid" method="POST" action="../database/ProcessInteractions.php">
-                <input 
-                  type="hidden" name="targetUserId" 
-                  value="<?php echo $targetUserId; ?>"
-                \>
-                <button 
-                  type="submit" class="btn btn-success" 
-                  name="likeSubmit" value="like"
-                > 
-                  <i class="bi-heart-fill" style="font-size: 16px;"></i>
-                </button>
-              </form>
+          <div class="col">
+            <div class="card h-100 text-center">
+              <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
+                <img 
+                  <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?>
+                  class="card-img-top object-fit-scale border rounded" 
+                  alt="profilePicture" height="300px" width="200px"
+                >
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $username; ?></h5>
+                <p class="card-text"><?php echo "$gender ($age)"; ?></p>
+                <form class="d-grid" method="POST" action="../database/ProcessInteractions.php">
+                  <input 
+                    type="hidden" name="targetUserId" 
+                    value="<?php echo $targetUserId; ?>"
+                  \>
+                  <button 
+                    type="submit" class="btn btn-success" 
+                    name="likeSubmit" value="like"
+                  > 
+                    <i class="bi-heart-fill" style="font-size: 16px;"></i>
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
         <?php endforeach; ?>
       </div>
     </main>
