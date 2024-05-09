@@ -1,6 +1,6 @@
 <?php
 include_once("Pdo.php");
-include_once("CheckValue.php");
+include_once("../components/CheckValue.php");
 
 // 自分と他のユーザのプロフィールを判別する
 if (isset($_GET["targetUserId"])) {

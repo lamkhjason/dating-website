@@ -14,19 +14,15 @@
     include_once("../components/CommonTools.php");
     
     function profileTextField($itemValue, $itemTitle, $itemKey) {
-      echo 
-        "<label for='$itemKey' class='form-label'>$itemTitle</label>
+      echo "<label for='$itemKey' class='form-label'>$itemTitle</label>
         <input 
           type='text' class='form-control form-control-lg' 
           name='$itemKey' value='$itemValue'
         \>";
     }
     function profileTextArea($itemValue, $itemTitle, $itemKey) {
-      echo 
-        "<label for='$itemKey' class='form-label'>$itemTitle</label>
-        <textarea class='form-control form-control-lg' name='$itemKey'>
-          $itemValue
-        </textarea>";
+      echo "<label for='$itemKey' class='form-label'>$itemTitle</label>
+        <textarea class='form-control form-control-lg' name='$itemKey'>$itemValue</textarea>";
     }
     ?>
     <main class="container p-4 bg-info-subtle">
