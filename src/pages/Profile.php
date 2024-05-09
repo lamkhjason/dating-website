@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： Profile.php
+  コード内容： プロフィール画面（html部分）
+-->
 <!DOCTYPE html>
 <html>
   <head>

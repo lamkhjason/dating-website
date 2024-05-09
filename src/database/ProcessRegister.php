@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： ProcessRegister.php
+  コード内容： 新規登録画面（DB処理）
+-->
 <?php
 include_once("Pdo.php"); // Pdo.phpをインポート
 include_once("../components/CheckValue.php"); // CheckValue.phpをインポート

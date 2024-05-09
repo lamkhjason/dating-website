@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： CheckValue.php
+  コード内容： 各画面の変数チェック、セッションの管理
+-->
 <?php 
 session_start();
 

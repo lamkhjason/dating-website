@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： MatchedList.php
+  コード内容： マッチング一覧画面（html部分）
+-->
 <!DOCTYPE html>
 <html>
   <head>

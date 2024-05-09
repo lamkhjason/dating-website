@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： EditProfile.php
+  コード内容： プロフィール編集画面（html部分）
+-->
 <!DOCTYPE html>
 <html>
   <head>

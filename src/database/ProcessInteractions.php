@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： ProcessInteractions.php
+  コード内容： いいね画面（DBの後処理）
+-->
 <?php
 include_once("Pdo.php");
 include_once("../components/CheckValue.php");

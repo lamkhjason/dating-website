@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： Register.php
+  コード内容： 新規登録画面（html部分）
+-->
 <!DOCTYPE html>
 <html>
   <head>

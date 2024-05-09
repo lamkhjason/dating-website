@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： CommonTool.php
+  コード内容： 各画面の共通部分（header）
+-->
 <?php
 // メニューバーの連想配列
 $menubar = [

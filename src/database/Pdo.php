@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： Pdo.php
+  コード内容： データベース接続
+-->
 <?php
 $host = 'localhost'; // ホスト
 $dbname = 'dating_website_db'; // データベース名

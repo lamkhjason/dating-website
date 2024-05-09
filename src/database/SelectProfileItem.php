@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： SelectProfileItem.php
+  コード内容： プロフィール（編集）画面（DBの前処理）
+-->
 <?php
 include_once("Pdo.php");
 include_once("../components/CheckValue.php");

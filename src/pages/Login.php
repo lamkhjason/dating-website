@@ -1,3 +1,7 @@
+<!-- 
+  ファイル名： Login.php
+  コード内容： ログイン画面（html部分）
+-->
 <!DOCTYPE html>
 <html>
   <head>
