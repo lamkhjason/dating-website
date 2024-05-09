@@ -44,5 +44,5 @@ $location = checkProfileItem($profileItem['location']);
 $interests = checkProfileItem($profileItem['interests']);
 $description = checkProfileItem($profileItem['description']);
 
-$pictureContents = $profileItem['picture_contents'];
-$pictureType = $profileItem['picture_type'];
+$pictureContents = checkProfileItem($profileItem['picture_contents']);
+$pictureType = checkProfileItem($profileItem['picture_type']);
