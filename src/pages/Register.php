@@ -61,9 +61,15 @@
           <label for="gender" class="form-label">性別</label>
           <div class="form-check px-0">
             <div class="btn-group btn-group-lg container px-0">
-              <input type="radio" class="btn-check" name="gender" id="male" value="男">
+              <input 
+                type="radio" class="btn-check" 
+                name="gender" id="male" value="男"
+              \>
               <label class="btn btn-outline-dark" for="male">男</label>
-              <input type="radio" class="btn-check" name="gender" id="female" value="女">
+              <input 
+                type="radio" class="btn-check" 
+                name="gender" id="female" value="女"
+              \>
               <label class="btn btn-outline-dark" for="female">女</label>
             </div>
           </div>

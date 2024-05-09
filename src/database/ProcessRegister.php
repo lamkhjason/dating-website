@@ -46,7 +46,6 @@ if (isset($_POST["registerUserSubmit"])) {
             "INSERT INTO Users (login_id, password, username, gender, age) 
             VALUES (?, ?, ?, ?, ?)";
           $stmt = $conn->prepare($registerSql);
-          
           $stmt->bindValue(1, $loginId);
           $stmt->bindValue(2, $userPass);
           $stmt->bindValue(3, $userName);
@@ -65,10 +64,9 @@ if (isset($_POST["registerUserSubmit"])) {
           $pictureContents = base64_encode($pictureFile); // 画像をエンコード
           
           $uploadPictureSql = 
-            "INSERT INTO Profile_Pictures (user_id, picture_name, picture_type, picture_contents) 
-            VALUES (?, ?, ?, ?)";
+            "INSERT INTO Profile_Pictures (user_id, picture_name, 
+            picture_type, picture_contents) VALUES (?, ?, ?, ?)";
           $stmt = $conn->prepare($uploadPictureSql);
-          
           $stmt->bindValue(1, $lastInsertId);
           $stmt->bindValue(2, $pictureName);
           $stmt->bindValue(3, $pictureType);

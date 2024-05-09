@@ -56,7 +56,10 @@
               <div class="card-body">
                 <h5 class="card-title"><?php echo $username; ?></h5>
                 <p class="card-text"><?php echo "$gender ($age)"; ?></p>
-                <form class="d-grid" method="POST" action="../database/ProcessInteractions.php">
+                <form 
+                  action="../database/ProcessInteractions.php"
+                  method="POST" class="d-grid"
+                >
                   <input 
                     type="hidden" name="targetUserId" 
                     value="<?php echo $targetUserId; ?>"

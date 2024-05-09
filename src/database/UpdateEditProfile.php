@@ -15,8 +15,10 @@ if (isset($_POST["editProfileSubmit"])) {
       // トランザクション開始
       $conn->beginTransaction();
       // 編集したプロフィールを更新
-      $updateProfileSql = "UPDATE Users SET username = ?, age = ?, gender = ?,
-        blood_type = ?, location = ?, interests = ?, description = ? WHERE user_id = ?";
+      $updateProfileSql = 
+        "UPDATE Users SET username = ?, age = ?, gender = ?,
+        blood_type = ?, location = ?, interests = ?, description = ? 
+        WHERE user_id = ?";
       $stmt = $conn->prepare($updateProfileSql);
       $count = 1;
       foreach ($_POST as $postKey => $postValue) {
