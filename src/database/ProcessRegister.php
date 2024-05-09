@@ -1,6 +1,6 @@
 <?php
-include("Pdo.php"); // Pdo.phpをインポート
-include("../components/CheckValue.php"); // CheckValue.phpをインポート
+include_once("Pdo.php"); // Pdo.phpをインポート
+include_once("../components/CheckValue.php"); // CheckValue.phpをインポート
 
 // 新規登録ボタンが押された場合
 if (isset($_POST["registerUserSubmit"])) {

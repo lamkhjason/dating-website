@@ -9,7 +9,7 @@
   </head>
   <body class="bg-info-subtle">
     <?php
-    include("../components/CheckValue.php");
+    include_once("../components/CheckValue.php");
     include_once("../components/CommonTools.php");
     ?>
     <main class="container p-4 bg-info-subtle">
