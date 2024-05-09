@@ -9,7 +9,11 @@ $dbUsername = 'root'; // データベースの利用者名
 $dbPassword = ''; // パスワード
 
 try {
-  $conn = new PDO("mysql:host=$host;dbname=$dbname", $dbUsername, $dbPassword);
+  $conn = new PDO(
+    "mysql:host=$host;dbname=$dbname", 
+    $dbUsername, 
+    $dbPassword
+  );
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
   if ($_SERVER['SCRIPT_NAME'] === "/dating-website/src/database/Pdo.php") {
