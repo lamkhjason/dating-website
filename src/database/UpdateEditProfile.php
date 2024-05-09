@@ -66,7 +66,7 @@ if (isset($_POST["editProfileSubmit"])) {
         header("Location: ../pages/Profile.php");
           exit;
       }
-    } catch (Exception $e) {
+    } catch (PDOException $e) {
       setErrorMessage("プロフィール更新失敗: " . $e->getMessage());
       // 片方失敗したらロールバックする
       $conn->rollback();

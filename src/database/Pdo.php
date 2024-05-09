@@ -15,6 +15,6 @@ try {
   if ($_SERVER['SCRIPT_NAME'] === "/dating-website/src/database/Pdo.php") {
     echo "データベース接続成功！";
   }
-} catch(PDOException $e) {
+} catch (PDOException $e) {
   echo "データベース接続失敗：" . $e->getMessage();
 } 
