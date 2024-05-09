@@ -1,52 +1,23 @@
-<?php
-include_once("Pdo.php");
-include_once("CheckValue.php");
-
-// ログインボタンを押したら
-if (isset($_POST["loginSubmit"])) {
-  // 異常入力確認
-  $loginId = testInputValue($_POST["loginId"]);
-  $password = testInputValue($_POST["password"]);
-  try {
-    // 入力されているか
-    if (empty($loginId) || empty($password)) {
-      setErrorMessage("ログインIDとパスワードを入力してください");
-    } else {
-      // 一致しているかDBと確認
-      $loginSql = "SELECT user_id FROM Users WHERE login_id = ? AND password = ?";
-      $stmt = $conn->prepare($loginSql);
-      $stmt->bindValue(1, $loginId);
-      $stmt->bindValue(2, $password);
-      $stmt->execute();
-      
-      $user = $stmt->fetch(PDO::FETCH_ASSOC);
-      if (!empty($user)) {
-        // ログインしているユーザIDをセンションに登録し、いいね画面に遷移する
-        setUserIdSession($user['user_id']);
-        header('Location: Interactions.php');
-        exit;
-      } else {
-        setErrorMessage("ログインIDまたはパスワードが正しくありません");
-      }
-    }
-  } catch (PDOException $e) {
-    setErrorMessage("ログインに失敗しました: " . $e->getMessage());
-  }
-}
-?>
+<!-- 
+  ファイル名： Login.php
+  コード内容： ログイン画面（html部分）
+-->
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/Style.css">
+    <link rel="stylesheet" href="../../assets/css/Style.css">
     <title>ログイン画面</title>
   </head>
   <body class="bg-info-subtle">
-    <?php include_once("CommonTools.php"); ?>
+    <?php 
+    include_once("../components/CheckValue.php");
+    include_once("../components/CommonTools.php"); 
+    ?>
     <main class="container p-4 mt-4 bg-info-subtle">
-      <form action="Login.php" method="POST" class="row g-4 mx-3">
+      <form action="../database/ProcessLogin.php" method="POST" class="row g-4 mx-3">
         <div class="col-12 text-center h2">ログイン</div>
         <!-- ログインID -->
         <div class="col-12 px-5">

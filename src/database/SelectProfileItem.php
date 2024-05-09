@@ -1,6 +1,10 @@
+<!-- 
+  ファイル名： SelectProfileItem.php
+  コード内容： プロフィール（編集）画面（DBの前処理）
+-->
 <?php
 include_once("Pdo.php");
-include_once("CheckValue.php");
+include_once("../components/CheckValue.php");
 
 // 自分と他のユーザのプロフィールを判別する
 if (isset($_GET["targetUserId"])) {
@@ -40,5 +44,5 @@ $location = checkProfileItem($profileItem['location']);
 $interests = checkProfileItem($profileItem['interests']);
 $description = checkProfileItem($profileItem['description']);
 
-$pictureContents = $profileItem['picture_contents'];
-$pictureType = $profileItem['picture_type'];
+$pictureContents = checkProfileItem($profileItem['picture_contents']);
+$pictureType = checkProfileItem($profileItem['picture_type']);

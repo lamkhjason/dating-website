@@ -2,7 +2,6 @@
 ## 必須機能
 ### 画面
 - ログイン画面
-- ログアウト
 - 新規登録画面
 - いいね画面
 - マッチングした相手一覧画面
@@ -13,23 +12,33 @@
 ### ファイルツリー
 <pre>
 .
-├── css
-│   └── Style.css
-├── icon
-├── js
-│   └── Congratulations.js
+├── assets
+│   ├── css
+│   │   └── Style.css
+│   └── icon
 └── src
-    ├── CheckValue.php
-    ├── CommonTools.php
-    ├── EditProfile.php
-    ├── Interactions.php
-    ├── Login.php
-    ├── LoginStatus.php
-    ├── MatchedList.php
-    ├── Pdo.php
-    ├── Profile.php
-    ├── Register.php
-    └── SelectProfileItem.php
+    ├── components
+    │   ├── CheckValue.php
+    │   └── CommonTools.php
+    ├── database
+    │   ├── LoginStatus.php
+    │   ├── Pdo.php
+    │   ├── ProcessInteractions.php
+    │   ├── ProcessLogin.php
+    │   ├── ProcessRegister.php
+    │   ├── SelectInteractions.php
+    │   ├── SelectMatchedList.php
+    │   ├── SelectProfileItem.php
+    │   └── UpdateEditProfile.php
+    ├── js
+    │   └── Congratulations.js
+    └── pages
+        ├── EditProfile.php
+        ├── Interactions.php
+        ├── Login.php
+        ├── MatchedList.php
+        ├── Profile.php
+        └── Register.php
 </pre>
 
 ## ブランチ

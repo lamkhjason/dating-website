@@ -1,6 +1,12 @@
+<!-- 
+  ファイル名： LoginStatus.php
+  コード内容： ログインステータスの管理
+-->
 <?php
 include_once("Pdo.php");
-include_once("CheckValue.php");
+include_once("../components/CheckValue.php");
+
+define("LOGIN_PAGE", "../pages/Login.php");
 
 try {
   $isLoggingIn = getUserIdSession();
@@ -15,18 +21,18 @@ try {
     if ($loginUser === 0) {
       // データベース内でユーザーが見つからない
       setErrorMessage("ユーザ情報がありません");
-      header('Location: Login.php');
+      header("Location:" . LOGIN_PAGE);
       exit;
     }
   } else {
     // ログインされていない場合はログインページにリダイレクト
     setErrorMessage("ログインしていません");
-    header('Location: Login.php');
+    header("Location:" . LOGIN_PAGE);
     exit;
   }
 } catch (PDOException $e) {
   setErrorMessage("DBエラー：".$e->getMessage());
-  header("Location: Login.php");
+  header("Location:" . LOGIN_PAGE);
   exit;
 }
 
@@ -35,6 +41,6 @@ if (isset($_POST["logoutSubmit"])) {
   // セッションを破棄
   session_destroy();
   // ログインページにリダイレクト
-  header('Location: Login.php');
+  header("Location:" . LOGIN_PAGE);
   exit;
 }

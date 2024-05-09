@@ -1,9 +1,13 @@
+<!-- 
+  ファイル名： CommonTool.php
+  コード内容： 各画面の共通部分（header）
+-->
 <?php
 // メニューバーの連想配列
 $menubar = [
-  "マッチング一覧" => "/dating-website/src/MatchedList.php",
-  "いいね" => "/dating-website/src/Interactions.php",
-  "プロフィール" => "/dating-website/src/Profile.php",
+  "マッチング一覧" => "/dating-website/src/pages/MatchedList.php",
+  "いいね" => "/dating-website/src/pages/Interactions.php",
+  "プロフィール" => "/dating-website/src/pages/Profile.php",
 ];
 
 function checkActivePage($directory) {
@@ -24,13 +28,13 @@ function checkActivePage($directory) {
     <?php 
     // ログイン画面と新規登録画面以外、メニューバーとログアウトボタンを表示する
     $showMenubar = 
-      $_SERVER["SCRIPT_NAME"] !== "/dating-website/src/Login.php" && 
-      $_SERVER["SCRIPT_NAME"] !== "/dating-website/src/Register.php";
+      $_SERVER["SCRIPT_NAME"] !== "/dating-website/src/pages/Login.php" && 
+      $_SERVER["SCRIPT_NAME"] !== "/dating-website/src/pages/Register.php";
     if ($showMenubar):
     ?>
       <nav class="col-9 btn-group">
         <?php 
-        include_once("LoginStatus.php");
+        include_once("../database/LoginStatus.php");
         foreach ($menubar as $title => $directory) {
           $btnClass = checkActivePage($directory);
           echo "<a href='$directory' class='$btnClass'>$title</a>";
