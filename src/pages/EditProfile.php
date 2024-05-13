@@ -29,7 +29,7 @@
         <textarea class='form-control form-control-lg' name='$itemKey'>$itemValue</textarea>";
     }
     ?>
-    <main class="container p-4">
+    <main class="main-content">
       <form class="row g-4" method="POST" action="../database/UpdateEditProfile.php">
         <!-- 名前 -->
         <div class="col-md-7">

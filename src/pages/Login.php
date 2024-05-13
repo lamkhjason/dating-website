@@ -16,7 +16,7 @@
     include_once("../components/CheckValue.php");
     include_once("../components/CommonTools.php"); 
     ?>
-    <main class="container p-4">
+    <main class="main-content">
       <form action="../database/ProcessLogin.php" method="POST" class="row g-4 mx-3">
         <div class="col-12 text-center h2">ログイン</div>
         <!-- ログインID -->

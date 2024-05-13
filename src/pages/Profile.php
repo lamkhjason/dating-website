@@ -26,7 +26,7 @@
       "自己紹介" => $description,
     ];
     ?>
-    <main class="container p-4">
+    <main class="main-content">
       <div class="text-center text-danger"><?php displayErrorMessage();?></div>
       <div class="row mx-3">
         <div class="col-md-6 p-4 card" style="height: 80vh;">
