@@ -31,7 +31,7 @@
       </div>
     </div>
     <?php endif; ?>
-    <main class="container p-4 bg-info-subtle">
+    <main class="container p-4">
       <div class="text-center text-danger"><?php displayErrorMessage();?></div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         <?php 

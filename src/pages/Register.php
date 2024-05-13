@@ -16,7 +16,7 @@
     include_once("../components/CheckValue.php");
     include_once("../components/CommonTools.php");
     ?>
-    <main class="container p-4 bg-info-subtle">
+    <main class="container p-4">
       <form method="POST" action="../database/ProcessRegister.php" class="row g-4">
         <div class="col-12 text-center h2">新規アカウント作成</div>
         <!-- ログインID -->
