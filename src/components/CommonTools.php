@@ -22,7 +22,7 @@ function checkActivePage($directory) {
 <script src="../js/Congratulations.js"></script>
 <header class="top-bar">
   <div class="col-auto">
-    <i class="bi-calendar-heart-fill text-light" style="font-size: 35px;"></i>
+    <i class="bi-calendar-heart-fill system-icon"></i>
   </div>
   <?php 
   // ログイン画面と新規登録画面以外、メニューバーとログアウトボタンを表示する
@@ -42,11 +42,7 @@ function checkActivePage($directory) {
     </nav>
     <form method="POST" class="col-auto">
       <input type="hidden" name="logoutSubmit">
-      <i 
-        class="bi-box-arrow-right text-light" 
-        onclick="this.parentNode.submit()" 
-        style="cursor: pointer; font-size: 35px;"
-      ></i>
+      <i class="bi-door-closed logout-icon" onclick="this.parentNode.submit()"></i>
     </form>
   <?php endif; ?>
 </header>
