@@ -22,7 +22,7 @@
     ?>
     <div class="z-3 bg-danger-subtle position-absolute w-100 h-100" id="success">
       <div 
-        class="position-absolute text-center text-danger 
+        class="position-absolute error-message 
         top-50 start-50 translate-middle fs-1"
       >
         <i class="bi-arrow-through-heart-fill" style="font-size: 200px;"></i>
@@ -32,7 +32,7 @@
     </div>
     <?php endif; ?>
     <main class="main-content">
-      <div class="text-center text-danger"><?php displayErrorMessage();?></div>
+      <div class="error-message"><?php displayErrorMessage();?></div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         <?php 
         // 異常入力を確認し、画面に表示する

@@ -96,7 +96,7 @@
             ログイン画面に戻る
           </a>
         </div>
-        <div class="text-center text-danger"><?php displayErrorMessage();?></div>
+        <div class="error-message"><?php displayErrorMessage();?></div>
       </form>
     </main>
   </body>

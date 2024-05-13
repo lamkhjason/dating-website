@@ -18,7 +18,7 @@
     include_once("../components/CommonTools.php");
     ?>
     <main class="main-content">
-      <div class="text-center text-danger"><?php displayErrorMessage();?></div>
+      <div class="error-message"><?php displayErrorMessage();?></div>
       <?php 
       // 異常入力を確認し、画面に表示する
       foreach ($result as $users):

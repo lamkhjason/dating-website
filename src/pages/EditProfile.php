@@ -109,7 +109,7 @@
           </a>
         </div>
         <input type="hidden" name="userId" value="<?php echo getUserIdSession()?>">
-        <div class="text-center text-danger"><?php displayErrorMessage();?></div>
+        <div class="error-message"><?php displayErrorMessage();?></div>
       </form>
     </main>
   </body>

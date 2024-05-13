@@ -44,7 +44,7 @@
             新規登録
           </a>
         </div>
-        <div class="col-12 text-center text-danger">
+        <div class="col-12 error-message">
           <?php displayErrorMessage();?>
         </div>
       </form>
