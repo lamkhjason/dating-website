@@ -3,7 +3,7 @@
   コード内容： ログイン画面（html部分）
 -->
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible">

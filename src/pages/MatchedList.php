@@ -3,7 +3,7 @@
   コード内容： マッチング一覧画面（html部分）
 -->
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
