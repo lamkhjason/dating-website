@@ -35,6 +35,18 @@
   text-align: center !important;
 }
 
+#success {
+  background-color: lightpink;
+  color: red;
+  padding-top: 12rem;
+  font-size: 200px;
+  position: absolute !important;
+  text-align: center !important;
+  height: 93% !important;
+  width: 100% !important;
+  z-index: 3 !important;
+}
+
 /* 
 .row {
   --bs-gutter-x: 1.5rem;
