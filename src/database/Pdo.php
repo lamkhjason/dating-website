@@ -15,7 +15,7 @@ try {
   );
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
-  if ($_SERVER["SCRIPT_NAME"] === "dating-website/src/database/Pdo.php") {
+  if ($_SERVER["SCRIPT_NAME"] === "/dating-website/src/database/Pdo.php") {
     echo "データベース接続成功！";
   }
   
