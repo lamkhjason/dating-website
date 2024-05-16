@@ -14,7 +14,10 @@ try {
     $dbPassword
   );
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo "データベース接続成功！";
+  
+  if ($_SERVER["SCRIPT_NAME"] === "dating-website/src/database/Pdo.php") {
+    echo "データベース接続成功！";
+  }
   
 } catch (PDOException $e) {
   echo "データベース接続失敗：" . $e->getMessage();
