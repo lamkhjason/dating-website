@@ -14,7 +14,7 @@
   <body class="bg-info-subtle">
     <?php
     include_once("../components/CheckValue.php");
-    include_once("../database/SelectProfileItem.php"); 
+    include_once("../database/SelectProfileItem.php");
     include_once("../components/CommonTools.php");
     
     function profileTextField($itemValue, $itemTitle, $itemKey) {
