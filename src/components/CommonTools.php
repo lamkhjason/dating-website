@@ -1,8 +1,7 @@
-<!-- 
-  ファイル名： CommonTool.php
-  コード内容： 各画面の共通部分（header）
--->
 <?php
+// ファイル名： CommonTool.php
+// コード内容： 各画面の共通部分（header）
+
 // メニューバーの連想配列
 $menubar = [
   "マッチング一覧" => "/dating-website/src/pages/MatchedList.php",
@@ -19,7 +18,6 @@ function checkActivePage($directory) {
   return $mode;
 }
 ?>
-<script src="../js/Congratulations.js"></script>
 <header class="sticky-top container-fluid bg-info p-2">
   <div class="row justify-content-around">
     <div class="col-auto">

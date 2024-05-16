@@ -1,14 +1,14 @@
-<!-- 
-  ファイル名： Register.php
-  コード内容： 新規登録画面（html部分）
--->
+<?php
+// ファイル名： Register.php
+// コード内容： 新規登録画面（html部分）
+?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../../assets/css/Style.css">
+    <link rel="stylesheet" href="../assets/css/Style.css">
     <title>新規登録画面</title>
   </head>
   <body class="bg-info-subtle">
@@ -25,7 +25,7 @@
           <input 
             type="text" name="loginId"
             class="form-control form-control-lg" 
-          \>
+          >
         </div>
         <!-- バスワード -->
         <div class="col-md-6">
@@ -33,7 +33,7 @@
           <input 
             type="password" name="password"
             class="form-control form-control-lg" 
-          \>
+          >
         </div>
         <!-- 名前 -->
         <div class="col-md-12">
@@ -41,7 +41,7 @@
           <input 
             type="text" name="userName"
             class="form-control form-control-lg" 
-          \>
+          >
         </div>
         <!-- 年齢 -->
         <div class="col-md-6">
@@ -64,12 +64,12 @@
               <input 
                 type="radio" class="btn-check" 
                 name="gender" id="male" value="男"
-              \>
+              >
               <label class="btn btn-outline-dark" for="male">男</label>
               <input 
                 type="radio" class="btn-check" 
                 name="gender" id="female" value="女"
-              \>
+              >
               <label class="btn btn-outline-dark" for="female">女</label>
             </div>
           </div>
@@ -80,7 +80,7 @@
           <input 
             type="file" class="form-control form-control-lg" 
             name="profilePicture" id="profilePicture"
-          \>
+          >
         </div>
         <!-- 新規登録ボタン -->
         <div class="col-md-6 d-grid">
@@ -88,7 +88,7 @@
             type="submit" class="btn btn-info btn-lg my-2" 
             value="登録する" name="registerUserSubmit"
             formenctype="multipart/form-data"
-          \>
+          >
         </div>
         <!-- ログイン画面に戻るボタン -->
         <div class="col-md-6 d-grid">
