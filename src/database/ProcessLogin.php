@@ -1,8 +1,7 @@
-<!-- 
-  ファイル名： ProcessLogin.php
-  コード内容： ログイン画面（DB処理）
--->
 <?php
+// ファイル名： ProcessLogin.php
+// コード内容： ログイン画面（DB処理）
+
 include_once("Pdo.php");
 include_once("../components/CheckValue.php");
 

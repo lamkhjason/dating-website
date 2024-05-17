@@ -1,8 +1,7 @@
-<!-- 
-  ファイル名： LoginStatus.php
-  コード内容： ログインステータスの管理
--->
 <?php
+// ファイル名： LoginStatus.php
+// コード内容： ログインステータスの管理
+
 include_once("Pdo.php");
 include_once("../components/CheckValue.php");
 
