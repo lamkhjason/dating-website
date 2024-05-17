@@ -20,15 +20,9 @@
     $isMatched = getMatchedUserSession();
     if ($isMatched):
     ?>
-    <div class="z-3 bg-danger-subtle position-absolute w-100 h-100" id="success">
-      <div 
-        class="position-absolute error-message 
-        top-50 start-50 translate-middle fs-1"
-      >
-        <i class="bi-arrow-through-heart-fill" style="font-size: 200px;"></i>
-        <br>
-        マッチ成立！！！！！ヒューヒュー
-      </div>
+    <div id="success">
+      <i class="bi-arrow-through-heart-fill"></i>
+      <h1>マッチ成立！！！！！ヒューヒュー</h1>
     </div>
     <?php endif; ?>
     <main class="main-content">
