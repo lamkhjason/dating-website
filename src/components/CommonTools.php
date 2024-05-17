@@ -18,7 +18,6 @@ function checkActivePage($directory) {
   return $mode;
 }
 ?>
-
 <header class="top-bar">
   <div class="col-auto">
     <i class="bi-calendar-heart-fill system-icon"></i>
@@ -26,8 +25,9 @@ function checkActivePage($directory) {
   <?php 
   // ログイン画面と新規登録画面以外、メニューバーとログアウトボタンを表示する
   $showMenubar = 
-    $_SERVER["SCRIPT_NAME"] !== "/dating-website/src/pages/Login.php" && 
-    $_SERVER["SCRIPT_NAME"] !== "/dating-website/src/pages/Register.php";
+    $_SERVER["SCRIPT_NAME"] === "マッチング一覧" || 
+    $_SERVER["SCRIPT_NAME"] === "いいね" ||
+    $_SERVER["SCRIPT_NAME"] === "プロフィール";
   if ($showMenubar):
   ?>
     <nav class="col-9 btn-group">
