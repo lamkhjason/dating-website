@@ -1,14 +1,14 @@
-<!-- 
-  ファイル名： EditProfile.php
-  コード内容： プロフィール編集画面（html部分）
--->
+<?php
+// ファイル名： EditProfile.php
+// コード内容： プロフィール編集画面（html部分）
+?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../../assets/css/Style.css">
+    <link rel="stylesheet" href="../assets/css/Style.css">
     <title>プロフィール編集画面</title>
   </head>
   <body class="bg-info-subtle">
@@ -22,7 +22,7 @@
         <input 
           type='text' class='form-control form-control-lg' 
           name='$itemKey' value='$itemValue'
-        \>";
+        >";
     }
     function profileTextArea($itemValue, $itemTitle, $itemKey) {
       echo "<label for='$itemKey' class='form-label'>$itemTitle</label>
@@ -38,19 +38,19 @@
         <!-- 年齢 -->
         <div class="col-md-5">
           <label for="age" class="form-label">年齢</label>
-            <select class="form-select form-select-lg" name="age">
-              <option>年齢を選択していください</option>
-              <?php
-              $age = $profileItem["age"];
-              for ($ageRange = 18; $ageRange < 100; $ageRange++) {
-                if ($ageRange == $age) {
-                  echo "<option selected value='$age'>$age</option>";
-                } else {
-                  echo "<option value='$ageRange'>$ageRange</option>";
-                }
+          <select class="form-select form-select-lg" name="age">
+            <option>年齢を選択していください</option>
+            <?php
+            $age = $profileItem["age"];
+            for ($ageRange = 18; $ageRange < 100; $ageRange++) {
+              if ($ageRange == $age) {
+                echo "<option selected value='$age'>$age</option>";
+              } else {
+                echo "<option value='$ageRange'>$ageRange</option>";
               }
-              ?>
-            </select>
+            }
+            ?>
+          </select>
         </div>
         <!-- 性別 -->
         <div class="col-md-6">
@@ -60,12 +60,12 @@
               <input 
                 type="radio" class="btn-check" name="gender" id="male" value="男"
                 <?php if ($profileItem['gender'] === "男") echo "checked";?>
-              \>
+              >
               <label class="btn btn-outline-dark" for="male">男</label>
               <input 
                 type="radio" class="btn-check" name="gender" id="female" value="女"
                 <?php if ($profileItem['gender'] === "女") echo "checked";?>
-              \>
+              >
               <label class="btn btn-outline-dark" for="female">女</label>
             </div>
           </div>
@@ -92,7 +92,7 @@
           <input 
             type="file" class="form-control form-control-lg" 
             name="profilePicture" id="profilePicture"
-          \>
+          >
         </div>
         <!-- プロフィール更新ボタン -->
         <div class="col-md-6 d-grid">
@@ -100,7 +100,7 @@
             type="submit" class="btn btn-primary btn-lg my-2" 
             value="プロフィールを更新する" name="editProfileSubmit"
             formenctype="multipart/form-data"
-          \>
+          >
         </div>
         <!-- プロフィール画面に戻るボタン -->
         <div class="col-md-6 d-grid">

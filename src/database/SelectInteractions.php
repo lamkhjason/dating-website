@@ -1,8 +1,7 @@
-<!-- 
-  ファイル名： SelectInteractions.php
-  コード内容： いいね画面（DBの前処理）
--->
 <?php
+// ファイル名： SelectInteractions.php
+// コード内容： いいね画面（DBの前処理）
+
 include_once("Pdo.php");
 include_once("../components/CheckValue.php");
 
