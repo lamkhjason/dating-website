@@ -1,14 +1,14 @@
-<!-- 
-  ファイル名： Login.php
-  コード内容： ログイン画面（html部分）
--->
+<?php 
+// ファイル名： Login.php
+// コード内容： ログイン画面（html部分）
+?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../assets/css/Style.css">
+    <link rel="stylesheet" href="../assets/css/Style.css">
     <title>ログイン画面</title>
   </head>
   <body class="bg-info-subtle">
@@ -25,7 +25,7 @@
           <input 
             type="text" name="loginId" 
             class="form-control form-control-lg" 
-          \>
+          >
         </div>
         <!-- パスワード -->
         <div class="col-12 px-5 mb-3">
@@ -33,7 +33,7 @@
           <input 
             type="password" name="password" 
             class="form-control form-control-lg" 
-          \>
+          >
         </div>
         <!-- ログインボタンと新規登録ボタン -->
         <div class="col-6 d-grid gap-4 mx-auto">
