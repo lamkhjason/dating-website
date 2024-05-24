@@ -85,11 +85,8 @@
 }
 
 .nav-btn {
-  display: inline-block;
   font-weight: 400;
   color: #fff;
-  text-align: center;
-  vertical-align: middle;
   cursor: pointer;
   background-color: transparent;
   border: 1px solid #fff;
@@ -100,8 +97,13 @@
   text-decoration: none;
 }
 
-.nav-btn:active,
 .nav-btn:hover {
+  color: #000;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.nav-btn.active {
   color: #000;
   background-color: #fff;
   border-color: #fff;

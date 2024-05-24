@@ -12,8 +12,11 @@ $menubar = [
 
 function checkActivePage($directory) {
   if ($directory === $_SERVER["SCRIPT_NAME"] && !isset($_GET["targetUserId"])) {
-    return ":active"; // 表示している画面をactiveモードにする
+    $mode = "nav-btn active"; // 表示している画面にactiveクラスを追加
+  } else {
+    $mode = "nav-btn"; // 表示していない画面のクラス
   }
+  return $mode;
 }
 ?>
 <header class="top-bar">
@@ -30,8 +33,8 @@ function checkActivePage($directory) {
       <?php 
       include_once("../database/LoginStatus.php");
       foreach ($menubar as $title => $directory) {
-        $activeMode = checkActivePage($directory);
-        echo "<a href='$directory' class='nav-btn' $activeMode>$title</a>";
+        $btnClass = checkActivePage($directory);
+        echo "<a href='$directory' class='$btnClass'>$title</a>";
       }
       ?>
     </nav>
