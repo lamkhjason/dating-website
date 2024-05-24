@@ -28,8 +28,8 @@
     ?>
     <main class="main-content">
       <div class="error-message"><?php displayErrorMessage();?></div>
-      <div class="row mx-3">
-        <div class="col-md-6 p-4 card">
+      <div class="profile">
+        <div class="profile-left">
           <!-- プロフィール画像 -->
           <img 
             <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?> 
@@ -37,21 +37,17 @@
           >
           <!-- 自分のプロフィールを表示されるとき、プロフィール編集ボタンを表示する -->
           <?php if ($displayUserId === getUserIdSession()): ?>
-            <div class="d-grid gap-2 col-8 mx-auto my-3">
-              <a href="EditProfile.php" class="btn btn-secondary" type="button">
-                <i class="bi-pencil-fill" style="font-size: 16px;"></i>
-                プロフィール編集
-              </a>
-            </div>
+            <a href="EditProfile.php" class="edit-profile-btn" type="button">
+              <i class="bi-pencil-fill"></i> プロフィール編集
+            </a>
           <?php endif; ?>
         </div>
-        <div class="col-md-6 p-4 card overflow-y-auto text-break" style="height: 80vh;">
+        <div class="profile-right">
           <!-- 全プロフィール項目 -->
           <div class="profile-username"><?php echo $username; ?></div>
           <?php foreach ($profileArray as $key => $value): ?>
             <div class='profile-item'>
               <div class='item-title'><?php echo $key; ?></div>
-              <div class='sep-line'></div>
               <div class='item-body'><?php echo $value; ?></div>
             </div>
           <?php endforeach; ?>
