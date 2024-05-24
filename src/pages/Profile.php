@@ -29,12 +29,11 @@
     <main class="main-content">
       <div class="error-message"><?php displayErrorMessage();?></div>
       <div class="row mx-3">
-        <div class="col-md-6 p-4 card" style="height: 80vh;">
+        <div class="col-md-6 p-4 card">
           <!-- プロフィール画像 -->
           <img 
             <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?> 
-            alt="profile_picture" class="object-fit-scale border rounded m-auto" 
-            height="auto" width="auto" style="max-width: 300px;"
+            alt="profile_picture" class="profile-pic" height="auto" width="auto"
           >
           <!-- 自分のプロフィールを表示されるとき、プロフィール編集ボタンを表示する -->
           <?php if ($displayUserId === getUserIdSession()): ?>
@@ -48,12 +47,12 @@
         </div>
         <div class="col-md-6 p-4 card overflow-y-auto text-break" style="height: 80vh;">
           <!-- 全プロフィール項目 -->
-          <div class="mb-3 h1 strong"><?php echo $username; ?></div>
+          <div class="profile-username"><?php echo $username; ?></div>
           <?php foreach ($profileArray as $key => $value): ?>
-            <div class='hstack py-2'>
-              <div class='p-2 h5 strong' style='min-width: 25%;'><?php echo $key; ?></div>
-              <div class='vr' style="padding-left: 1px;"></div>
-              <div class='p-2 mx-2'><?php echo $value; ?></div>
+            <div class='profile-item'>
+              <div class='item-title'><?php echo $key; ?></div>
+              <div class='sep-line'></div>
+              <div class='item-body'><?php echo $value; ?></div>
             </div>
           <?php endforeach; ?>
         </div>
