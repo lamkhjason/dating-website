@@ -212,3 +212,247 @@
   margin-left: .5rem !important;
   margin-right: .5rem !important;
 }
+
+/* プロフィット編集画面 */
+
+/* .ep-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ep-blood-type-col,
+.ep-location-col {
+  flex: 0 0 auto;
+  width: 25%;
+  max-width: 100%;
+  padding: 0 12px;
+  margin-top: 24px;
+}
+
+.ep-description-col,
+.ep-interests-col,
+.ep-pic-col {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 12px;
+  margin-top: 24px;
+}
+
+.ep-name-col,
+.ep-age-col,
+.ep-gender-col,
+.submit-ep-col,
+.return-profile-col {
+  flex: 0 0 auto;
+  width: 50%;
+  max-width: 100%;
+  padding: 0 12px;
+  margin-top: 24px;
+}
+
+.submit-ep-col,
+.return-profile-col {
+  margin-bottom: .5rem;
+  display: grid !important;
+}
+
+.ep-form-label {
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+
+.ep-form-con {
+  display: block;
+  width: 100%;
+  min-height: 2.625rem;
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  appearance: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0;
+  font-family: inherit;
+}
+
+.submit-ep-btn,
+.return-profile-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: .5rem 0 !important;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+  user-select: none;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.submit-ep-btn {
+  border-color:#0d6efd;
+  background-color: #0d6efd;
+}
+
+.return-profile-btn {
+  border-color:#212529;
+  background-color: #212529;
+} */
+
+
+/*  マッチング一覧 */
+
+.matched-profile-pic {
+  height: 150px;
+  width: 150px;
+  vertical-align: middle;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem !important;
+  object-fit: scale-down !important;
+}
+
+.matched-card {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  color: #212529;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem;
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.matched-card-icon {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 0 !important;
+}
+
+.matched-card-body {
+  flex: 1 1 auto;
+  width: 66.66666667%;
+  flex-direction: column;
+  padding: 1rem !important;
+  margin-left: 1rem !important;
+}
+
+.matched-card-title {
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.matched-card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 1rem 0 !important;
+}
+
+/* いいね画面 */
+
+.list-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -1.5rem;
+  margin-right: -0.75rem;
+  margin-left: -0.75rem;
+}
+
+.list-col {
+  flex-shrink: 0;
+  flex: 0 0 auto;
+  width: 33.33333333%;
+  max-width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.target-pic {
+  height: 300px;
+  width: 100%;
+  vertical-align: middle;
+  object-fit: scale-down !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 0.375rem !important;
+}
+
+.target-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: #212529;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem;
+  height: 100% !important;
+  text-align: center !important;
+}
+
+.target-card-body {
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.target-card-title {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.target-card-text {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.like-btn {
+  display: inline-block;
+  padding: 0.375rem 7rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid #198754;
+  border-radius: 0.375rem;
+  background-color: #198754;
+  cursor: pointer;
+}
+
+.like-btn:hover {
+  color: #fff;
+  background-color: #157347;
+  border-color: #157347;
+}
