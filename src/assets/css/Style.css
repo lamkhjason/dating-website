@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
+/*@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
+*/
 
 .top-bar {
   padding: 8px;
@@ -13,6 +14,15 @@
   background-color: #0ec5ee !important;
   justify-content: space-around !important;
 }
+
+/*bi-calendar-heart-fill system-icon
+
+bi-calendar-heart-fill system-icon::before*/
+
+/*.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+}*/
 
 .system-icon,
 .logout-icon { 
@@ -76,30 +86,29 @@
 }
 
 /*20行目　<main class="main-content">*/
-.row,
-.g-4,
-.mx-3 {
+.position-main {
   display: flex;
   flex-wrap: wrap;
   margin-top: -1.5rem;
-  margin-right: -0.75rem;
+  margin: 0 auto;
+  /*margin-right: -0.75rem;
   margin-left: -0.75rem;
   margin-right: 1rem !important;
-  margin-left: 1rem !important;
+  margin-left: 1rem !important;*/
   }
 
 /*21行目　<div class="col-12 text-center h2">ログイン</div>*/
-.col-12,
-.text-center/*,
+.page-title/*,
 .h2*/ {
     flex: 0 0 auto;
     width: 100%;
     text-align: center !important;
-    /*margin-top: 0;
+    margin-top: 1.7rem;
     margin-bottom: 0.5rem;
     font-weight: 500;
     line-height: 1.2;
-    color: var(--bs-heading-color);*/
+    color: var(--bs-heading-color);
+    font-size: 1.7rem;
 }
 
 /*h2, .h2 {
@@ -112,8 +121,7 @@
   }*/
 
 /*23行目　<div class="col-12 px-5">*/
-.col-12,
-.px-5 {
+.login-id-area {
     flex: 0 0 auto;
     width: 100%;
     padding-right: 3rem !important;
@@ -121,9 +129,7 @@
 }
 
 /*31行目　<div class="col-12 px-5 mb-3">*/
-.col-12,
-.px-5,
-.mb-3 {
+.passwerd-area {
   flex: 0 0 auto;
   width: 100%;
   padding-right: 3rem !important;
@@ -159,12 +165,11 @@
 /*変更優先度高さそうなやつ*/
 
 /*25〜28行目<input type="text" name="loginId" class="form-control form-control-lg" >、33〜36行目　<input type="password" name="password" class="form-control form-control-lg" >*/
-.form-control,
-.form-control-lg {
+.form-setting {
   display: block;
-  width: 100%;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  width: 86%;
+  padding: 0.375rem 0.75rem 0.375rem;
+  font-size: 1.5rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
@@ -177,15 +182,12 @@
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   min-height: 2.625rem;
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  border-radius: 0.5rem;
 }
 
+
+
 /*40行目　<button type="submit" class="btn btn-primary btn-lg" name="loginSubmit">*/
-.btn,
-.btn-primary,
-.btn-lg {
+.btn-login {
   --bs-btn-font-family: ;
   display: inline-block;
   padding: 0.375rem 0.75rem;
@@ -198,7 +200,7 @@
   */
   font-weight: 400;
   line-height: 1.5;
-  color: #adb5bd;
+  color: white;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -208,14 +210,12 @@
   user-select: none;
   border: 1px solid transparent;
   border-radius: 0.375rem;
-  background-color: transparent;
+  background-color: royalblue;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 /*43行目　<a href='Register.php' class="btn btn-dark btn-lg">*/
-.btn,
-.btn-dark,
-.btn-lg {
+.btn-register {
   --bs-btn-font-family: ;
   display: inline-block;
   padding: 0.375rem 0.75rem;
@@ -228,7 +228,7 @@
   */
   font-weight: 400;
   line-height: 1.5;
-  color: #adb5bd;
+  color: white;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -238,7 +238,7 @@
   user-select: none;
   border: 1px solid transparent;
   border-radius: 0.375rem;
-  background-color: transparent;
+  background-color: black;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -260,8 +260,7 @@
 }*/
 
 /*33行目　<form class="row g-4" method="POST" action="../database/UpdateEditProfile.php">*/
-.row,
-.g-4 {
+.form-area {
   display: flex;
   flex-wrap: wrap;
   margin-top: -1.5rem;
@@ -282,14 +281,15 @@
 }
 
 /*56行目　<div class="col-md-6">*/
-.col-md-6 {
+.position-inputitem {
   flex: 0 0 auto;
-  width: 50%;
+  width: 30%;
+  margin-bottom: 2rem;
+  margin-left: 3.75rem;
 }
 
 /*58行目　<div class="form-check px-0">*/
-.form-check,
-.px-0 {
+.form-checkarea {
   display: block;
   min-height: 1.5rem;
   padding-left: 1.5em;
@@ -299,11 +299,12 @@
 }
 
 /*60〜63行目　<input type="radio" class="btn-check" name="gender" id="male" value="男" <?php if ($profileItem['gender'] === "男") echo "checked";?> >*/
-.btn-check {
+.btn-check:before {
   position: absolute;
   clip: rect(0, 0, 0, 0);
-  pointer-events: none;
+  pointer-events: auto;
 }
+
 
 /*74行目　<div class="col-md-3">*/
 .col-md-3 {
@@ -312,14 +313,15 @@
 }
 
 /*82、86行目　<div class="col-md-12">*/
-.col-md-12 {
+.position-name{
   flex: 0 0 auto;
   width: 100%;
+  margin-bottom: 2rem !important;
+  margin-left: 3.75rem;
 }
 
 /*98行目　<div class="col-md-6 d-grid">*/
-.col-md-6,
-.d-grid {
+.transition-area {
   flex: 0 0 auto;
   width: 50%;
   display: grid !important;
@@ -328,8 +330,7 @@
 /*変更優先度高さそうなやつ*/
 
 /*41行目　<select class="form-select form-select-lg" name="age">*/
-.form-select,
-.form-select-lg {
+.form-select {
   --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
   display: block;
   width: 100%;
@@ -337,8 +338,8 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #adb5bd;
-  background-color: #212529;
+  color: black;
+  background-color: white;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"), var(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e"), none);
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
@@ -357,10 +358,7 @@
 }
 
 /*59行目　<div class="btn-group btn-group-lg container px-0">*/
-.btn-group,
-.btn-group-lg,
-.container,
-.px-0 {
+.gender-setting {
   position: relative;
   display: inline-flex;
   vertical-align: middle;
@@ -374,42 +372,55 @@
 }
 
 /*64行目　<label class="btn btn-outline-dark" for="male">男</label>*/
-.btn,
-.btn-outline-dark {
+.btn-gender {
   display: inline-block;
   padding: 0.375rem 0.75rem;
-  font-family: var(--bs-btn-font-family);
   font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   /* .btn-group-lg > .btn
   padding: 0.5rem 1rem;
   font-family: var(--bs-btn-font-family);
   font-size: 1.25rem;
-  */
-  font-weight: 400;
-  line-height: 1.5;
-  color: #adb5bd;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
+  font-family: var(--bs-btn-font-family);
+
   -webkit-user-select: none;
   -moz-user-select: none;
+  text-decoration: none;
   user-select: none;
-  border: 1px solid transparent;
-  border-radius: 0.375rem;
-  background-color: transparent;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  */
 }
 
+/* .btn-gender :checked{
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid black;
+  border-radius: 0.375rem;
+  background-color: black;
+} */
+
 /*99〜103行目　<input type="submit" class="btn btn-primary btn-lg my-2" value="プロフィールを更新する" name="editProfileSubmit" formenctype="multipart/form-data">*/
-.btn
-.btn-primary
-.btn-lg
-.my-2 {
+.btn-newregister{
   display: inline-block;
   padding: 0.375rem 0.75rem;
   font-family: var(--bs-btn-font-family);
   font-size: 1rem;
+  margin-left: 10rem;
+  margin-right: 2rem;
   /* .btn-group-lg > .btn
   padding: 0.5rem 1rem;
   font-family: var(--bs-btn-font-family);
@@ -417,7 +428,7 @@
   */  
   font-weight: 400;
   line-height: 1.5;
-  color: #adb5bd;
+  color: black;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -427,17 +438,16 @@
   user-select: none;
   border: 1px solid transparent;
   border-radius: 0.375rem;
-  background-color: #0d6efd;
+  background-color: lightskyblue;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 /*107行目　<a type="button" href='Profile.php' class="btn btn-dark btn-lg my-2">*/
-.btn,
-.btn-dark,
-.btn-lg,
-.my-2 {
+.btn-back-login{
   display: inline-block;
   padding: 0.375rem 0.75rem;
+  margin-left: 2rem;
+  margin-right: 10rem;
   font-family: var(--bs-btn-font-family);
   font-size: 1rem;
   /* .btn-group-lg > .btn
@@ -447,7 +457,7 @@
   */  
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: white;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -457,7 +467,7 @@
   user-select: none;
   border: 1px solid transparent;
   border-radius: 0.375rem;
-  background-color: transparent;
+  background-color: black;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -486,10 +496,46 @@
 /*Register.php*/
 
 /*78行目　<div class="col-md-12 mb-3">*/
-.col-md-12,
-.mb-3 {
+.position-profile{
   flex: 0 0 auto;
   width: 100%;
-  margin-bottom: 1rem !important;
+  margin-bottom: 2rem !important;
+  margin-left: 3.75rem;
 }
 /*変更優先度高さそうなやつ*/
+
+.btn,
+.btn-info,
+.btn-lg,
+.my-2 {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  margin-left: 5rem;
+  margin-right: 2rem;
+  font-family: var(--bs-btn-font-family);
+  font-size: 1rem;
+  /* .btn-group-lg > .btn
+  padding: 0.5rem 1rem;
+  font-family: var(--bs-btn-font-family);
+  font-size: 1.25rem;
+  */  
+  font-weight: 400;
+  line-height: 1.5;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  background-color: #0dcaf0;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.unknown-textsetting {
+  text-align: center !important;
+  color: rgba(220, 53, 69, 1) !important;
+}
