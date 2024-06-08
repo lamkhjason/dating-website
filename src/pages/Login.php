@@ -17,36 +17,24 @@
     include_once("../components/CommonTools.php"); 
     ?>
     <main class="main-content">
-      <form action="../database/ProcessLogin.php" method="POST" class="position-main">
+      <form action="../database/ProcessLogin.php" method="POST" class="form-row">
         <div class="page-title">ログイン</div>
         <!-- ログインID -->
         <div class="login-id-area">
-          <label for="loginId" class="form-label">ログインID</label>
-          <input 
-            type="text" name="loginId" 
-            class="form-setting" 
-          >
+          <label for="loginId" class="login-form-label">ログインID</label>
+          <input type="text" name="loginId" class="input-area">
         </div>
         <!-- パスワード -->
-        <div class="passwerd-area">
-          <label for="password" class="form-label">パスワード</label>
-          <input 
-            type="password" name="password" 
-            class="form-setting" 
-          >
+        <div class="password-area">
+          <label for="password" class="login-form-label">パスワード</label>
+          <input type="password" name="password" class="input-area">
         </div>
         <!-- ログインボタンと新規登録ボタン -->
-        <div class="col-6 d-grid gap-4 mx-auto">
-          <button type="submit" class="btn-login" name="loginSubmit">
-            ログイン
-          </button>
-          <a href='Register.php' class="btn-register">
-            新規登録
-          </a>
+        <div class="btn-area">
+          <button type="submit" class="btn-login" name="loginSubmit">ログイン</button>
+          <a href='Register.php' class="btn-register">新規登録</a>
         </div>
-        <div class="col-12 text-center text-danger">
-          <?php displayErrorMessage();?>
-        </div>
+        <div class="error-message"><?php displayErrorMessage();?></div>
       </form>
     </main>
   </body>
