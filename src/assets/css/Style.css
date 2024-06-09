@@ -91,6 +91,7 @@ body {
 }
 
 .nav-btn {
+  width: 33.333333333%;
   font-weight: 400;
   color: #fff;
   cursor: pointer;
