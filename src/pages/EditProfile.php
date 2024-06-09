@@ -91,12 +91,10 @@
           <!-- プロフィール更新ボタン -->
           <input 
             type="submit" value="プロフィールを更新する" name="editProfileSubmit"
-            formenctype="multipart/form-data" class="btn btn-primary btn-lg my-2"
+            formenctype="multipart/form-data" class="btn btn-primary btn-lg"
           >
           <!-- プロフィール画面に戻るボタン -->
-          <a type="button" href='Profile.php' class="btn btn-dark btn-lg my-2">
-            プロフィール画面に戻る
-          </a>
+          <a type="button" href='Profile.php' class="btn btn-dark btn-lg">プロフィール画面に戻る</a>
         </div>
         <input type="hidden" name="userId" value="<?php echo getUserIdSession()?>">
       </form>

@@ -374,6 +374,18 @@ body {
 }
 
 /* プロフィール編集画面 */
+/* 名前、年齢、性別のエリア */
+
+/* 血液型、出身地のエリア */
+
+/* 趣味、自己紹介のエリア */
+
+/* 更新ボタン、戻るボタン（共通） */
+
+/*　更新ボタン */
+
+/* 戻るボタン */
+
 
 /* プロフィール画面 */
 .profile {
@@ -535,11 +547,11 @@ body {
 #success {
   background-color: lightpink;
   color: red;
-  padding-top: 12rem;
+  padding-top: 130px;
   font-size: 200px;
   position: absolute !important;
   text-align: center !important;
-  height: 93% !important;
+  height: 90% !important;
   width: 100% !important;
   z-index: 3 !important;
 }
