@@ -30,7 +30,7 @@
           <input type="password" name="password" class="input-area">
         </div>
         <!-- ログインボタンと新規登録ボタン -->
-        <div class="login-btn-area">
+        <div class="btn-area">
           <button type="submit" class="btn-login" name="loginSubmit">ログイン</button>
           <a href='Register.php' class="btn-register">新規登録</a>
         </div>

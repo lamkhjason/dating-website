@@ -28,7 +28,7 @@
     <?php endif; ?>
     <main class="main-content">
       <div class="error-message"><?php displayErrorMessage();?></div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="list-row">
         <?php 
         // 異常入力を確認し、画面に表示する
         foreach ($result as $user): 
@@ -39,31 +39,24 @@
           $pictureType = testInputValue($user['picture_type']);
           $pictureContents = testInputValue($user['picture_contents']);
         ?>
-          <div class="col">
-            <div class="card h-100 text-center">
+          <div class="list-col">
+            <div class="target-card">
               <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
                 <img 
                   <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?>
-                  class="card-img-top object-fit-scale border rounded" 
-                  alt="profilePicture" height="300px" width="200px"
+                  class="target-pic" alt="profilePicture"
                 >
               </a>
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $username; ?></h5>
-                <p class="card-text"><?php echo "$gender ($age)"; ?></p>
-                <form 
-                  action="../database/ProcessInteractions.php"
-                  method="POST" class="d-grid"
-                >
+              <div class="target-card-body">
+                <h5 class="target-card-title"><?php echo $username; ?></h5>
+                <p class="target-card-text"><?php echo "$gender ($age)"; ?></p>
+                <form action="../database/ProcessInteractions.php" method="POST">
                   <input 
                     type="hidden" name="targetUserId" 
                     value="<?php echo $targetUserId; ?>"
                   >
-                  <button 
-                    type="submit" class="btn btn-success" 
-                    name="likeSubmit" value="like"
-                  > 
-                    <i class="bi-heart-fill" style="font-size: 16px;"></i>
+                  <button type="submit" name="likeSubmit" value="like" class="like-btn"> 
+                    <i class="bi-heart-fill"></i>
                   </button>
                 </form>
               </div>

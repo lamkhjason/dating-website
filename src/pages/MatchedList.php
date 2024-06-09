@@ -29,23 +29,18 @@
         $pictureContents = testInputValue($users["picture_contents"]);
         $pictureType = testInputValue($users["picture_type"]);
       ?>
-        <div class="card mb-2">
-          <div class="row g-0">
-            <div class="col-auto">
-              <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
-                <img 
-                  <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?> 
-                  class="me-3 object-fit-scale border rounded"
-                  height="150px" width="150px"
-                >
-              </a>
-            </div>
-            <div class="col-8">
-              <div class="card-body">
-                <h3 class="card-title"><?php echo "$username ($age)"; ?></h3>
-                <p class="card-text text-truncate"><?php echo $description; ?></p>
-              </div>
-            </div>
+        <div class="matched-card">
+          <div class="matched-card-icon">
+            <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
+              <img 
+                <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?>
+                class="matched-profile-pic"
+              >
+            </a>
+          </div>
+          <div class="matched-card-body">
+            <h3 class="matched-card-title"><?php echo "$username ($age)"; ?></h3>
+            <p class="matched-card-text"><?php echo $description; ?></p>
           </div>
         </div>
       <?php endforeach; ?>

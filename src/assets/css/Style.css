@@ -1,7 +1,8 @@
 @charset "UTF-8";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
-/* @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"); */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
 
+/* 全画面の共通クラス */
 *,
 *::before,
 *::after {
@@ -20,6 +21,17 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.main-content {
+  margin: 0 150px;
+  padding: 24px
+}
+
+.error-message {
+  color: red;
+  text-align: center !important;
+}
+
+/* トップバー．メニューバー */
 .top-bar {
   padding: 8px;
   margin: 0;
@@ -36,42 +48,79 @@ body {
 .logout-icon { 
   font-size: 35px;
   color: whitesmoke;
+  flex: 0 0 auto;
+  width: auto;
 }
 
 .logout-icon { 
   cursor: pointer;
 }
 
-.main-content {
-  margin-left: 100px;
-  margin-right: 100px;
-  padding: 24px
+.nav-btn-group {
+  flex: 0 0 auto;
+  width: 75%;
+  display: inline-flex;
+  position: relative;
+  vertical-align: middle;
+  margin: 0.5rem 0 !important;
 }
 
-.error-message {
-  color: red;
-  text-align: center !important;
+.nav-btn-group > .nav-btn {
+  position: relative;
+  flex: 1 1 auto;
+  display: inline-block;
+  margin-bottom: 0;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
 }
 
-#success {
-  background-color: lightpink;
-  color: red;
-  padding-top: 12rem;
-  font-size: 200px;
-  position: absolute !important;
-  text-align: center !important;
-  height: 93% !important;
-  width: 100% !important;
-  z-index: 3 !important;
+.nav-btn-group > .nav-btn:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-/* common part */
+.nav-btn-group > .nav-btn:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.nav-btn-group > .nav-btn + .nav-btn {
+  margin-left: -1px;
+}
+
+.nav-btn {
+  font-weight: 400;
+  color: #fff;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #fff;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  text-decoration: none;
+}
+
+.nav-btn:hover {
+  color: #000;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.nav-btn.active {
+  color: #000;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+/* ログイン、新規登録、プロフィット編集画面の共通クラス */
 .form-row {
   display: flex;
   flex-wrap: wrap;
 }
 
-/* common part */
 .page-title {
   flex: 0 0 auto;
   width: 100%;
@@ -83,13 +132,11 @@ body {
   font-size: 2rem;
 }
 
-/* common part */
 .input-label {
   display: inline-block;
   margin-bottom: 0.5rem;
 }
 
-/* common part */
 .input-area {
   display: block;
   width: 100%;
@@ -110,7 +157,15 @@ body {
   font-family: inherit;
 }
 
-/* common part */
+.btn-area {
+  flex: 0 0 auto;
+  width: 50%;
+  display: grid !important;
+  gap: 1.5rem !important;
+  margin: 1rem auto !important;
+}
+
+/* 新規登録、プロフィット編集画面の共通クラス */
 .age-select {
   display: block;
   word-wrap: normal;
@@ -130,85 +185,6 @@ body {
   background-size: 16px 12px;
   border: 1px solid #dee2e6;
   border-radius: 0.5rem;
-}
-
-/* ログイン画面 */
-
-.login-id-area,
-.password-area {
-  flex: 0 0 auto;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 1rem !important;
-  padding: 0 3rem !important;
-}
-
-.login-btn-area {
-  flex: 0 0 auto;
-  width: 50%;
-  display: grid !important;
-  gap: 1.5rem !important;
-  margin: 1rem auto !important;
-}
-
-.btn-login,
-.btn-register {
-  display: inline-block;
-  margin: 0;
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 1.5;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
-}
-
-.btn-login {
-  background-color: royalblue;
-}
-
-.btn-register {
-  background-color: black;
-}
-
-/* 新規登録画面 */
-
-.reg-login-id-area,
-.reg-password-area,
-.reg-age-area,
-.reg-gender-area,
-.reg-btn-area {
-  flex: 0 0 auto;
-  width: 50%;
-  max-width: 100%;
-  margin-bottom: 1rem !important;
-  padding: 0 1rem !important;
-}
-
-.reg-username-area,
-.reg-pic-area {
-  flex: 0 0 auto;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 1rem !important;
-  padding: 0 1rem !important;
-}
-
-.btn-check {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-  pointer-events: auto;
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
 }
 
 .gender-btn-group {
@@ -259,44 +235,21 @@ body {
   user-select: none;
 }
 
+.btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: auto;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 .btn-check:checked + .gender-btn {
   z-index: 1;
   color: #fff;
   border-color: #212529;
   background-color: #212529;
-}
-
-.reg-btn-area {
-  margin: 1rem 0 !important;
-  display: grid !important;
-}
-
-.btn-new-register,
-.btn-return-login {
-  display: inline-block;
-  margin: 0;
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
-}
-
-.btn-return-login {
-  color: white;
-  background-color: black;
-}
-
-.btn-new-register {
-  color: black;
-  background-color: #0dcaf0;
 }
 
 .file-input {
@@ -333,4 +286,359 @@ body {
 
 .file-input::file-selector-button:hover {
   background-color: lightgray;
+}
+
+/* ログイン画面 */
+.login-id-area,
+.password-area {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem !important;
+}
+
+.btn-login,
+.btn-register {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+}
+
+.btn-login {
+  background-color: royalblue;
+}
+
+.btn-register {
+  background-color: black;
+}
+
+/* 新規登録画面 */
+.reg-login-id-area,
+.reg-password-area,
+.reg-age-area,
+.reg-gender-area {
+  flex: 0 0 auto;
+  width: 50%;
+  max-width: 100%;
+  margin-bottom: 1rem !important;
+  padding: 0 1rem !important;
+}
+
+.reg-username-area,
+.reg-pic-area {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem !important;
+  padding: 0 1rem !important;
+}
+
+.btn-new-register,
+.btn-return-login {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+}
+
+.btn-return-login {
+  color: white;
+  background-color: black;
+}
+
+.btn-new-register {
+  color: black;
+  background-color: #0dcaf0;
+}
+
+/* プロフィール編集画面 */
+/* 名前、年齢、性別のエリア */
+
+/* 血液型、出身地のエリア */
+
+/* 趣味、自己紹介のエリア */
+
+/* 更新ボタン、戻るボタン（共通） */
+
+/*　更新ボタン */
+
+/* 戻るボタン */
+
+
+/* プロフィール画面 */
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0;
+  margin-right: 1rem !important;
+  margin-left: 1rem !important;
+}
+
+.profile-left,
+.profile-right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: #212529;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem;
+  flex: 0 0 auto;
+  width: 50%;
+  height: 80vh !important;
+  padding: 1.5rem !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.profile-right {
+  overflow-y: auto !important;
+}
+
+.edit-profile-btn {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid #6c757d;
+  border-radius: 0.375rem;
+  background-color: #6c757d;
+  margin-right: 4rem !important;
+  margin-left: 4rem !important;
+}
+
+.edit-profile-btn:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.profile-pic {
+  max-width: 350px;
+  max-height: 350px;
+  vertical-align: middle;
+  border-radius: 0.375rem !important;
+  margin: auto !important;
+  border: 1px solid #dee2e6 !important;
+  object-fit: scale-down !important;
+}
+
+.profile-username {
+  margin-top: 0;
+  margin-bottom: 1rem !important;
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.profile-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+  padding-top: .5rem !important;
+  padding-bottom: .5rem !important;
+}
+
+.item-title {
+  min-width: 25%;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+  margin: .5rem 0;
+  padding: .5rem !important;
+}
+
+.item-body {
+  border-left: 1px solid grey;
+  padding: .5rem 1.5rem !important;
+  margin-left: .5rem !important;
+  margin-right: .5rem !important;
+}
+
+/*  マッチング一覧 */
+.matched-card {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  color: #212529;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem;
+  margin: 1rem;
+  margin-top: 0;
+}
+
+.matched-card-icon {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 0 !important;
+}
+
+.matched-profile-pic {
+  height: 150px;
+  width: 150px;
+  vertical-align: middle;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem !important;
+  object-fit: scale-down !important;
+}
+
+.matched-card-body {
+  flex: 1 1 auto;
+  width: 66.66666667%;
+  flex-direction: column;
+  padding: 1rem !important;
+  margin-left: 1rem !important;
+}
+
+.matched-card-title {
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.matched-card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 1rem 0 !important;
+}
+
+/* いいね画面 */
+#success {
+  background-color: lightpink;
+  color: red;
+  padding-top: 130px;
+  font-size: 200px;
+  position: absolute !important;
+  text-align: center !important;
+  height: 90% !important;
+  width: 100% !important;
+  z-index: 3 !important;
+}
+
+.list-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -1.5rem;
+  margin-right: -0.75rem;
+  margin-left: -0.75rem;
+}
+
+.list-col {
+  flex-shrink: 0;
+  flex: 0 0 auto;
+  width: 33.33333333%;
+  max-width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.target-pic {
+  height: 300px;
+  width: 100%;
+  vertical-align: middle;
+  object-fit: scale-down !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 0.375rem !important;
+}
+
+.target-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: #212529;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem;
+  height: 100% !important;
+  text-align: center !important;
+}
+
+.target-card-body {
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.target-card-title {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.target-card-text {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.like-btn {
+  display: inline-block;
+  padding: 0.375rem 7rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid #198754;
+  border-radius: 0.375rem;
+  background-color: #198754;
+  cursor: pointer;
+}
+
+.like-btn:hover {
+  color: #fff;
+  background-color: #157347;
+  border-color: #157347;
 }
