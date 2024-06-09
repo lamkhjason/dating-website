@@ -40,7 +40,7 @@ function checkActivePage($directory) {
     </nav>
     <form method="POST" class="logout-icon">
       <input type="hidden" name="logoutSubmit">
-      <i class="bi-box-arrow-right" onclick="this.parentNode.submit()" ></i>
+      <i class="bi-box-arrow-right" onclick="this.parentNode.submit()"></i>
     </form>
   <?php endif; ?>
 </header>
