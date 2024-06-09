@@ -416,7 +416,16 @@ body {
   word-break: break-word !important;
 }
 
+.profile-left {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-color: transparent;
+}
+
 .profile-right {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-color: transparent;
   overflow-y: auto !important;
 }
 
