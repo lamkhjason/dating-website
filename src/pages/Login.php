@@ -21,21 +21,21 @@
         <div class="page-title">ログイン</div>
         <!-- ログインID -->
         <div class="login-id-area">
-          <label for="loginId" class="login-form-label">ログインID</label>
+          <label for="loginId" class="input-label">ログインID</label>
           <input type="text" name="loginId" class="input-area">
         </div>
         <!-- パスワード -->
         <div class="password-area">
-          <label for="password" class="login-form-label">パスワード</label>
+          <label for="password" class="input-label">パスワード</label>
           <input type="password" name="password" class="input-area">
         </div>
         <!-- ログインボタンと新規登録ボタン -->
-        <div class="btn-area">
+        <div class="login-btn-area">
           <button type="submit" class="btn-login" name="loginSubmit">ログイン</button>
           <a href='Register.php' class="btn-register">新規登録</a>
         </div>
-        <div class="error-message"><?php displayErrorMessage();?></div>
       </form>
+      <div class="error-message"><?php displayErrorMessage();?></div>
     </main>
   </body>
 </html>
