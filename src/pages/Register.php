@@ -63,14 +63,11 @@
           <input type="file" class="file-input" name="profilePicture" id="profilePicture">
         </div>
         <!-- 新規登録ボタン -->
-        <div class="reg-btn-area">
+        <div class="btn-area">
           <input 
             type="submit" value="登録する" name="registerUserSubmit" 
             formenctype="multipart/form-data" class="btn-new-register"
           >
-        </div>
-        <!-- ログイン画面に戻るボタン -->
-        <div class="reg-btn-area">
           <a type="button" href='Login.php' class="btn-return-login">ログイン画面に戻る</a>
         </div>
       </form>

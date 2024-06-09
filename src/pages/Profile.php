@@ -33,7 +33,7 @@
           <!-- プロフィール画像 -->
           <img 
             <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?> 
-            alt="profile_picture" class="profile-pic" height="auto" width="auto"
+            alt="profile_picture" class="profile-pic"
           >
           <!-- 自分のプロフィールを表示されるとき、プロフィール編集ボタンを表示する -->
           <?php if ($displayUserId === getUserIdSession()): ?>

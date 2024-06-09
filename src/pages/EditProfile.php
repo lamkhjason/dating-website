@@ -18,27 +18,25 @@
     include_once("../components/CommonTools.php");
     
     function profileTextField($itemValue, $itemTitle, $itemKey) {
-      echo "<label for='$itemKey' class='form-label'>$itemTitle</label>
-        <input 
-          type='text' class='form-control form-control-lg' 
-          name='$itemKey' value='$itemValue'
-        >";
+      echo "<label for='$itemKey' class='input-label'>$itemTitle</label>
+        <input type='text' class='input-area' name='$itemKey' value='$itemValue'>";
     }
     function profileTextArea($itemValue, $itemTitle, $itemKey) {
       echo "<label for='$itemKey' class='form-label'>$itemTitle</label>
-        <textarea class='form-control form-control-lg' name='$itemKey'>$itemValue</textarea>";
+        <textarea class='input-area' name='$itemKey'>$itemValue</textarea>";
     }
     ?>
     <main class="main-content">
-      <form class="row g-4" method="POST" action="../database/UpdateEditProfile.php">
+      <form method="POST" action="../database/UpdateEditProfile.php" class="form-row">
+        <div class="page-title">プロフィール編集</div>
         <!-- 名前 -->
-        <div class="col-md-7">
+        <div class="col-md-6">
           <?php profileTextField($profileItem['username'], "名前", "username"); ?>
         </div>
         <!-- 年齢 -->
-        <div class="col-md-5">
+        <div class="col-md-6">
           <label for="age" class="form-label">年齢</label>
-          <select class="form-select form-select-lg" name="age">
+          <select class="age-select" name="age">
             <option>年齢を選択していください</option>
             <?php
             $age = $profileItem["age"];
@@ -55,19 +53,17 @@
         <!-- 性別 -->
         <div class="col-md-6">
           <label for="gender" class="form-label">性別</label>
-          <div class="form-check px-0">
-            <div class="btn-group btn-group-lg container px-0">
-              <input 
-                type="radio" class="btn-check" name="gender" id="male" value="男"
-                <?php if ($profileItem['gender'] === "男") echo "checked";?>
-              >
-              <label class="btn btn-outline-dark" for="male">男</label>
-              <input 
-                type="radio" class="btn-check" name="gender" id="female" value="女"
-                <?php if ($profileItem['gender'] === "女") echo "checked";?>
-              >
-              <label class="btn btn-outline-dark" for="female">女</label>
-            </div>
+          <div class="gender-btn-group">
+            <input 
+              type="radio" class="btn-check" name="gender" id="male" value="男"
+              <?php if ($profileItem['gender'] === "男") echo "checked";?>
+            >
+            <label class="gender-btn" for="male">男</label>
+            <input 
+              type="radio" class="btn-check" name="gender" id="female" value="女"
+              <?php if ($profileItem['gender'] === "女") echo "checked";?>
+            >
+            <label class="gender-btn" for="female">女</label>
           </div>
         </div>
         <!-- 血液型 -->
@@ -89,28 +85,22 @@
         <!-- プロフィール写真 -->
         <div class="col-md-12">
           <label for="profilePicture" class="form-label">プロフィール写真</label>
-          <input 
-            type="file" class="form-control form-control-lg" 
-            name="profilePicture" id="profilePicture"
-          >
+          <input type="file" class="file-input" name="profilePicture" id="profilePicture">
         </div>
-        <!-- プロフィール更新ボタン -->
-        <div class="col-md-6 d-grid">
+        <div class="btn-area">
+          <!-- プロフィール更新ボタン -->
           <input 
-            type="submit" class="btn btn-primary btn-lg my-2" 
-            value="プロフィールを更新する" name="editProfileSubmit"
-            formenctype="multipart/form-data"
+            type="submit" value="プロフィールを更新する" name="editProfileSubmit"
+            formenctype="multipart/form-data" class="btn btn-primary btn-lg my-2"
           >
-        </div>
-        <!-- プロフィール画面に戻るボタン -->
-        <div class="col-md-6 d-grid">
+          <!-- プロフィール画面に戻るボタン -->
           <a type="button" href='Profile.php' class="btn btn-dark btn-lg my-2">
             プロフィール画面に戻る
           </a>
         </div>
         <input type="hidden" name="userId" value="<?php echo getUserIdSession()?>">
-        <div class="error-message"><?php displayErrorMessage();?></div>
       </form>
+      <div class="error-message"><?php displayErrorMessage();?></div>
     </main>
   </body>
 </html>
