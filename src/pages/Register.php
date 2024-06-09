@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>新規登録画面</title>
   </head>
-  <body class="bg-info-subtle">
+  <body>
     <?php
     include_once("../components/CheckValue.php");
     include_once("../components/CommonTools.php");
