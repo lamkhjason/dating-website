@@ -1,6 +1,24 @@
 @charset "UTF-8";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
+/* @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"); */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #cff4fc;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
 
 .top-bar {
   padding: 8px;
@@ -47,21 +65,272 @@
   z-index: 3 !important;
 }
 
-/* 
-.row {
-  --bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
+/* common part */
+.form-row {
   display: flex;
   flex-wrap: wrap;
-  margin-top: calc(-1 * var(--bs-gutter-y));
-  margin-right: calc(-0.5 * var(--bs-gutter-x));
-  margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
-.row > * {
-  flex-shrink: 0;
+
+/* common part */
+.page-title {
+  flex: 0 0 auto;
   width: 100%;
   max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * 0.5);
-  padding-left: calc(var(--bs-gutter-x) * 0.5);
-  margin-top: var(--bs-gutter-y);
-} */
+  text-align: center !important;
+  margin: 1rem 0 !important;
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 2rem;
+}
+
+/* common part */
+.input-label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+/* common part */
+.input-area {
+  display: block;
+  width: 100%;
+  min-height: 2.625rem;
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  appearance: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0;
+  font-family: inherit;
+}
+
+/* common part */
+.age-select {
+  display: block;
+  word-wrap: normal;
+  text-transform: none;
+  width: 100%;
+  padding: 0.5rem 2.25rem 0.5rem 1rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  appearance: none;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+}
+
+/* ログイン画面 */
+
+.login-id-area,
+.password-area {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem !important;
+  padding: 0 3rem !important;
+}
+
+.login-btn-area {
+  flex: 0 0 auto;
+  width: 50%;
+  display: grid !important;
+  gap: 1.5rem !important;
+  margin: 1rem auto !important;
+}
+
+.btn-login,
+.btn-register {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+}
+
+.btn-login {
+  background-color: royalblue;
+}
+
+.btn-register {
+  background-color: black;
+}
+
+/* 新規登録画面 */
+
+.reg-login-id-area,
+.reg-password-area,
+.reg-age-area,
+.reg-gender-area,
+.reg-btn-area {
+  flex: 0 0 auto;
+  width: 50%;
+  max-width: 100%;
+  margin-bottom: 1rem !important;
+  padding: 0 1rem !important;
+}
+
+.reg-username-area,
+.reg-pic-area {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem !important;
+  padding: 0 1rem !important;
+}
+
+.btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: auto;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.gender-btn-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  min-height: 1.5rem;
+  border-radius: .375rem;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  width: 100% !important;
+}
+
+.gender-btn-group > .gender-btn:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.gender-btn-group > .gender-btn:nth-child(n+3) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.gender-btn-group > .gender-btn {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.gender-btn-group > :not(.btn-check:first-child) + .gender-btn {
+  margin-left: -1px;
+}
+
+.gender-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  border: 1px solid #212529;
+  background-color: transparent;
+  user-select: none;
+}
+
+.btn-check:checked + .gender-btn {
+  z-index: 1;
+  color: #fff;
+  border-color: #212529;
+  background-color: #212529;
+}
+
+.reg-btn-area {
+  margin: 1rem 0 !important;
+  display: grid !important;
+}
+
+.btn-new-register,
+.btn-return-login {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+}
+
+.btn-return-login {
+  color: white;
+  background-color: black;
+}
+
+.btn-new-register {
+  color: black;
+  background-color: #0dcaf0;
+}
+
+.file-input {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+  min-height: 46px;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+}
+
+.file-input::file-selector-button {
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  margin: -0.5rem 0.5rem -0.5rem -1rem;
+  min-height: 48px;
+  border: none;
+  border-right: 1px solid #dee2e6;
+  border-radius: 0;
+  background-color: whitesmoke;
+  /* transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; */
+}
+
+.file-input::file-selector-button:hover {
+  background-color: lightgray;
+}
