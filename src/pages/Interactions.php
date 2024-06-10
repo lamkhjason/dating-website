@@ -1,6 +1,6 @@
 <?php
-  // ファイル名： Interactions.php
-  // コード内容： いいね画面（html部分）
+// ファイル名： Interactions.php
+// コード内容： いいね画面（html部分）
 ?>
 <!DOCTYPE html>
 <html lang="ja">
