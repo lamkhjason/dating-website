@@ -20,16 +20,13 @@ if (isset($_GET["targetUserId"])) {
 try {
   // 表示するユーザのプロフィールを取得
   $profileSql = 
-    "SELECT u.username, u.gender, u.age, u.blood_type,
-    u.location, u.interests, u.description, pp.picture_contents, pp.picture_type
-    FROM Users u LEFT JOIN Profile_Pictures pp 
-    ON u.user_id = pp.user_id WHERE u.user_id = ?";
+    "SELECT u.username, u.gender, u.age, u.blood_type, u.location, u.interests, 
+    u.description, pp.picture_contents, pp.picture_type FROM Users u 
+    LEFT JOIN Profile_Pictures pp ON u.user_id = pp.user_id WHERE u.user_id = ?";
   $stmt = $conn->prepare($profileSql);
   $stmt->bindValue(1, $displayUserId);
   $stmt->execute();
-  
   $profileItem = $stmt->fetch(PDO::FETCH_ASSOC);
-  
 } catch (PDOException $e) {
   setErrorMessage("プロフィール項目取得失敗：".$e->getMessage());
 }
