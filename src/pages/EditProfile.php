@@ -30,11 +30,11 @@
       <form method="POST" action="../database/UpdateEditProfile.php" class="form-row">
         <div class="page-title">プロフィール編集</div>
         <!-- 名前 -->
-        <div class="col-md-6">
+        <div class="name-area">
           <?php profileTextField($profileItem['username'], "名前", "username"); ?>
         </div>
         <!-- 年齢 -->
-        <div class="col-md-6">
+        <div class="age-area">
           <label for="age" class="form-label">年齢</label>
           <select class="age-select" name="age">
             <option>年齢を選択していください</option>
@@ -51,7 +51,7 @@
           </select>
         </div>
         <!-- 性別 -->
-        <div class="col-md-6">
+        <div class="gender-area">
           <label for="gender" class="form-label">性別</label>
           <div class="gender-btn-group">
             <input 
@@ -67,23 +67,23 @@
           </div>
         </div>
         <!-- 血液型 -->
-        <div class="col-md-3">
+        <div class="blod-area">
           <?php profileTextField($profileItem['blood_type'], "血液型", "bloodType"); ?>
         </div>
         <!-- 出身地 -->
-        <div class="col-md-3">
+        <div class="from-area">
           <?php profileTextField($profileItem['location'], "出身地", "location"); ?>
         </div>
         <!-- 趣味 -->
-        <div class="col-md-12">
+        <div class="pastime-area">
           <?php profileTextArea($profileItem['interests'], "趣味", "interests"); ?>
         </div>
         <!-- 自己紹介 -->
-        <div class="col-md-12">
+        <div class="appeal-area">
           <?php profileTextArea($profileItem['description'], "自己紹介", "description"); ?>
         </div>
         <!-- プロフィール写真 -->
-        <div class="col-md-12">
+        <div class="photo-area">
           <label for="profilePicture" class="form-label">プロフィール写真</label>
           <input type="file" class="file-input" name="profilePicture" id="profilePicture">
         </div>
@@ -91,10 +91,10 @@
           <!-- プロフィール更新ボタン -->
           <input 
             type="submit" value="プロフィールを更新する" name="editProfileSubmit"
-            formenctype="multipart/form-data" class="btn btn-primary btn-lg"
+            formenctype="multipart/form-data" class="btn-update-profile"
           >
           <!-- プロフィール画面に戻るボタン -->
-          <a type="button" href='Profile.php' class="btn btn-dark btn-lg">プロフィール画面に戻る</a>
+          <a type="button" href='Profile.php' class="btn-former-profile">プロフィール画面に戻る</a>
         </div>
         <input type="hidden" name="userId" value="<?php echo getUserIdSession()?>">
       </form>
