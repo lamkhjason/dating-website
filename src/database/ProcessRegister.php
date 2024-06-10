@@ -19,7 +19,7 @@ if (isset($_POST["registerUserSubmit"])) {
   $age === "年齢を選択してください" || empty($gender) || 
   !is_uploaded_file($_FILES["profilePicture"]["tmp_name"]);
   if ($inputValue) {
-    setErrorMessage("必須項目を全て入力してください");
+    setErrorMessage("全項目を入力してください");
   } else {
     // アップロードした画像のサイズ確認
     if ($_FILES["profilePicture"]["size"] > MAX_SIZE) {

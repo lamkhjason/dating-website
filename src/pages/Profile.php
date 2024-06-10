@@ -16,14 +16,14 @@
     include_once("../components/CheckValue.php");
     include_once("../database/SelectProfileItem.php");
     include_once("../components/CommonTools.php");
-    // プロフィールの連想配列
+    // 項目が入力されているかの確認&プロフィールの連想配列
     $profileArray = [
-      "性別" => $gender, 
-      "年齢" => $age, 
-      "血液型" => $bloodType,
-      "出身地" => $location, 
-      "趣味" => $interests, 
-      "自己紹介" => $description,
+      "性別" => checkProfileItem($gender), 
+      "年齢" => checkProfileItem($age), 
+      "血液型" => checkProfileItem($bloodType),
+      "出身地" => checkProfileItem($location), 
+      "趣味" => checkProfileItem($interests), 
+      "自己紹介" => checkProfileItem($description)
     ];
     ?>
     <main class="main-content">

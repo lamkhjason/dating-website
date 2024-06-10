@@ -31,7 +31,7 @@
         <div class="page-title">プロフィール編集</div>
         <!-- 名前 -->
         <div class="col-md-6">
-          <?php profileTextField($profileItem['username'], "名前", "username"); ?>
+          <?php profileTextField($username, "名前", "username"); ?>
         </div>
         <!-- 年齢 -->
         <div class="col-md-6">
@@ -56,31 +56,31 @@
           <div class="gender-btn-group">
             <input 
               type="radio" class="btn-check" name="gender" id="male" value="男"
-              <?php if ($profileItem['gender'] === "男") echo "checked";?>
+              <?php if ($gender === "男") echo "checked";?>
             >
             <label class="gender-btn" for="male">男</label>
             <input 
               type="radio" class="btn-check" name="gender" id="female" value="女"
-              <?php if ($profileItem['gender'] === "女") echo "checked";?>
+              <?php if ($gender === "女") echo "checked";?>
             >
             <label class="gender-btn" for="female">女</label>
           </div>
         </div>
         <!-- 血液型 -->
         <div class="col-md-3">
-          <?php profileTextField($profileItem['blood_type'], "血液型", "bloodType"); ?>
+          <?php profileTextField($bloodType, "血液型", "bloodType"); ?>
         </div>
         <!-- 出身地 -->
         <div class="col-md-3">
-          <?php profileTextField($profileItem['location'], "出身地", "location"); ?>
+          <?php profileTextField($location, "出身地", "location"); ?>
         </div>
         <!-- 趣味 -->
         <div class="col-md-12">
-          <?php profileTextArea($profileItem['interests'], "趣味", "interests"); ?>
+          <?php profileTextArea($interests, "趣味", "interests"); ?>
         </div>
         <!-- 自己紹介 -->
         <div class="col-md-12">
-          <?php profileTextArea($profileItem['description'], "自己紹介", "description"); ?>
+          <?php profileTextArea($description, "自己紹介", "description"); ?>
         </div>
         <!-- プロフィール写真 -->
         <div class="col-md-12">
@@ -96,7 +96,6 @@
           <!-- プロフィール画面に戻るボタン -->
           <a type="button" href='Profile.php' class="btn btn-dark btn-lg">プロフィール画面に戻る</a>
         </div>
-        <input type="hidden" name="userId" value="<?php echo getUserIdSession()?>">
       </form>
       <div class="error-message"><?php displayErrorMessage();?></div>
     </main>

@@ -2,7 +2,7 @@
 // ファイル名： CommonTool.php
 // コード内容： 各画面の共通部分（header）
 
-define("SYSTEM_NAME", "/dating-website/src");
+define("SYSTEM_NAME", "/dating-website/src"); //各自のファイル名
 // メニューバーの連想配列
 $menubar = [
   "マッチング一覧" => SYSTEM_NAME . "/pages/MatchedList.php",

@@ -13,21 +13,30 @@ if (isset($_POST["editProfileSubmit"])) {
     try {
       // トランザクション開始
       $conn->beginTransaction();
+      // 異常入力の確認
+      $username = testInputValue($_POST["username"]);
+      $age = testInputValue($_POST["age"]);
+      $gender = testInputValue($_POST["gender"]);
+      $bloodType = testInputValue($_POST["bloodType"]);
+      $location = testInputValue($_POST["location"]);
+      $interests = testInputValue($_POST["interests"]);
+      $description = testInputValue($_POST["description"]);
+      
       // 編集したプロフィールを更新
       $updateProfileSql = 
-        "UPDATE Users SET username = ?, age = ?, gender = ?,
-        blood_type = ?, location = ?, interests = ?, description = ? 
-        WHERE user_id = ?";
+        "UPDATE Users SET username = ?, age = ?, gender = ?, blood_type = ?, 
+        location = ?, interests = ?, description = ? WHERE user_id = ?";
       $stmt = $conn->prepare($updateProfileSql);
-      $count = 1;
-      foreach ($_POST as $postKey => $postValue) {
-        if ($postKey !== "editProfileSubmit" && $postKey !== "profilePicture") {
-          $postValue = testInputValue($postValue);
-          $stmt->bindValue($count, $postValue);
-          $count++;
-        }
-      }
+      $stmt->bindValue(1, $username);
+      $stmt->bindValue(2, $age);
+      $stmt->bindValue(3, $gender);
+      $stmt->bindValue(4, $bloodType);
+      $stmt->bindValue(5, $location);
+      $stmt->bindValue(6, $interests);
+      $stmt->bindValue(7, $description);
+      $stmt->bindValue(8, getUserIdSession());
       $stmt->execute();
+      
       // プロフィール写真を更新しているか
       $uploadPicture = is_uploaded_file($_FILES["profilePicture"]["tmp_name"]);
       if ($uploadPicture) {
