@@ -28,7 +28,7 @@
     <?php endif; ?>
     <main class="main-content">
       <div class="error-message"><?php displayErrorMessage();?></div>
-        <div class="list-row">
+      <div class="list-row">
         <?php 
         // 異常入力を確認し、画面に表示する
         foreach ($result as $user): 
