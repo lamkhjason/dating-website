@@ -402,7 +402,17 @@ body {
   padding: 0 1rem !important;
 }
 /* 更新ボタン、戻るボタン（共通） */
-.btn-update-profile,
+.editprofile-btn-area {
+  flex: 0 0 auto;
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem !important;
+  margin: 1rem auto !important;
+  padding: 0 1rem !important;
+}
+
+.btn-update-profile, 
 .btn-former-profile {
   display: inline-block;
   margin: 0;

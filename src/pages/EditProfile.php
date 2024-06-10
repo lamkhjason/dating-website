@@ -87,7 +87,7 @@
           <label for="profilePicture" class="form-label">プロフィール写真</label>
           <input type="file" class="file-input" name="profilePicture" id="profilePicture">
         </div>
-        <div class="btn-area">
+        <div class="editprofile-btn-area">
           <!-- プロフィール更新ボタン -->
           <input 
             type="submit" value="プロフィールを更新する" name="editProfileSubmit"
