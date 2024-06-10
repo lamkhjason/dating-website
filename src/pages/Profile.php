@@ -23,7 +23,7 @@
       "血液型" => checkProfileItem($bloodType),
       "出身地" => checkProfileItem($location), 
       "趣味" => checkProfileItem($interests), 
-      "自己紹介" => checkProfileItem($description),
+      "自己紹介" => checkProfileItem($description)
     ];
     ?>
     <main class="main-content">
