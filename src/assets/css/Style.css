@@ -483,7 +483,7 @@ body {
 .edit-profile-btn {
   display: inline-block;
   padding: 0.375rem 0.75rem;
-  margin: 1rem 4rem auto 4rem;
+  margin: 0 4rem auto 4rem;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
@@ -508,7 +508,6 @@ body {
   max-height: 300px;
   vertical-align: middle;
   margin: auto;
-  margin-bottom: 1rem !important;
   border-radius: 0.375rem;
   border: 1px solid #dee2e6 !important;
   object-fit: scale-down !important;
