@@ -504,8 +504,8 @@ body {
 }
 
 .profile-pic {
-  max-width: 350px;
-  max-height: 350px;
+  max-width: 300px;
+  max-height: 300px;
   vertical-align: middle;
   margin: auto;
   margin-bottom: 1rem !important;
@@ -533,7 +533,7 @@ body {
 }
 
 .item-title {
-  min-width: 25%;
+  min-width: 100px;
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.2;
