@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
+/* @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"); */
 
 /* 全画面の共通クラス */
 *,
@@ -100,7 +100,7 @@ body {
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   text-decoration: none;
 }
 
@@ -158,15 +158,17 @@ body {
   font-family: inherit;
 }
 
+/* 新規登録、プロフィット編集画面の共通クラス */
 .btn-area {
   flex: 0 0 auto;
-  width: 50%;
-  display: grid !important;
-  gap: 1.5rem !important;
-  margin: 1rem auto !important;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1rem auto;
+  padding: 0 0.5rem;
 }
 
-/* 新規登録、プロフィット編集画面の共通クラス */
 .age-select {
   display: block;
   word-wrap: normal;
@@ -193,7 +195,7 @@ body {
   display: inline-flex;
   vertical-align: middle;
   min-height: 1.5rem;
-  border-radius: .375rem;
+  border-radius: .5rem;
   padding-right: 0 !important;
   padding-left: 0 !important;
   width: 100% !important;
@@ -282,7 +284,6 @@ body {
   border-right: 1px solid #dee2e6;
   border-radius: 0;
   background-color: whitesmoke;
-  /* transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; */
 }
 
 .file-input::file-selector-button:hover {
@@ -295,7 +296,16 @@ body {
   flex: 0 0 auto;
   width: 100%;
   max-width: 100%;
-  margin-bottom: 1rem !important;
+  padding: 0 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.login-btn-area {
+  flex: 0 0 auto;
+  width: 50%;
+  display: grid !important;
+  gap: 1.5rem !important;
+  margin: 1rem auto !important;
 }
 
 .btn-login,
@@ -333,8 +343,8 @@ body {
   flex: 0 0 auto;
   width: 50%;
   max-width: 100%;
-  margin-bottom: 1rem !important;
-  padding: 0 1rem !important;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
 }
 
 .reg-username-area,
@@ -342,8 +352,8 @@ body {
   flex: 0 0 auto;
   width: 100%;
   max-width: 100%;
-  margin-bottom: 1rem !important;
-  padding: 0 1rem !important;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
 }
 
 .btn-new-register,
@@ -375,26 +385,67 @@ body {
 }
 
 /* プロフィール編集画面 */
-/* 名前、年齢、性別のエリア */
+.edit-username-area,
+.edit-age-area,
+.edit-gender-area {
+  flex: 0 0 auto;
+  width: 50%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
 
-/* 血液型、出身地のエリア */
+.edit-bloodType-area,
+.edit-location-area {
+  flex: 0 0 auto;
+  width: 25%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
 
-/* 趣味、自己紹介のエリア */
+.edit-interests-area,
+.edit-description-area,
+.edit-profile-pic-area {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
 
-/* 更新ボタン、戻るボタン（共通） */
+.btn-update-profile, 
+.btn-return-profile {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+}
 
-/*　更新ボタン */
+.btn-update-profile {
+  background-color: #0d6efd;
+  color: #fff;
+}
 
-/* 戻るボタン */
-
+.btn-return-profile {
+  background-color: #212529;
+  color: #fff;
+}
 
 /* プロフィール画面 */
 .profile {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 0;
-  margin-right: 1rem !important;
-  margin-left: 1rem !important;
 }
 
 .profile-left,
@@ -432,6 +483,7 @@ body {
 .edit-profile-btn {
   display: inline-block;
   padding: 0.375rem 0.75rem;
+  margin: 1rem 4rem auto 4rem;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
@@ -443,8 +495,6 @@ body {
   border: 1px solid #6c757d;
   border-radius: 0.375rem;
   background-color: #6c757d;
-  margin-right: 4rem !important;
-  margin-left: 4rem !important;
 }
 
 .edit-profile-btn:hover {
@@ -457,15 +507,16 @@ body {
   max-width: 350px;
   max-height: 350px;
   vertical-align: middle;
-  border-radius: 0.375rem !important;
-  margin: auto !important;
+  margin: auto;
+  margin-bottom: 1rem !important;
+  border-radius: 0.375rem;
   border: 1px solid #dee2e6 !important;
   object-fit: scale-down !important;
 }
 
 .profile-username {
   margin-top: 0;
-  margin-bottom: 1rem !important;
+  margin-bottom: 1rem;
   font-size: 2.5rem;
   font-weight: 500;
   line-height: 1.2;
@@ -510,8 +561,7 @@ body {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.175);
   border-radius: 0.375rem;
-  margin: 1rem;
-  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .matched-card-icon {
@@ -569,9 +619,7 @@ body {
 .list-row {
   display: flex;
   flex-wrap: wrap;
-  margin-top: -1.5rem;
-  margin-right: -0.75rem;
-  margin-left: -0.75rem;
+  margin: -1.5rem -0.75rem 0 -0.75rem;
 }
 
 .list-col {
