@@ -51,10 +51,10 @@
         <div class="reg-gender-area">
           <label for="gender" class="input-label">性別</label>
           <div class="gender-btn-group">
-            <input type="radio" class="btn-check" name="gender" id="male" value="男">
-            <label class="gender-btn" for="male">男</label>
-            <input type="radio" class="btn-check" name="gender" id="female" value="女">
-            <label class="gender-btn" for="female">女</label>
+            <input type="radio" class="btn-check" name="gender" id="male" value="男性">
+            <label class="gender-btn" for="male">男性</label>
+            <input type="radio" class="btn-check" name="gender" id="female" value="女性">
+            <label class="gender-btn" for="female">女性</label>
           </div>
         </div>
         <!-- プロフィール写真 -->

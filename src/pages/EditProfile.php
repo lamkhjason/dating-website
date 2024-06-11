@@ -55,15 +55,15 @@
           <label for="gender" class="input-label">性別</label>
           <div class="gender-btn-group">
             <input 
-              type="radio" class="btn-check" name="gender" id="male" value="男"
-              <?php if ($gender === "男") echo "checked";?>
+              type="radio" class="btn-check" name="gender" id="male" value="男性"
+              <?php if ($gender === "男性") echo "checked";?>
             >
-            <label class="gender-btn" for="male">男</label>
+            <label class="gender-btn" for="male">男性</label>
             <input 
-              type="radio" class="btn-check" name="gender" id="female" value="女"
-              <?php if ($gender === "女") echo "checked";?>
+              type="radio" class="btn-check" name="gender" id="female" value="女性"
+              <?php if ($gender === "女性") echo "checked";?>
             >
-            <label class="gender-btn" for="female">女</label>
+            <label class="gender-btn" for="female">女性</label>
           </div>
         </div>
         <!-- 血液型 -->
