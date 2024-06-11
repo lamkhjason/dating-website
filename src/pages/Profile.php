@@ -11,49 +11,44 @@
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>プロフィール</title>
   </head>
-  <body class="bg-info-subtle">
+  <body>
     <?php
     include_once("../components/CheckValue.php");
     include_once("../database/SelectProfileItem.php");
     include_once("../components/CommonTools.php");
-    // プロフィールの連想配列
+    // 項目が入力されているかの確認&プロフィールの連想配列
     $profileArray = [
-      "性別" => $gender, 
-      "年齢" => $age, 
-      "血液型" => $bloodType,
-      "出身地" => $location, 
-      "趣味" => $interests, 
-      "自己紹介" => $description,
+      "性別" => checkProfileItem($gender), 
+      "年齢" => checkProfileItem($age), 
+      "血液型" => checkProfileItem($bloodType),
+      "出身地" => checkProfileItem($location), 
+      "趣味" => checkProfileItem($interests), 
+      "自己紹介" => checkProfileItem($description)
     ];
     ?>
-    <main class="container p-4">
-      <div class="text-center text-danger"><?php displayErrorMessage();?></div>
-      <div class="row mx-3">
-        <div class="col-md-6 p-4 card" style="height: 80vh;">
+    <main class="main-content">
+      <div class="error-message"><?php displayErrorMessage();?></div>
+      <div class="profile">
+        <div class="profile-left">
           <!-- プロフィール画像 -->
           <img 
             <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?> 
-            alt="profile_picture" class="object-fit-scale border rounded m-auto" 
-            height="auto" width="auto" style="max-width: 300px;"
+            alt="profile_picture" class="profile-pic"
           >
           <!-- 自分のプロフィールを表示されるとき、プロフィール編集ボタンを表示する -->
           <?php if ($displayUserId === getUserIdSession()): ?>
-            <div class="d-grid gap-2 col-8 mx-auto my-3">
-              <a href="EditProfile.php" class="btn btn-secondary" type="button">
-                <i class="bi-pencil-fill" style="font-size: 16px;"></i>
-                プロフィール編集
-              </a>
-            </div>
+            <a href="EditProfile.php" class="edit-profile-btn" type="button">
+              <i class="bi-pencil-fill"></i> プロフィール編集
+            </a>
           <?php endif; ?>
         </div>
-        <div class="col-md-6 p-4 card overflow-y-auto text-break" style="height: 80vh;">
+        <div class="profile-right">
           <!-- 全プロフィール項目 -->
-          <div class="mb-3 h1 strong"><?php echo $username; ?></div>
+          <div class="profile-username"><?php echo $username; ?></div>
           <?php foreach ($profileArray as $key => $value): ?>
-            <div class='hstack py-2'>
-              <div class='p-2 h5 strong' style='min-width: 25%;'><?php echo $key; ?></div>
-              <div class='vr' style="padding-left: 1px;"></div>
-              <div class='p-2 mx-2'><?php echo $value; ?></div>
+            <div class='profile-item'>
+              <div class='item-title'><?php echo $key; ?></div>
+              <div class='item-body'><?php echo $value; ?></div>
             </div>
           <?php endforeach; ?>
         </div>

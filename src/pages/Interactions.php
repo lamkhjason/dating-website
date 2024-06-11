@@ -1,6 +1,6 @@
 <?php
-  // ファイル名： Interactions.php
-  // コード内容： いいね画面（html部分）
+// ファイル名： Interactions.php
+// コード内容： いいね画面（html部分）
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>いいね画面</title>
   </head>
-  <body class="bg-info-subtle">
+  <body>
     <?php 
     include_once("../components/CheckValue.php");
     include_once("../database/SelectInteractions.php");
@@ -21,20 +21,14 @@
     if ($isMatched):
     ?>
     <script src="../js/Congratulations.js"></script>
-    <div class="z-3 bg-danger-subtle position-absolute w-100 h-100" id="success">
-      <div 
-        class="position-absolute text-center text-danger 
-        top-50 start-50 translate-middle fs-1"
-      >
-        <i class="bi-arrow-through-heart-fill" style="font-size: 200px;"></i>
-        <br>
-        マッチ成立！！！！！ヒューヒュー
-      </div>
+    <div id="success">
+      <i class="bi-arrow-through-heart-fill"></i>
+      <h1>マッチ成立！！！！！ヒューヒュー</h1>
     </div>
     <?php endif; ?>
-    <main class="container p-4">
-      <div class="text-center text-danger"><?php displayErrorMessage();?></div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+    <main class="main-content">
+      <div class="error-message"><?php displayErrorMessage();?></div>
+      <div class="list-row">
         <?php 
         // 異常入力を確認し、画面に表示する
         foreach ($result as $user): 
@@ -45,31 +39,24 @@
           $pictureType = testInputValue($user['picture_type']);
           $pictureContents = testInputValue($user['picture_contents']);
         ?>
-          <div class="col">
-            <div class="card h-100 text-center">
+          <div class="list-col">
+            <div class="target-card">
               <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
                 <img 
                   <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?>
-                  class="card-img-top object-fit-scale border rounded" 
-                  alt="profilePicture" height="300px" width="200px"
+                  class="target-pic" alt="profilePicture"
                 >
               </a>
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $username; ?></h5>
-                <p class="card-text"><?php echo "$gender ($age)"; ?></p>
-                <form 
-                  action="../database/ProcessInteractions.php"
-                  method="POST" class="d-grid"
-                >
+              <div class="target-card-body">
+                <h5 class="target-card-title"><?php echo $username; ?></h5>
+                <p class="target-card-text"><?php echo "$gender ($age)"; ?></p>
+                <form action="../database/ProcessInteractions.php" method="POST">
                   <input 
                     type="hidden" name="targetUserId" 
                     value="<?php echo $targetUserId; ?>"
                   >
-                  <button 
-                    type="submit" class="btn btn-success" 
-                    name="likeSubmit" value="like"
-                  > 
-                    <i class="bi-heart-fill" style="font-size: 16px;"></i>
+                  <button type="submit" name="likeSubmit" value="like" class="like-btn"> 
+                    <i class="bi-heart-fill"></i>
                   </button>
                 </form>
               </div>

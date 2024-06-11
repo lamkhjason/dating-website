@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>マッチング一覧</title>
   </head>
-  <body class="bg-info-subtle">
+  <body>
     <?php 
     include_once("../components/CheckValue.php");
     include_once("../database/SelectMatchedList.php");
     include_once("../components/CommonTools.php");
     ?>
-    <main class="container p-4">
-      <div class="text-center text-danger"><?php displayErrorMessage();?></div>
+    <main class="main-content">
+      <div class="error-message"><?php displayErrorMessage();?></div>
       <?php 
       // 異常入力を確認し、画面に表示する
       foreach ($result as $users):
@@ -29,23 +29,18 @@
         $pictureContents = testInputValue($users["picture_contents"]);
         $pictureType = testInputValue($users["picture_type"]);
       ?>
-        <div class="card mb-2">
-          <div class="row g-0">
-            <div class="col-auto">
-              <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
-                <img 
-                  <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?> 
-                  class="me-3 object-fit-scale border rounded"
-                  height="150px" width="150px"
-                >
-              </a>
-            </div>
-            <div class="col-8">
-              <div class="card-body">
-                <h3 class="card-title"><?php echo "$username ($age)"; ?></h3>
-                <p class="card-text text-truncate"><?php echo $description; ?></p>
-              </div>
-            </div>
+        <div class="matched-card">
+          <div class="matched-card-icon">
+            <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
+              <img 
+                <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?>
+                class="matched-profile-pic"
+              >
+            </a>
+          </div>
+          <div class="matched-card-body">
+            <h3 class="matched-card-title"><?php echo "$username ($age)"; ?></h3>
+            <p class="matched-card-text"><?php echo $description; ?></p>
           </div>
         </div>
       <?php endforeach; ?>

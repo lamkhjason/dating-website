@@ -20,28 +20,24 @@ if (isset($_GET["targetUserId"])) {
 try {
   // 表示するユーザのプロフィールを取得
   $profileSql = 
-    "SELECT u.user_id, u.username, u.gender, u.age, u.blood_type,
-    u.location, u.interests, u.description, pp.picture_contents, pp.picture_type
-    FROM Users u LEFT JOIN Profile_Pictures pp 
-    ON u.user_id = pp.user_id WHERE u.user_id = ?";
+    "SELECT u.username, u.gender, u.age, u.blood_type, u.location, u.interests, 
+    u.description, pp.picture_contents, pp.picture_type FROM Users u 
+    LEFT JOIN Profile_Pictures pp ON u.user_id = pp.user_id WHERE u.user_id = ?";
   $stmt = $conn->prepare($profileSql);
   $stmt->bindValue(1, $displayUserId);
   $stmt->execute();
-  
   $profileItem = $stmt->fetch(PDO::FETCH_ASSOC);
-  
 } catch (PDOException $e) {
   setErrorMessage("プロフィール項目取得失敗：".$e->getMessage());
 }
 
-// プロフィール項目が入力されているかの確認
-$username = checkProfileItem($profileItem['username']);
-$gender = checkProfileItem($profileItem['gender']);
-$age = checkProfileItem($profileItem['age']);
-$bloodType = checkProfileItem($profileItem['blood_type']);
-$location = checkProfileItem($profileItem['location']);
-$interests = checkProfileItem($profileItem['interests']);
-$description = checkProfileItem($profileItem['description']);
-
-$pictureContents = checkProfileItem($profileItem['picture_contents']);
-$pictureType = checkProfileItem($profileItem['picture_type']);
+// プロフィール項目の異常入力
+$username = testInputValue($profileItem['username']);
+$gender = testInputValue($profileItem['gender']);
+$age = testInputValue($profileItem['age']);
+$bloodType = testInputValue($profileItem['blood_type']);
+$location = testInputValue($profileItem['location']);
+$interests = testInputValue($profileItem['interests']);
+$description = testInputValue($profileItem['description']);
+$pictureContents = testInputValue($profileItem['picture_contents']);
+$pictureType = testInputValue($profileItem['picture_type']);

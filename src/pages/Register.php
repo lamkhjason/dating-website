@@ -11,42 +11,33 @@
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>新規登録画面</title>
   </head>
-  <body class="bg-info-subtle">
+  <body>
     <?php
     include_once("../components/CheckValue.php");
     include_once("../components/CommonTools.php");
     ?>
-    <main class="container p-4">
-      <form method="POST" action="../database/ProcessRegister.php" class="row g-4">
-        <div class="col-12 text-center h2">新規アカウント作成</div>
+    <main class="main-content">
+      <form method="POST" action="../database/ProcessRegister.php" class="form-row">
+        <div class="page-title">新規アカウント作成</div>
         <!-- ログインID -->
-        <div class="col-md-6">
-          <label for="loginId" class="form-label">ログインID</label>
-          <input 
-            type="text" name="loginId"
-            class="form-control form-control-lg" 
-          >
+        <div class="reg-login-id-area">
+          <label for="loginId" class="input-label">ログインID</label>
+          <input type="text" name="loginId" class="input-area">
         </div>
-        <!-- バスワード -->
-        <div class="col-md-6">
-          <label for="password" class="form-label">バスワード</label>
-          <input 
-            type="password" name="password"
-            class="form-control form-control-lg" 
-          >
+        <!-- パスワード -->
+        <div class="reg-password-area">
+          <label for="password" class="input-label">パスワード</label>
+          <input type="password" name="password" class="input-area">
         </div>
         <!-- 名前 -->
-        <div class="col-md-12">
-          <label for="userName" class="form-label">名前</label>
-          <input 
-            type="text" name="userName"
-            class="form-control form-control-lg" 
-          >
+        <div class="reg-username-area">
+          <label for="userName" class="input-label">名前</label>
+          <input type="text" name="userName" class="input-area">
         </div>
         <!-- 年齢 -->
-        <div class="col-md-6">
-          <label for="age" class="form-label">年齢</label>
-          <select class="form-select form-select-lg" name="age">
+        <div class="reg-age-area">
+          <label for="age" class="input-label">年齢</label>
+          <select class="age-select" name="age">
             <option selected>年齢を選択してください</option>
             <?php
             // 年齢プルダウンの選択肢を生成
@@ -57,47 +48,31 @@
           </select>
         </div>
         <!-- 性別 -->
-        <div class="col-md-6">
-          <label for="gender" class="form-label">性別</label>
-          <div class="form-check px-0">
-            <div class="btn-group btn-group-lg container px-0">
-              <input 
-                type="radio" class="btn-check" 
-                name="gender" id="male" value="男"
-              >
-              <label class="btn btn-outline-dark" for="male">男</label>
-              <input 
-                type="radio" class="btn-check" 
-                name="gender" id="female" value="女"
-              >
-              <label class="btn btn-outline-dark" for="female">女</label>
-            </div>
+        <div class="reg-gender-area">
+          <label for="gender" class="input-label">性別</label>
+          <div class="gender-btn-group">
+            <input type="radio" class="btn-check" name="gender" id="male" value="男">
+            <label class="gender-btn" for="male">男</label>
+            <input type="radio" class="btn-check" name="gender" id="female" value="女">
+            <label class="gender-btn" for="female">女</label>
           </div>
         </div>
         <!-- プロフィール写真 -->
-        <div class="col-md-12 mb-3">
-          <label for="profilePicture" class="form-label">プロフィール写真</label>
+        <div class="reg-pic-area">
+          <label for="profilePicture" class="input-label">プロフィール写真</label>
+          <input type="file" class="file-input" name="profilePicture" id="profilePicture">
+        </div>
+        <div class="btn-area">
+          <!-- 新規登録ボタン -->
           <input 
-            type="file" class="form-control form-control-lg" 
-            name="profilePicture" id="profilePicture"
+            type="submit" value="登録する" name="registerUserSubmit" 
+            formenctype="multipart/form-data" class="btn-new-register"
           >
+          <!-- ログイン画面に戻るボタン -->
+          <a type="button" href='Login.php' class="btn-return-login">ログイン画面に戻る</a>
         </div>
-        <!-- 新規登録ボタン -->
-        <div class="col-md-6 d-grid">
-          <input 
-            type="submit" class="btn btn-info btn-lg my-2" 
-            value="登録する" name="registerUserSubmit"
-            formenctype="multipart/form-data"
-          >
-        </div>
-        <!-- ログイン画面に戻るボタン -->
-        <div class="col-md-6 d-grid">
-          <a type="button" href='Login.php' class="btn btn-dark btn-lg my-2">
-            ログイン画面に戻る
-          </a>
-        </div>
-        <div class="text-center text-danger"><?php displayErrorMessage();?></div>
       </form>
+      <div class="error-message"><?php displayErrorMessage();?></div>
     </main>
   </body>
 </html>

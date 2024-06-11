@@ -17,7 +17,7 @@ function checkProfileItem($data) {
   if (empty($data)) {
     $data = "記入なし";
   }
-  return testInputValue($data);
+  return $data;
 }
 
 // ログインIDのセッションを設定する
