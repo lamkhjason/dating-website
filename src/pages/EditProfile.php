@@ -68,7 +68,7 @@
         </div>
         <!-- 血液型 -->
         <div class="edit-bloodType-area">
-        <?php profileTextField($bloodType, "血液型", "bloodType"); ?>
+          <?php profileTextField($bloodType, "血液型", "bloodType"); ?>
         </div>
         <!-- 出身地 -->
         <div class="edit-location-area">
