@@ -80,7 +80,7 @@
         </div>
         <!-- 自己紹介 -->
         <div class="edit-description-area">
-        <?php profileTextArea($description, "自己紹介", "description"); ?>
+          <?php profileTextArea($description, "自己紹介", "description"); ?>
         </div>
         <!-- プロフィール写真 -->
         <div class="edit-profile-pic-area">
@@ -94,7 +94,9 @@
             formenctype="multipart/form-data" class="btn-update-profile"
           >
           <!-- プロフィール画面に戻るボタン -->
-          <a type="button" href='Profile.php' class="btn-return-profile">プロフィール画面に戻る</a>
+          <a type="button" href='Profile.php' class="btn-return-profile">
+            プロフィール画面に戻る
+          </a>
         </div>
       </form>
       <div class="error-message"><?php displayErrorMessage();?></div>
