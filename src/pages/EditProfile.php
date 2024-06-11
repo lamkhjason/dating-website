@@ -72,11 +72,11 @@
         </div>
         <!-- 出身地 -->
         <div class="edit-location-area">
-        <?php profileTextField($location, "出身地", "location"); ?>
+          <?php profileTextField($location, "出身地", "location"); ?>
         </div>
         <!-- 趣味 -->
         <div class="edit-interests-area">
-        <?php profileTextArea($interests, "趣味", "interests"); ?>
+          <?php profileTextArea($interests, "趣味", "interests"); ?>
         </div>
         <!-- 自己紹介 -->
         <div class="edit-description-area">
