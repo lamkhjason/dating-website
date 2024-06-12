@@ -201,7 +201,7 @@ body {
   width: 100% !important;
 }
 
-.gender-btn-group > .gender-btn:not(:last-child):not(.dropdown-toggle) {
+.gender-btn-group > .gender-btn:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
