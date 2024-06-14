@@ -760,12 +760,18 @@ body {
 }
 
 .search-form {
-  position: relative;
+  position: sticky;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  top: 70px;
   width: 100%;
   margin-bottom: 1rem;
+  z-index: 1000;
+  background-color: #cff4fc;
+  margin-top: -1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
 }
 
 .search-input-area {
