@@ -24,9 +24,8 @@ function checkActivePage($directory) {
   <?php 
   // ログイン画面と新規登録画面以外、メニューバーとログアウトボタンを表示する
   $showMenubar = 
-    $_SERVER["SCRIPT_NAME"] === $menubar['いいね'] || 
-    $_SERVER["SCRIPT_NAME"] === $menubar['プロフィール'] ||
-    $_SERVER["SCRIPT_NAME"] === $menubar['マッチング一覧'];
+    $_SERVER["SCRIPT_NAME"] !== SYSTEM_NAME . "/pages/Login.php" && 
+    $_SERVER["SCRIPT_NAME"] !== SYSTEM_NAME . "/pages/Register.php";
   if ($showMenubar):
   ?>
     <nav class="nav-btn-group">
