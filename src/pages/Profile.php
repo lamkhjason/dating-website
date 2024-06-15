@@ -23,7 +23,13 @@
       "血液型" => checkProfileItem($bloodType),
       "出身地" => checkProfileItem($location), 
       "趣味" => checkProfileItem($interests), 
-      "自己紹介" => checkProfileItem($description)
+      "自己紹介" => checkProfileItem($description),
+      "身長" => checkProfileItem($height), 
+      "体重" => checkProfileItem($weight), 
+      "学歴" => checkProfileItem($education),
+      "職業" => checkProfileItem($occupation), 
+      "喫煙" => checkProfileItem($smokingHabits), 
+      "飲酒" => checkProfileItem($drinkingHabits)
     ];
     ?>
     <main class="main-content">

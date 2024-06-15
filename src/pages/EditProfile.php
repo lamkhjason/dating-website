@@ -82,6 +82,30 @@
         <div class="edit-description-area">
           <?php profileTextArea($description, "自己紹介", "description"); ?>
         </div>
+        <!-- 身長 -->
+        <div class="edit-height-area">
+          <?php profileTextField($height, "身長", "height"); ?>
+        </div>
+        <!-- 体重 -->
+        <div class="edit-weight-area">
+          <?php profileTextField($weight, "体重", "weight"); ?>
+        </div>
+        <!-- 学歴 -->
+        <div class="edit-education-area">
+          <?php profileTextField($education, "学歴", "education"); ?>
+        </div>
+        <!-- 職業 -->
+        <div class="edit-occupation-area">
+          <?php profileTextField($occupation, "職業", "occupation"); ?>
+        </div>
+        <!-- 喫煙 -->
+        <div class="edit-smoking-habits-area">
+          <?php profileTextField($smokingHabits, "喫煙", "smokingHabits"); ?>
+        </div>
+        <!-- 飲酒 -->
+        <div class="edit-drinking-habits-area">
+          <?php profileTextField($drinkingHabits, "飲酒", "drinkingHabits"); ?>
+        </div>
         <!-- プロフィール写真 -->
         <div class="edit-profile-pic-area">
           <label for="profilePicture" class="input-label">プロフィール写真</label>
