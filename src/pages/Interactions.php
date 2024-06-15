@@ -65,7 +65,7 @@
                     <i class="bi-heart-fill"></i>
                   </button>
                   <button 
-                    type="submit" name="dislikeSubmit" 
+                    type="submit" name="likeSubmit" 
                     value="dislike" class="dislike-btn"
                   > 
                     <i class="bi-heartbreak-fill"></i>
