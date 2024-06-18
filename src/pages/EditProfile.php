@@ -19,11 +19,13 @@
     
     function profileTextField($itemValue, $itemTitle, $itemKey) {
       echo "<label for='$itemKey' class='input-label'>$itemTitle</label>
-        <input type='text' class='input-area' name='$itemKey' value='$itemValue'>";
+        <input type='text' class='input-area' name='$itemKey' value='$itemValue'
+        placeholder='" . $itemTitle . "を入力しくてださい'>";
     }
     function profileTextArea($itemValue, $itemTitle, $itemKey) {
       echo "<label for='$itemKey' class='input-label'>$itemTitle</label>
-        <textarea class='input-area' name='$itemKey'>$itemValue</textarea>";
+        <textarea class='input-area' name='$itemKey' 
+        placeholder='" . $itemTitle . "を入力しくてださい'>$itemValue</textarea>";
     }
     ?>
     <main class="main-content">
