@@ -521,11 +521,24 @@ body {
   }
 }
 
+.pic-area {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.profile-btn-area {
+  display: grid;
+  flex: 0 0 auto;
+  width: 300px;
+  gap: 0.5rem;
+  margin: auto;
+  margin-top: 0.5rem;
+}
+
 .edit-profile-btn {
   display: inline-block;
   padding: 0.375rem 2rem;
-  margin: auto;
-  margin-top: 0.5rem;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
@@ -545,7 +558,26 @@ body {
   border-color: #545b62;
 }
 
+.prev-btn, .next-btn {
+  display: inline-block;
+  width: auto;
+  margin: auto;
+  padding: 0;
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 1;
+  color: #dee2e6;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  background-color: transparent;
+}
+
 .profile-pic {
+  display: none;
   height: 300px;
   width: 300px;
   margin: auto;
@@ -553,6 +585,11 @@ body {
   border-radius: 0.375rem;
   border: 1px solid #dee2e6;
   object-fit: scale-down !important;
+}
+
+.profile-pic.active {
+  display: block;
+  position: relative;
 }
 
 .profile-username {

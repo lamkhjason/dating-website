@@ -31,15 +31,33 @@
       <div class="profile">
         <div class="profile-left">
           <!-- プロフィール画像 -->
-          <img 
-            <?php echo "src='data: $pictureType; base64, $pictureContents'"; ?> 
-            alt="profile_picture" class="profile-pic"
-          >
+          <div class="pic-area" id="pictureCarousel">
+            <button class="prev-btn" type="button">
+              <i class="bi-caret-left-fill"></i>
+            </button>
+            <?php 
+            for ($index = 0; $index < $row; $index++) {
+              $picCon = testInputValue($profilePic[$index]['picture_contents']);
+              $picType = testInputValue($profilePic[$index]['picture_type']);
+              if ($index === 0) $picClass = "profile-pic active";
+              else $picClass = "profile-pic";
+              echo "<img src='data: $picType; base64, $picCon' class='$picClass'>";
+            }
+            ?>
+            <button class="next-btn" type="button">
+              <i class="bi-caret-right-fill"></i>
+            </button>
+          </div>
           <!-- 自分のプロフィールを表示されるとき、プロフィール編集ボタンを表示する -->
           <?php if ($displayUserId === getUserIdSession()): ?>
+          <div class="profile-btn-area">
             <a href="EditProfile.php" class="edit-profile-btn" type="button">
               <i class="bi-pencil-fill"></i> プロフィール編集
             </a>
+            <a href="EditProfilePic.php" class="edit-profile-btn" type="button">
+              <i class="bi-camera-fill"></i> プロフィール写真編集
+            </a>
+          </div>
           <?php endif; ?>
         </div>
         <div class="profile-right">
