@@ -425,8 +425,7 @@ body {
 }
 
 .edit-interests-area,
-.edit-description-area,
-.edit-profile-pic-area {
+.edit-description-area {
   flex: 0 0 auto;
   width: 100%;
   max-width: 100%;
@@ -796,4 +795,72 @@ body {
 .like-btn:hover {
   background-color: #157347;
   border-color: #157347;
+}
+
+/* プロフィール写真編集画面 */
+.edit-pic {
+  flex: 0 0 auto;
+  margin: 0.5rem 0.25rem;
+  height: 80px;
+  width: 80px;
+  background-color: #fff;
+  vertical-align: middle;
+  border: 1px solid #dee2e6;
+  border-radius: 50%;
+}
+
+.edit-pic > .bi-person-plus-fill {
+  padding: 15px;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+}
+
+.del-pic-btn {
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+  margin: 0.5rem 0.25rem;
+  padding: 0.375rem 0.75rem;
+  font-family: inherit;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid #bb1b1b;
+  border-radius: 50%;
+  background-color: #bb1b1b;
+  cursor: pointer;
+}
+
+.del-pic-btn:hover {
+  background-color: #c03030;
+  border-color: #c03030;
+}
+
+.del-pic-btn.disable {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.upload-pic-area {
+  flex: 0 0 auto;
+  width: 80%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
 }
