@@ -72,5 +72,6 @@
         </div>
       </div>
     </main>
+    <script src="../js/CarouselPictures.js"></script>
   </body>
 </html>
