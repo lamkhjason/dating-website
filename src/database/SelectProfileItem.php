@@ -21,8 +21,7 @@ try {
   // 表示するユーザのプロフィールを取得
   $profileSql = 
     "SELECT u.username, u.gender, u.age, u.blood_type, u.location, u.interests, 
-    u.description, pp.picture_contents, pp.picture_type FROM Users u 
-    LEFT JOIN Profile_Pictures pp ON u.user_id = pp.user_id WHERE u.user_id = ?";
+    u.description FROM Users u WHERE u.user_id = ?";
   $stmt = $conn->prepare($profileSql);
   $stmt->bindValue(1, $displayUserId);
   $stmt->execute();
@@ -39,5 +38,18 @@ $bloodType = testInputValue($profileItem['blood_type']);
 $location = testInputValue($profileItem['location']);
 $interests = testInputValue($profileItem['interests']);
 $description = testInputValue($profileItem['description']);
-$pictureContents = testInputValue($profileItem['picture_contents']);
-$pictureType = testInputValue($profileItem['picture_type']);
+
+try {
+  // 表示するユーザのプロフィール写真を取得
+  $profilePicSql = 
+    "SELECT picture_id, picture_contents, picture_type 
+    FROM Profile_Pictures WHERE user_id = ?";
+  $stmt = $conn->prepare($profilePicSql);
+  $stmt->bindValue(1, $displayUserId);
+  $stmt->execute();
+  
+  $profilePic = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $row = $stmt->rowCount();
+} catch (PDOException $e) {
+  setErrorMessage("プロフィール項目取得失敗：".$e->getMessage());
+}
