@@ -23,13 +23,14 @@
         <!-- プロフィール写真 -->
         <?php 
         for ($index = 1; $index <= MAX_PIC; $index++): 
-          $picCon = testInputValue($profilePic[$index - 1]['picture_contents']);
-          $picType = testInputValue($profilePic[$index - 1]['picture_type']);
-          $picId = testInputValue($profilePic[$index - 1]['picture_id']);
-          
-          if (!empty($picId)) {
+          if (!empty($profilePic[$index - 1]['picture_id'])) {
+            $picCon = testInputValue($profilePic[$index - 1]['picture_contents']);
+            $picType = testInputValue($profilePic[$index - 1]['picture_type']);
+            $picId = testInputValue($profilePic[$index - 1]['picture_id']);
+
             $delBtnClass = "del-pic-btn";
             echo "<img src='data: $picType; base64, $picCon' class='edit-pic'>";
+            echo "<input type='hidden' name='PicId_$index' value='$picId'>";
           } else {
             $delBtnClass = "del-pic-btn disable";
             echo "<div class='edit-pic'><i class='bi-person-plus-fill'></i></div>";
@@ -43,12 +44,12 @@
         </button>
         <div class="upload-pic-area">
           <label class="input-label">プロフィール写真 <?php echo $index; ?></label>
-          <?php echo "<input type='hidden' name='PicId_$index' value='$picId'>"; ?>
           <?php echo "<input type='file' class='file-input' name='Pic_$index' id='Pic_$index'>"; ?>
         </div>
         <?php endfor; ?>
         <div class="btn-area">
           <!-- プロフィール更新ボタン -->
+          <?php echo "<input type='hidden' name='uploadedPic' value='$row'>"; ?>
           <input 
             type="submit" value="写真を更新する" name="editProfilePicSubmit"
             formenctype="multipart/form-data" class="btn-update-profile"

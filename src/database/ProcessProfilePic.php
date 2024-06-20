@@ -20,8 +20,8 @@ if (isset($_POST["editProfilePicSubmit"])) {
         $picContents = base64_encode($picFile);
         
         if ($size <= MAX_SIZE) {
-          $picId = $_POST[$id];
-          if (!empty($picId)) {
+          if (!empty($_POST[$id])) {
+            $picId = $_POST[$id];
             $updatePicSql = 
               "UPDATE Profile_Pictures SET picture_name = ?, picture_type = ?, 
               picture_contents = ? WHERE user_id = ? AND picture_id = ?";
@@ -63,12 +63,7 @@ if (isset($_POST["editProfilePicSubmit"])) {
 }
 
 if (isset($_POST["delPicSubmit"])) {
-  $uploadedPic = 0;
-  for ($cnt = 1; $cnt <= MAX_PIC; $cnt++) {
-    if (!empty($_POST["PicId_$cnt"])) {
-      $uploadedPic++;
-    }
-  }
+  $uploadedPic = $_POST["uploadedPic"];
   try {
     if ($uploadedPic > 1) {
       $index = $_POST["delPicSubmit"];
