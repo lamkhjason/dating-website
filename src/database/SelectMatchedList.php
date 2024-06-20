@@ -8,14 +8,12 @@ include_once("../components/CheckValue.php");
 try {
   // マッチ一覧を取得
   $matchedSql = 
-    "SELECT i2.user_id, u.username, u.age, u.description, 
-    pp.picture_contents, pp.picture_type FROM Interactions i1 
-    INNER JOIN Interactions i2 ON i1.user_id = i2.target_user_id 
-    AND i1.target_user_id = i2.user_id
-    INNER JOIN Users u ON i2.user_id = u.user_id
-    INNER JOIN Profile_Pictures pp ON u.user_id = pp.user_id
-    WHERE i1.interaction_type = 'like' AND i2.interaction_type = 'like' 
-    AND i1.user_id = ?";
+  "SELECT i2.user_id, u.username, u.age, u.description, pp.picture_contents, 
+  pp.picture_type FROM Interactions i1 INNER JOIN Interactions i2 
+  ON i1.user_id = i2.target_user_id AND i1.target_user_id = i2.user_id 
+  INNER JOIN Users u ON i2.user_id = u.user_id INNER JOIN Profile_Pictures pp 
+  ON u.user_id = pp.user_id WHERE i1.interaction_type = 'like' 
+  AND i2.interaction_type = 'like' AND i1.user_id = ? GROUP BY i2.user_id";
   $stmt = $conn->prepare($matchedSql);
   $stmt->bindValue(1, getUserIdSession());
   $stmt->execute();
