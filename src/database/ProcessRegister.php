@@ -41,6 +41,7 @@ if (isset($_POST["registerUserSubmit"])) {
           // トランザクション開始
           $conn->beginTransaction();
           // プロフィール情報をDBに登録
+          $userPass = password_hash($userPass, PASSWORD_DEFAULT);
           $registerSql = 
             "INSERT INTO Users (login_id, password, username, gender, age) 
             VALUES (?, ?, ?, ?, ?)";
