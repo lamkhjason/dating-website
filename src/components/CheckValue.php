@@ -6,6 +6,7 @@ session_start();
 
 // 画像をDBに格納できる最大のサイズの定数
 define("MAX_SIZE", 1048576);
+define("PASSWORD_PATTERN", "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/");
 
 //異常入出力の確認
 function testInputValue($data) {
@@ -58,4 +59,17 @@ function getMatchedUserSession() {
     $matched = false;
   }
   return $matched;
+}
+
+function checkPicType($picName) {
+  $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+  $picType = strtolower(pathinfo($picName, PATHINFO_EXTENSION));
+
+  if (!in_array($picType, $allowedTypes)) {
+    $validType = false;
+    setErrorMessage("jpg、jpeg、png、gifの画像を使ってください");
+  } else {
+    $validType = true;
+  }
+  return $validType;
 }
