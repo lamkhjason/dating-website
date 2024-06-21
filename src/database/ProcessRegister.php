@@ -39,7 +39,8 @@ if (isset($_POST["registerUserSubmit"])) {
           setErrorMessage("新規登録に失敗しました" . $e->getMessage());
         }
         if (empty($user)) {
-          $validPw = preg_match(PASSWORD_PATTERN, $userPass);
+          $pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/";
+          $validPw = preg_match($pattern, $userPass);
           if ($validPw) {
             try {
               // トランザクション開始
