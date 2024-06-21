@@ -65,11 +65,7 @@ function checkPicType($picName) {
   $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
   $picType = strtolower(pathinfo($picName, PATHINFO_EXTENSION));
 
-  if (!in_array($picType, $allowedTypes)) {
-    $validType = false;
-    setErrorMessage("jpg、jpeg、png、gifの画像を使ってください");
-  } else {
-    $validType = true;
-  }
+  !in_array($picType, $allowedTypes) ? $validType = false : $validType = true;
+  
   return $validType;
 }

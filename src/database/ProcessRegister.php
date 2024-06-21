@@ -92,6 +92,8 @@ if (isset($_POST["registerUserSubmit"])) {
           setErrorMessage("既に使用されているログインIDです");
         }
       }
+    } else {
+      setErrorMessage("jpg、jpeg、png、gifの画像を使ってください");
     }
   }
   header("Location: ../pages/Register.php");

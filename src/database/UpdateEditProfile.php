@@ -73,6 +73,7 @@ if (isset($_POST["editProfileSubmit"])) {
             $conn->rollback();
           }
         } else {
+          setErrorMessage("jpg、jpeg、png、gifの画像を使ってください");
           $conn->rollback();
         }
       } else {
