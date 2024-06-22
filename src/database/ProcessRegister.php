@@ -87,7 +87,7 @@ if (isset($_POST["registerUserSubmit"])) {
               $conn->rollback();
             }
           } else {
-            setErrorMessage("有効なパスワードではありません");
+            setErrorMessage("英大小文字と数字の8桁パスワードを設定してください");
           }
         } else {
           setErrorMessage("既に使用されているログインIDです");
