@@ -434,6 +434,19 @@ body {
   padding: 0 0.5rem;
 }
 
+.edit-height-area,
+.edit-weight-area,
+.edit-education-area,
+.edit-occupation-area,
+.edit-smoking-habits-area, 
+.edit-drinking-habits-area {
+  flex: 0 0 auto;
+  width: 33.33333333334%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
 .btn-update-profile, 
 .btn-return-profile {
   display: inline-block;
