@@ -51,13 +51,25 @@
               <div class="target-card-body">
                 <h5 class="target-card-title"><?php echo $username; ?></h5>
                 <p class="target-card-text"><?php echo "$gender ($age)"; ?></p>
-                <form action="../database/ProcessInteractions.php" method="POST">
+                <form 
+                  action="../database/ProcessInteractions.php" 
+                  method="POST" class="like-btn-area"
+                >
                   <input 
                     type="hidden" name="targetUserId" 
                     value="<?php echo $targetUserId; ?>"
                   >
-                  <button type="submit" name="likeSubmit" value="like" class="like-btn"> 
+                  <button 
+                    type="submit" name="likeSubmit" 
+                    value="like" class="like-btn"
+                  > 
                     <i class="bi-heart-fill"></i>
+                  </button>
+                  <button 
+                    type="submit" name="likeSubmit" 
+                    value="dislike" class="dislike-btn"
+                  > 
+                    <i class="bi-heartbreak-fill"></i>
                   </button>
                 </form>
               </div>
