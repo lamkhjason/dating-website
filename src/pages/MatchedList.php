@@ -39,7 +39,8 @@
         $pictureContents = testInputValue($users["picture_contents"]);
         $pictureType = testInputValue($users["picture_type"]);
       ?>
-        <div class="matched-card">
+        <form method="GET" action="Message.php" class="matched-card">
+          <input type="hidden" name="messageUserId" value="<?php echo $targetUserId;?>">
           <div class="matched-card-icon">
             <a href="Profile.php?targetUserId=<?php echo $targetUserId; ?>">
               <img 
@@ -48,11 +49,11 @@
               >
             </a>
           </div>
-          <div class="matched-card-body">
+          <div class="matched-card-body" onclick="this.parentNode.submit()">
             <h3 class="matched-card-title"><?php echo "$username ($age)"; ?></h3>
             <p class="matched-card-text"><?php echo $description; ?></p>
           </div>
-        </div>
+        </form>
       <?php endforeach; ?>
     </main>
   </body>
