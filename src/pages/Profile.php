@@ -38,9 +38,14 @@
           >
           <!-- 自分のプロフィールを表示されるとき、プロフィール編集ボタンを表示する -->
           <?php if ($displayUserId === getUserIdSession()): ?>
+          <div class="profile-btn-area">
             <a href="EditProfile.php" class="edit-profile-btn" type="button">
               <i class="bi-pencil-fill"></i> プロフィール編集
             </a>
+            <a href="../database/DeleteAccount.php" class="del-btn" type="button">
+              <i class="bi-person-x-fill"></i> アカウント削除
+            </a>
+          </div>
           <?php endif; ?>
         </div>
         <div class="profile-right">
