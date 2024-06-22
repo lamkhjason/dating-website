@@ -591,6 +591,74 @@ body {
 }
 
 /*  マッチング一覧 */
+.search-form {
+  position: sticky;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  top: 70px;
+  width: 100%;
+  margin-top: -1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  z-index: 1000;
+  background-color: #cff4fc;
+}
+
+.search-input-area {
+  position: relative;
+  flex: 1 1 auto;
+  display: block;
+  width: 1%;
+  min-width: 0;
+  padding: .375rem .75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  appearance: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search-btn {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  padding: 0.375rem 0.75rem;
+  margin-left: -1px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid rgb(13, 29, 202);
+  border-radius: 0.375rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: rgb(13, 29, 202);
+}
+
+.search-btn:hover {
+  border: 1px solid rgb(61, 74, 216);
+  background-color: rgb(61, 74, 216);
+}
+
+.search-btn:active {
+  border: 1px solid rgb(87, 96, 194);
+  background-color: rgb(87, 96, 194);
+}
+
 .matched-card {
   position: relative;
   display: flex;
