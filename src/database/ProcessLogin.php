@@ -16,14 +16,14 @@ if (isset($_POST["loginSubmit"])) {
       setErrorMessage("ログインIDとパスワードを入力してください");
     } else {
       // 一致しているかDBと確認
-      $loginSql = "SELECT user_id FROM Users WHERE login_id = ? AND password = ?";
+      $loginSql = "SELECT user_id, password FROM Users WHERE login_id = ?";
       $stmt = $conn->prepare($loginSql);
       $stmt->bindValue(1, $loginId);
-      $stmt->bindValue(2, $password);
       $stmt->execute();
       
       $user = $stmt->fetch(PDO::FETCH_ASSOC);
-      if (!empty($user)) {
+      $verified = password_verify($password, $user['password']);
+      if ($verified) {
         // ログインしているユーザIDをセンションに登録し、いいね画面に遷移する
         setUserIdSession($user['user_id']);
         header('Location: ../pages/Interactions.php');
