@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="../assets/icon/calendar-heart-fill.svg">
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>プロフィール編集画面</title>
   </head>
@@ -19,11 +20,13 @@
     
     function profileTextField($itemValue, $itemTitle, $itemKey) {
       echo "<label for='$itemKey' class='input-label'>$itemTitle</label>
-        <input type='text' class='input-area' name='$itemKey' value='$itemValue'>";
+        <input type='text' class='input-area' name='$itemKey' value='$itemValue'
+        placeholder='" . $itemTitle . "を入力しくてださい'>";
     }
     function profileTextArea($itemValue, $itemTitle, $itemKey) {
       echo "<label for='$itemKey' class='input-label'>$itemTitle</label>
-        <textarea class='input-area' name='$itemKey'>$itemValue</textarea>";
+        <textarea class='input-area' name='$itemKey' 
+        placeholder='" . $itemTitle . "を入力しくてださい'>$itemValue</textarea>";
     }
     ?>
     <main class="main-content">
@@ -40,7 +43,7 @@
             <option>年齢を選択していください</option>
             <?php
             $age = $profileItem["age"];
-            for ($ageRange = 18; $ageRange < 100; $ageRange++) {
+            for ($ageRange = 18; $ageRange <= 100; $ageRange++) {
               if ($ageRange == $age) {
                 echo "<option selected value='$age'>$age</option>";
               } else {

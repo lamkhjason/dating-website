@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="../assets/icon/calendar-heart-fill.svg">
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>ログイン画面</title>
   </head>
@@ -22,12 +23,18 @@
         <!-- ログインID -->
         <div class="login-id-area">
           <label for="loginId" class="input-label">ログインID</label>
-          <input type="text" name="loginId" class="input-area">
+          <input 
+            type="text" name="loginId" class="input-area"
+            placeholder="ログインIDを入力してください"
+          >
         </div>
         <!-- パスワード -->
         <div class="password-area">
           <label for="password" class="input-label">パスワード</label>
-          <input type="password" name="password" class="input-area">
+          <input 
+            type="password" name="password" class="input-area" 
+            placeholder="パスワードIDを入力してください"
+          >
         </div>
         <!-- ログインボタンと新規登録ボタン -->
         <div class="login-btn-area">

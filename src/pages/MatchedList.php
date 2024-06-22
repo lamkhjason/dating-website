@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="../assets/icon/calendar-heart-fill.svg">
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>マッチング一覧</title>
   </head>
@@ -18,6 +19,15 @@
     include_once("../components/CommonTools.php");
     ?>
     <main class="main-content">
+      <form action="MatchedList.php" method="POST" class="search-form">
+        <input 
+          type="text" name="SearchUserName" value="<?php echo $input; ?>"
+          class="search-input-area" placeholder="名前を入力してくだい"
+        >
+        <button type="submit" class="search-btn" name="SearchSubmit">
+          <i class="bi bi-search"></i> 検索
+        </button>
+      </form>
       <div class="error-message"><?php displayErrorMessage();?></div>
       <?php 
       // 異常入力を確認し、画面に表示する
