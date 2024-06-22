@@ -48,26 +48,32 @@ if (isset($_POST["editProfileSubmit"])) {
         $pictureFile = file_get_contents($pictureTmpName);
         $pictureContents = base64_encode($pictureFile);
         
-        // アップロードした画像のサイズ確認
-        if ($pictureSize <= MAX_SIZE) {
-          //DBを更新する 
-          $updatePictureSql = 
-            "UPDATE Profile_Pictures SET picture_name = ?, picture_type = ?, 
-            picture_contents = ? WHERE user_id = ?";
-          $stmt = $conn->prepare($updatePictureSql);
-          $stmt->bindValue(1, $pictureName);
-          $stmt->bindValue(2, $pictureType);
-          $stmt->bindValue(3, $pictureContents);
-          $stmt->bindValue(4, getUserIdSession());
-          $stmt->execute();
-          
-          // 画像とプロフィール情報が登録成功したらコミットする
-          $conn->commit();
-          header("Location: ../pages/Profile.php");
-          exit;
+        $validPicType = checkPicType($pictureName);
+        if ($validPicType) {
+          // アップロードした画像のサイズ確認
+          if ($pictureSize <= MAX_SIZE) {
+            //DBを更新する 
+            $updatePictureSql = 
+              "UPDATE Profile_Pictures SET picture_name = ?, picture_type = ?, 
+              picture_contents = ? WHERE user_id = ?";
+            $stmt = $conn->prepare($updatePictureSql);
+            $stmt->bindValue(1, $pictureName);
+            $stmt->bindValue(2, $pictureType);
+            $stmt->bindValue(3, $pictureContents);
+            $stmt->bindValue(4, getUserIdSession());
+            $stmt->execute();
+            
+            // 画像とプロフィール情報が登録成功したらコミットする
+            $conn->commit();
+            header("Location: ../pages/Profile.php");
+            exit;
+          } else {
+            // サイズが1Mを超えたらロールバックする
+            setErrorMessage("画像サイズが1Mを超えました");
+            $conn->rollback();
+          }
         } else {
-          // サイズが1Mを超えたらロールバックする
-          setErrorMessage("画像サイズが1Mを超えました");
+          setErrorMessage("jpg、jpeg、png、gifの画像を使ってください");
           $conn->rollback();
         }
       } else {
