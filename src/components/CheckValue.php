@@ -59,12 +59,3 @@ function getMatchedUserSession() {
   }
   return $matched;
 }
-
-function checkPicType($picName) {
-  $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
-  $picType = strtolower(pathinfo($picName, PATHINFO_EXTENSION));
-
-  !in_array($picType, $allowedTypes) ? $validType = false : $validType = true;
-  
-  return $validType;
-}
