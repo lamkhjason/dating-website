@@ -19,32 +19,40 @@ if (isset($_POST["editProfilePicSubmit"])) {
         $picFile = file_get_contents($tmpName);
         $picContents = base64_encode($picFile);
         
-        if ($size <= MAX_SIZE) {
-          if (!empty($_POST[$id])) {
-            $picId = $_POST[$id];
-            $updatePicSql = 
-              "UPDATE Profile_Pictures SET picture_name = ?, picture_type = ?, 
-              picture_contents = ? WHERE user_id = ? AND picture_id = ?";
-            $stmt = $conn->prepare($updatePicSql);
-            $stmt->bindValue(1, $name);
-            $stmt->bindValue(2, $type);
-            $stmt->bindValue(3, $picContents);
-            $stmt->bindValue(4, getUserIdSession());
-            $stmt->bindValue(5, $picId);
-            $stmt->execute();
+        $validPicType = checkPicType($name);
+        if ($validPicType) {
+          if ($size <= MAX_SIZE) {
+            if (!empty($_POST[$id])) {
+              $picId = $_POST[$id];
+              $updatePicSql = 
+                "UPDATE Profile_Pictures SET picture_name = ?, picture_type = ?, 
+                picture_contents = ? WHERE user_id = ? AND picture_id = ?";
+              $stmt = $conn->prepare($updatePicSql);
+              $stmt->bindValue(1, $name);
+              $stmt->bindValue(2, $type);
+              $stmt->bindValue(3, $picContents);
+              $stmt->bindValue(4, getUserIdSession());
+              $stmt->bindValue(5, $picId);
+              $stmt->execute();
+            } else {
+              $uploadPicSql = 
+                "INSERT INTO Profile_Pictures (user_id, picture_name, 
+                picture_type, picture_contents) VALUES (?, ?, ?, ?)";
+              $stmt = $conn->prepare($uploadPicSql);
+              $stmt->bindValue(1, getUserIdSession());
+              $stmt->bindValue(2, $name);
+              $stmt->bindValue(3, $type);
+              $stmt->bindValue(4, $picContents);
+              $stmt->execute();
+            }
           } else {
-            $uploadPicSql = 
-              "INSERT INTO Profile_Pictures (user_id, picture_name, 
-              picture_type, picture_contents) VALUES (?, ?, ?, ?)";
-            $stmt = $conn->prepare($uploadPicSql);
-            $stmt->bindValue(1, getUserIdSession());
-            $stmt->bindValue(2, $name);
-            $stmt->bindValue(3, $type);
-            $stmt->bindValue(4, $picContents);
-            $stmt->execute();
+            setErrorMessage("画像サイズが1Mを超えました");
+            $conn->rollback();
+            header("Location: ../pages/EditProfilePic.php");
+            exit;
           }
         } else {
-          setErrorMessage("画像サイズが1Mを超えました");
+          setErrorMessage("jpg、jpeg、png、gifの画像を使ってください");
           $conn->rollback();
           header("Location: ../pages/EditProfilePic.php");
           exit;

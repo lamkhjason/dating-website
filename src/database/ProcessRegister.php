@@ -21,9 +21,9 @@ if (isset($_POST["registerUserSubmit"])) {
   if ($inputValue) {
     setErrorMessage("全項目を入力してください");
   } else {
-    // アップロードした画像のサイズ確認
     $validPicType = checkPicType($_FILES["profilePicture"]["name"]);
     if ($validPicType) {
+      // アップロードした画像のサイズ確認
       if ($_FILES["profilePicture"]["size"] > MAX_SIZE) {
         setErrorMessage("画像サイズが1Mを超えました");
       } else {
