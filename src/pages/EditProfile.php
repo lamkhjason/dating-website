@@ -109,16 +109,11 @@
         <div class="edit-drinking-habits-area">
           <?php profileTextField($drinkingHabits, "飲酒", "drinkingHabits"); ?>
         </div>
-        <!-- プロフィール写真 -->
-        <div class="edit-profile-pic-area">
-          <label for="profilePicture" class="input-label">プロフィール写真</label>
-          <input type="file" class="file-input" name="profilePicture" id="profilePicture">
-        </div>
         <div class="btn-area">
           <!-- プロフィール更新ボタン -->
           <input 
-            type="submit" value="プロフィールを更新する" name="editProfileSubmit"
-            formenctype="multipart/form-data" class="btn-update-profile"
+            type="submit" value="プロフィールを更新する" 
+            name="editProfileSubmit" class="btn-update-profile"
           >
           <!-- プロフィール画面に戻るボタン -->
           <a type="button" href='Profile.php' class="btn-return-profile">
