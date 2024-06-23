@@ -433,6 +433,19 @@ body {
   padding: 0 0.5rem;
 }
 
+.edit-height-area,
+.edit-weight-area,
+.edit-education-area,
+.edit-occupation-area,
+.edit-smoking-habits-area, 
+.edit-drinking-habits-area {
+  flex: 0 0 auto;
+  width: 33.33333333334%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
 .btn-update-profile, 
 .btn-return-profile {
   display: inline-block;
@@ -535,6 +548,24 @@ body {
   margin-top: 0.5rem;
 }
 
+.pic-area {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.profile-btn-area {
+  display: grid;
+  flex: 0 0 auto;
+  width: 300px;
+  gap: 0.5rem;
+  margin: auto;
+  margin-top: 0.5rem;
+}
+
+
+
+.del-btn,
 .edit-profile-btn {
   display: inline-block;
   padding: 0.375rem 2rem;
@@ -546,13 +577,25 @@ body {
   text-decoration: none;
   vertical-align: middle;
   user-select: none;
-  border: 1px solid #6c757d;
   border-radius: 0.375rem;
+}
+
+.del-btn {
+  border: 1px solid red;
+  background-color: red;
+}
+
+.edit-profile-btn {
+  border: 1px solid #6c757d;
   background-color: #6c757d;
 }
 
+.del-btn:hover {
+  background-color: rgb(215, 0, 0);
+  border-color: rgb(215, 0, 0);
+}
+
 .edit-profile-btn:hover {
-  color: #fff;
   background-color: #5a6268;
   border-color: #545b62;
 }
@@ -627,6 +670,74 @@ body {
 }
 
 /*  マッチング一覧 */
+.search-form {
+  position: sticky;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  top: 70px;
+  width: 100%;
+  margin-top: -1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  z-index: 1000;
+  background-color: #cff4fc;
+}
+
+.search-input-area {
+  position: relative;
+  flex: 1 1 auto;
+  display: block;
+  width: 1%;
+  min-width: 0;
+  padding: .375rem .75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  appearance: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search-btn {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  padding: 0.375rem 0.75rem;
+  margin-left: -1px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid rgb(13, 29, 202);
+  border-radius: 0.375rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: rgb(13, 29, 202);
+}
+
+.search-btn:hover {
+  border: 1px solid rgb(61, 74, 216);
+  background-color: rgb(61, 74, 216);
+}
+
+.search-btn:active {
+  border: 1px solid rgb(87, 96, 194);
+  background-color: rgb(87, 96, 194);
+}
+
 .matched-card {
   position: relative;
   display: flex;
@@ -659,6 +770,7 @@ body {
   flex: 1 1 auto;
   width: 66.66666667%;
   flex-direction: column;
+  cursor: pointer;
   padding: 1rem !important;
   margin-left: 1rem !important;
 }
@@ -772,6 +884,14 @@ body {
   margin-bottom: 1rem;
 }
 
+.like-btn-area {
+  display: flex;
+  flex: 0 0 auto;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.dislike-btn,
 .like-btn {
   display: inline-block;
   width: 100%;
@@ -786,10 +906,23 @@ body {
   text-transform: none;
   vertical-align: middle;
   user-select: none;
-  border: 1px solid #198754;
   border-radius: 0.375rem;
-  background-color: #198754;
   cursor: pointer;
+}
+
+.dislike-btn {
+  border: 1px solid #ec3131;
+  background-color: #ec3131;
+}
+
+.like-btn {
+  border: 1px solid #198754;
+  background-color: #198754;
+}
+
+.dislike-btn:hover {
+  background-color: #ec1b1b;
+  border-color: #ec1b1b;
 }
 
 .like-btn:hover {
@@ -863,4 +996,167 @@ body {
   max-width: 100%;
   margin-bottom: 1rem;
   padding: 0 0.5rem;
+}
+
+/* メッセージ画面 */
+.message-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: #212529;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem;
+}
+
+.message-header {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem 1rem;
+  line-height: 1;
+  background-color: rgba( 33,37,41 , 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+  justify-content: space-between;
+}
+
+.message-body {
+  flex: 1 1 auto;
+  padding: 1rem;
+  height: 65vh;
+  overflow-y: auto;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.message-footer {
+  padding: 0.5rem 1rem;
+  background-color: rgba( 33,37,41 , 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.175);
+}
+
+.return-list-btn {
+  flex: 0 0 auto;
+  width: auto;
+  margin: 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 300;
+  cursor: pointer;
+  text-decoration-color: rgba( 33,37,41 , 0);
+  color: rgba(33,37,41, 1);
+}
+
+.message-name-btn {
+  flex: 0 0 auto;
+  width: auto;
+  margin: 0.25rem 0;
+  font-size: 2rem;
+  font-weight: 500;
+  color: rgba(33,37,41, 1);
+  text-decoration-color: rgba( 33,37,41 , 0);
+}
+
+.message-pic {
+  flex: 0 0 auto;
+  width: auto;
+  vertical-align: middle;
+  border: 1px solid #dee2e6;
+  border-radius: 50%;
+}
+
+.message-header > .message-pic {
+  margin: 0 0.375rem;
+  height: 40px;
+  width: 40px;
+}
+
+.message-body .message-pic {
+  margin: 0.25rem;
+  height: 50px;
+  width: 50px;
+}
+
+.receive-area {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.75rem;
+}
+
+.send-area {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 0.75rem;
+}
+
+.message-text {
+  display: flex;
+  flex: 0 0 auto;
+  max-width: 50%;
+  padding: .75rem;
+  margin: 0.5rem;
+  background-color: #0d6efd;
+  border: 1px solid #0d6efd;
+  border-radius: 0.5rem;
+}
+
+.message-input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+
+.message-input-area {
+  display: block;
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  padding: .375rem .75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  appearance: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem 0 0 0.375rem;
+}
+
+.send-btn {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  padding: 0.375rem 0.75rem;
+  margin-left: -1px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid #6c757d;
+  border-radius: 0 0.375rem 0.375rem 0;
+  background-color: #6c757d;
+}
+
+.send-btn > i {
+  font-size: 16px;
+  font-style: unset;
+}
+
+.send-btn:hover {
+  border: 1px solid #83888d;
+  background-color: #83888d;
 }

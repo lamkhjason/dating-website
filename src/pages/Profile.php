@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="../assets/icon/calendar-heart-fill.svg">
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>プロフィール</title>
   </head>
@@ -23,7 +24,13 @@
       "血液型" => checkProfileItem($bloodType),
       "出身地" => checkProfileItem($location), 
       "趣味" => checkProfileItem($interests), 
-      "自己紹介" => checkProfileItem($description)
+      "自己紹介" => checkProfileItem($description),
+      "身長" => checkProfileItem($height), 
+      "体重" => checkProfileItem($weight), 
+      "学歴" => checkProfileItem($education),
+      "職業" => checkProfileItem($occupation), 
+      "喫煙" => checkProfileItem($smokingHabits), 
+      "飲酒" => checkProfileItem($drinkingHabits)
     ];
     ?>
     <main class="main-content">
@@ -56,6 +63,9 @@
             </a>
             <a href="EditProfilePic.php" class="edit-profile-btn" type="button">
               <i class="bi-camera-fill"></i> プロフィール写真編集
+            </a>
+            <a href="../database/DeleteAccount.php" class="del-btn" type="button">
+              <i class="bi-person-x-fill"></i> アカウント削除
             </a>
           </div>
           <?php endif; ?>

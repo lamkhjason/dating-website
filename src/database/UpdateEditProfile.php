@@ -10,29 +10,24 @@ if (isset($_POST["editProfileSubmit"])) {
   $inputValue = !empty($_POST["username"]) && isset($_POST["gender"]) && 
     ($_POST["age"] !== "年齢を選択していください");
   if ($inputValue) {
-    try {
-      // 異常入力の確認
-      $username = testInputValue($_POST["username"]);
-      $age = testInputValue($_POST["age"]);
-      $gender = testInputValue($_POST["gender"]);
-      $bloodType = testInputValue($_POST["bloodType"]);
-      $location = testInputValue($_POST["location"]);
-      $interests = testInputValue($_POST["interests"]);
-      $description = testInputValue($_POST["description"]);
-      
+    try {      
       // 編集したプロフィールを更新
       $updateProfileSql = 
         "UPDATE Users SET username = ?, age = ?, gender = ?, blood_type = ?, 
-        location = ?, interests = ?, description = ? WHERE user_id = ?";
+        location = ?, interests = ?, description = ?, height = ?, weight = ?, 
+        education = ?, occupation = ?, smoking_habits = ?, drinking_habits = ? 
+        WHERE user_id = ?";
       $stmt = $conn->prepare($updateProfileSql);
-      $stmt->bindValue(1, $username);
-      $stmt->bindValue(2, $age);
-      $stmt->bindValue(3, $gender);
-      $stmt->bindValue(4, $bloodType);
-      $stmt->bindValue(5, $location);
-      $stmt->bindValue(6, $interests);
-      $stmt->bindValue(7, $description);
-      $stmt->bindValue(8, getUserIdSession());
+      
+      $count = 1; // bindValueを数える変数
+      foreach ($_POST as $postKey => $postValue) {
+        if ($postKey !== "editProfileSubmit" && $postKey !== "profilePicture") {
+          $postValue = testInputValue($postValue); // 異常入力の確認
+          $stmt->bindValue($count, $postValue);
+          $count++;
+        }
+      }
+      $stmt->bindValue($count, getUserIdSession());
       $stmt->execute();
       
       header("Location: ../pages/Profile.php");

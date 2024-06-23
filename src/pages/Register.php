@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="../assets/icon/calendar-heart-fill.svg">
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>新規登録画面</title>
   </head>
@@ -22,17 +23,26 @@
         <!-- ログインID -->
         <div class="reg-login-id-area">
           <label for="loginId" class="input-label">ログインID</label>
-          <input type="text" name="loginId" class="input-area">
+          <input 
+            type="text" name="loginId" class="input-area"
+            placeholder="ログインIDを入力してください"
+          >
         </div>
         <!-- パスワード -->
         <div class="reg-password-area">
           <label for="password" class="input-label">パスワード</label>
-          <input type="password" name="password" class="input-area">
+          <input 
+            type="password" name="password" class="input-area"
+            placeholder="パスワードを入力してください"
+          >
         </div>
         <!-- 名前 -->
         <div class="reg-username-area">
           <label for="userName" class="input-label">名前</label>
-          <input type="text" name="userName" class="input-area">
+          <input 
+            type="text" name="userName" class="input-area"
+            placeholder="名前を入力してください"
+          >
         </div>
         <!-- 年齢 -->
         <div class="reg-age-area">
