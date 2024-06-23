@@ -992,8 +992,7 @@ body {
 
 .upload-pic-area {
   flex: 0 0 auto;
-  width: 80%;
-  max-width: 100%;
+  width: calc(100% - (88px * 2));
   margin-bottom: 1rem;
   padding: 0 0.5rem;
 }
