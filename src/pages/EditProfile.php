@@ -17,98 +17,55 @@
     include_once("../components/CheckValue.php");
     include_once("../database/SelectProfileItem.php");
     include_once("../components/CommonTools.php");
-    
-    function profileTextField($itemValue, $itemTitle, $itemKey) {
-      echo "<label for='$itemKey' class='input-label'>$itemTitle</label>
-        <input type='text' class='input-area' name='$itemKey' value='$itemValue'
-        placeholder='" . $itemTitle . "を入力しくてださい'>";
-    }
-    function profileTextArea($itemValue, $itemTitle, $itemKey) {
-      echo "<label for='$itemKey' class='input-label'>$itemTitle</label>
-        <textarea class='input-area' name='$itemKey' 
-        placeholder='" . $itemTitle . "を入力しくてださい'>$itemValue</textarea>";
-    }
+
+    $editProfile = [
+      ["username", "名前", $username],
+      ["gender", "性別", $gender],
+      ["age", "年齢", $age],
+      ["bloodType", "血液型", $bloodType],
+      ["location", "出身地", $location],
+      ["interests", "趣味", $interests],
+      ["description", "趣味", $description],
+    ];
+    $genderType = ["male" => "男性", "female" => "女性"]
     ?>
     <main class="main-content">
       <form method="POST" action="../database/UpdateEditProfile.php" class="form-row">
         <div class="page-title">プロフィール編集</div>
-        <!-- 名前 -->
-        <div class="edit-username-area">
-        <?php profileTextField($username, "名前", "username"); ?>
-        </div>
-        <!-- 年齢 -->
-        <div class="edit-age-area">
-          <label for="age" class="input-label">年齢</label>
-          <select class="age-select" name="age">
-            <option>年齢を選択していください</option>
-            <?php
-            $age = $profileItem["age"];
+        <?php 
+        foreach ($editProfile as $profileItem) {
+          $itemKey = $profileItem[0];
+          $itemTitle = $profileItem[1];
+          $itemValue = $profileItem[2];
+
+          echo "<div class='edit-$itemKey-area'>";
+          echo "<label for='$itemKey' class='input-label'>$itemTitle</label>";
+          if ($itemKey === "age") {
+            echo "<select class='age-select' name='age'>";
+            echo "<option>年齢を選択していください</option>";
             for ($ageRange = 18; $ageRange <= 100; $ageRange++) {
-              if ($ageRange == $age) {
-                echo "<option selected value='$age'>$age</option>";
-              } else {
-                echo "<option value='$ageRange'>$ageRange</option>";
-              }
+              if ($ageRange == $itemValue) $selected = "selected";
+              echo "<option $selected value='$ageRange'>$ageRange</option>";
             }
-            ?>
-          </select>
-        </div>
-        <!-- 性別 -->
-        <div class="edit-gender-area">
-          <label for="gender" class="input-label">性別</label>
-          <div class="gender-btn-group">
-            <input 
-              type="radio" class="btn-check" name="gender" id="male" value="男性"
-              <?php if ($gender === "男性") echo "checked";?>
-            >
-            <label class="gender-btn" for="male">男性</label>
-            <input 
-              type="radio" class="btn-check" name="gender" id="female" value="女性"
-              <?php if ($gender === "女性") echo "checked";?>
-            >
-            <label class="gender-btn" for="female">女性</label>
-          </div>
-        </div>
-        <!-- 血液型 -->
-        <div class="edit-bloodType-area">
-          <?php profileTextField($bloodType, "血液型", "bloodType"); ?>
-        </div>
-        <!-- 出身地 -->
-        <div class="edit-location-area">
-          <?php profileTextField($location, "出身地", "location"); ?>
-        </div>
-        <!-- 趣味 -->
-        <div class="edit-interests-area">
-          <?php profileTextArea($interests, "趣味", "interests"); ?>
-        </div>
-        <!-- 自己紹介 -->
-        <div class="edit-description-area">
-          <?php profileTextArea($description, "自己紹介", "description"); ?>
-        </div>
-        <!-- 身長 -->
-        <div class="edit-height-area">
-          <?php profileTextField($height, "身長", "height"); ?>
-        </div>
-        <!-- 体重 -->
-        <div class="edit-weight-area">
-          <?php profileTextField($weight, "体重", "weight"); ?>
-        </div>
-        <!-- 学歴 -->
-        <div class="edit-education-area">
-          <?php profileTextField($education, "学歴", "education"); ?>
-        </div>
-        <!-- 職業 -->
-        <div class="edit-occupation-area">
-          <?php profileTextField($occupation, "職業", "occupation"); ?>
-        </div>
-        <!-- 喫煙 -->
-        <div class="edit-smoking-habits-area">
-          <?php profileTextField($smokingHabits, "喫煙", "smokingHabits"); ?>
-        </div>
-        <!-- 飲酒 -->
-        <div class="edit-drinking-habits-area">
-          <?php profileTextField($drinkingHabits, "飲酒", "drinkingHabits"); ?>
-        </div>
+            echo "</select>";
+          } elseif ($itemKey === "gender") {
+            echo "<div class='gender-btn-group'>";
+            foreach ($genderType as $genderId => $genderValue) {
+              echo "<input 
+              type='radio' class='btn-check' name='gender' id='$genderId' value='$genderValue'";
+              if ($gender === $genderValue) echo "checked";
+              echo ">";
+              echo "<label class='gender-btn' for='$genderId'>$genderValue</label>";
+            }
+            echo "</div>";
+          } elseif ($itemKey === "interests" || $itemKey === "description") {
+            echo "<textarea class='input-area' name='$itemKey'>$itemValue</textarea>";
+          } else {
+            echo "<input type='text' class='input-area' name='$itemKey' value='$itemValue'>";
+          }
+          echo "</div>";
+        }
+        ?>
         <div class="btn-area">
           <!-- プロフィール更新ボタン -->
           <input 
