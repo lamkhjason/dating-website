@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="../assets/icon/calendar-heart-fill.svg">
     <link rel="stylesheet" href="../assets/css/Style.css">
     <title>新規登録画面</title>
   </head>
@@ -15,48 +16,25 @@
     <?php
     include_once("../components/CheckValue.php");
     include_once("../components/CommonTools.php");
+    include_once("../components/FormLayout.php");
     ?>
     <main class="main-content">
       <form method="POST" action="../database/ProcessRegister.php" class="form-row">
         <div class="page-title">新規アカウント作成</div>
-        <!-- ログインID -->
-        <div class="reg-login-id-area">
-          <label for="loginId" class="input-label">ログインID</label>
-          <input type="text" name="loginId" class="input-area">
-        </div>
-        <!-- パスワード -->
-        <div class="reg-password-area">
-          <label for="password" class="input-label">パスワード</label>
-          <input type="password" name="password" class="input-area">
-        </div>
-        <!-- 名前 -->
-        <div class="reg-username-area">
-          <label for="userName" class="input-label">名前</label>
-          <input type="text" name="userName" class="input-area">
-        </div>
-        <!-- 年齢 -->
-        <div class="reg-age-area">
-          <label for="age" class="input-label">年齢</label>
-          <select class="age-select" name="age">
-            <option selected>年齢を選択してください</option>
-            <?php
-            // 年齢プルダウンの選択肢を生成
-            for ($ageRange = 18; $ageRange <= 100; $ageRange++) {
-              echo "<option value='$ageRange'>$ageRange</option>";
-            }
-            ?>
-          </select>
-        </div>
-        <!-- 性別 -->
-        <div class="reg-gender-area">
-          <label for="gender" class="input-label">性別</label>
-          <div class="gender-btn-group">
-            <input type="radio" class="btn-check" name="gender" id="male" value="男性">
-            <label class="gender-btn" for="male">男性</label>
-            <input type="radio" class="btn-check" name="gender" id="female" value="女性">
-            <label class="gender-btn" for="female">女性</label>
-          </div>
-        </div>
+        <?php 
+        $registerItems = [
+          "loginId" => "ログインID", "password" => "パスワード",
+          "username" => "名前", "age" => "年齢", "gender" => "性別"
+        ];
+        foreach ($registerItems as $itemKey => $itemValue) {
+          echo "<div class='reg-$itemKey-area'>";
+          echo "<label for='$itemKey' class='input-label'>$itemValue</label>";
+          if ($itemKey === "age") agePulldown(null);
+          elseif ($itemKey === "gender") genderRadioBtn(null);
+          else inputField($itemKey, $itemValue, null);
+          echo "</div>";
+        }
+        ?>
         <!-- プロフィール写真 -->
         <div class="reg-pic-area">
           <label for="profilePicture" class="input-label">プロフィール写真</label>

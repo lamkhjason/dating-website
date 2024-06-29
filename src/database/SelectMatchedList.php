@@ -5,6 +5,11 @@
 include_once("Pdo.php");
 include_once("../components/CheckValue.php");
 
+if (isset($_POST["SearchSubmit"])) {
+  $input = $_POST["SearchUserName"];
+  $search = "AND u.username LIKE '%$input%'";
+}
+
 try {
   // マッチ一覧を取得
   $matchedSql = 
@@ -15,7 +20,7 @@ try {
     INNER JOIN Users u ON i2.user_id = u.user_id
     INNER JOIN Profile_Pictures pp ON u.user_id = pp.user_id
     WHERE i1.interaction_type = 'like' AND i2.interaction_type = 'like' 
-    AND i1.user_id = ?";
+    AND i1.user_id = ? $search GROUP BY i2.user_id";
   $stmt = $conn->prepare($matchedSql);
   $stmt->bindValue(1, getUserIdSession());
   $stmt->execute();

@@ -6,6 +6,7 @@ session_start();
 
 // 画像をDBに格納できる最大のサイズの定数
 define("MAX_SIZE", 1048576);
+define("MAX_PIC", 5);
 
 //異常入出力の確認
 function testInputValue($data) {
@@ -58,4 +59,13 @@ function getMatchedUserSession() {
     $matched = false;
   }
   return $matched;
+}
+
+function checkPicType($picName) {
+  $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+  $picType = strtolower(pathinfo($picName, PATHINFO_EXTENSION));
+
+  !in_array($picType, $allowedTypes) ? $validType = false : $validType = true;
+  
+  return $validType;
 }
