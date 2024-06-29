@@ -17,21 +17,6 @@
     include_once("../components/CheckValue.php");
     include_once("../database/SelectProfileItem.php");
     include_once("../components/CommonTools.php");
-    // 項目が入力されているかの確認&プロフィールの連想配列
-    $profileArray = [
-      "性別" => checkProfileItem($gender), 
-      "年齢" => checkProfileItem($age), 
-      "血液型" => checkProfileItem($bloodType),
-      "出身地" => checkProfileItem($location), 
-      "趣味" => checkProfileItem($interests), 
-      "自己紹介" => checkProfileItem($description),
-      "身長" => checkProfileItem($height), 
-      "体重" => checkProfileItem($weight), 
-      "学歴" => checkProfileItem($education),
-      "職業" => checkProfileItem($occupation), 
-      "喫煙" => checkProfileItem($smokingHabits), 
-      "飲酒" => checkProfileItem($drinkingHabits)
-    ];
     ?>
     <main class="main-content">
       <div class="error-message"><?php displayErrorMessage();?></div>
@@ -72,12 +57,15 @@
         </div>
         <div class="profile-right">
           <!-- 全プロフィール項目 -->
-          <div class="profile-username"><?php echo $username; ?></div>
-          <?php foreach ($profileArray as $key => $value): ?>
-            <div class='profile-item'>
-              <div class='item-title'><?php echo $key; ?></div>
-              <div class='item-body'><?php echo $value; ?></div>
-            </div>
+          <div class="profile-username"><?php echo $profile["username"][1]; ?></div>
+          <?php 
+          foreach ($profile as $arrayKey => $arrayValue):
+            if ($arrayKey === "username") continue; 
+          ?>
+          <div class='profile-item'>
+            <div class='item-title'><?php echo $arrayValue[0]; ?></div>
+            <div class='item-body'><?php echo checkProfileItem($arrayValue[1]); ?></div>
+          </div>
           <?php endforeach; ?>
         </div>
       </div>

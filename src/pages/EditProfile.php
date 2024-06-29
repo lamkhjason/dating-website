@@ -17,52 +17,18 @@
     include_once("../components/CheckValue.php");
     include_once("../database/SelectProfileItem.php");
     include_once("../components/CommonTools.php");
-
-    $editProfile = [
-      ["username", "名前", $username],
-      ["gender", "性別", $gender],
-      ["age", "年齢", $age],
-      ["bloodType", "血液型", $bloodType],
-      ["location", "出身地", $location],
-      ["interests", "趣味", $interests],
-      ["description", "趣味", $description],
-    ];
-    $genderType = ["male" => "男性", "female" => "女性"]
+    include_once("../components/FormLayout.php");
     ?>
     <main class="main-content">
       <form method="POST" action="../database/UpdateEditProfile.php" class="form-row">
         <div class="page-title">プロフィール編集</div>
         <?php 
-        foreach ($editProfile as $profileItem) {
-          $itemKey = $profileItem[0];
-          $itemTitle = $profileItem[1];
-          $itemValue = $profileItem[2];
-
+        foreach ($profile as $itemKey => $arrayValue) {
           echo "<div class='edit-$itemKey-area'>";
-          echo "<label for='$itemKey' class='input-label'>$itemTitle</label>";
-          if ($itemKey === "age") {
-            echo "<select class='age-select' name='age'>";
-            echo "<option>年齢を選択していください</option>";
-            for ($ageRange = 18; $ageRange <= 100; $ageRange++) {
-              if ($ageRange == $itemValue) $selected = "selected";
-              echo "<option $selected value='$ageRange'>$ageRange</option>";
-            }
-            echo "</select>";
-          } elseif ($itemKey === "gender") {
-            echo "<div class='gender-btn-group'>";
-            foreach ($genderType as $genderId => $genderValue) {
-              echo "<input 
-              type='radio' class='btn-check' name='gender' id='$genderId' value='$genderValue'";
-              if ($gender === $genderValue) echo "checked";
-              echo ">";
-              echo "<label class='gender-btn' for='$genderId'>$genderValue</label>";
-            }
-            echo "</div>";
-          } elseif ($itemKey === "interests" || $itemKey === "description") {
-            echo "<textarea class='input-area' name='$itemKey'>$itemValue</textarea>";
-          } else {
-            echo "<input type='text' class='input-area' name='$itemKey' value='$itemValue'>";
-          }
+          echo "<label for='$itemKey' class='input-label'>".$arrayValue[0]."</label>";
+          if ($itemKey === "age") agePulldown($arrayValue[1]);
+          elseif ($itemKey === "gender") genderRadioBtn($arrayValue[1]);
+          else inputField($itemKey, $arrayValue[0], $arrayValue[1]);
           echo "</div>";
         }
         ?>

@@ -10,12 +10,12 @@ if (isset($_POST["registerUserSubmit"])) {
   // 異常入力確認
   $loginId = testInputValue($_POST["loginId"]);
   $userPass = testInputValue($_POST["password"]);
-  $userName = testInputValue($_POST["userName"]);
+  $username = testInputValue($_POST["username"]);
   $age = testInputValue($_POST["age"]);
   $gender = testInputValue($_POST["gender"]);
   
   // 入力値のチェックと画像のアップロードチェック
-  $inputValue = empty($loginId) || empty($userPass) || empty($userName) || 
+  $inputValue = empty($loginId) || empty($userPass) || empty($username) || 
   $age === "年齢を選択してください" || empty($gender) || 
   !is_uploaded_file($_FILES["profilePicture"]["tmp_name"]);
   if ($inputValue) {
@@ -46,13 +46,14 @@ if (isset($_POST["registerUserSubmit"])) {
               // トランザクション開始
               $conn->beginTransaction();
               // プロフィール情報をDBに登録
+              $userPass = password_hash($userPass, PASSWORD_DEFAULT);
               $registerSql = 
                 "INSERT INTO Users (login_id, password, username, gender, age) 
                 VALUES (?, ?, ?, ?, ?)";
               $stmt = $conn->prepare($registerSql);
               $stmt->bindValue(1, $loginId);
               $stmt->bindValue(2, $userPass);
-              $stmt->bindValue(3, $userName);
+              $stmt->bindValue(3, $username);
               $stmt->bindValue(4, $gender);
               $stmt->bindValue(5, $age);
               $stmt->execute();

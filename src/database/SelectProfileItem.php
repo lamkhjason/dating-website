@@ -32,19 +32,21 @@ try {
 }
 
 // プロフィール項目の異常入力
-$username = testInputValue($profileItem['username']);
-$gender = testInputValue($profileItem['gender']);
-$age = testInputValue($profileItem['age']);
-$bloodType = testInputValue($profileItem['blood_type']);
-$location = testInputValue($profileItem['location']);
-$interests = testInputValue($profileItem['interests']);
-$description = testInputValue($profileItem['description']);
-$height = testInputValue($profileItem['height']);
-$weight = testInputValue($profileItem['weight']);
-$education = testInputValue($profileItem['education']);
-$occupation = testInputValue($profileItem['occupation']);
-$smokingHabits = testInputValue($profileItem['smoking_habits']);
-$drinkingHabits = testInputValue($profileItem['drinking_habits']);
+$profile = [
+  "username" => ["名前", testInputValue($profileItem['username'])],
+  "age" => ["年齢", testInputValue($profileItem['age'])],
+  "gender" => ["性別", testInputValue($profileItem['gender'])],
+  "bloodType" => ["血液型", testInputValue($profileItem['blood_type'])],
+  "location" => ["出身地", testInputValue($profileItem['location'])],
+  "interests" => ["趣味", testInputValue($profileItem['interests'])],
+  "description" => ["自己紹介", testInputValue($profileItem['description'])],
+  "height" => ["身長", testInputValue($profileItem['height'])],
+  "weight" => ["体重", testInputValue($profileItem['weight'])],
+  "education" => ["学歴", testInputValue($profileItem['education'])],
+  "occupation" => ["職業", testInputValue($profileItem['occupation'])],
+  "smokingHabits" => ["喫煙", testInputValue($profileItem['smoking_habits'])],
+  "drinkingHabits" => ["飲酒", testInputValue($profileItem['drinking_habits'])]
+];
 
 try {
   // 表示するユーザのプロフィール写真を取得

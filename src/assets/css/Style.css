@@ -311,7 +311,7 @@ body {
 }
 
 /* ログイン画面 */
-.login-id-area,
+.loginId-area,
 .password-area {
   flex: 0 0 auto;
   width: 100%;
@@ -356,7 +356,7 @@ body {
 }
 
 /* 新規登録画面 */
-.reg-login-id-area,
+.reg-loginId-area,
 .reg-password-area,
 .reg-age-area,
 .reg-gender-area {
@@ -437,8 +437,8 @@ body {
 .edit-weight-area,
 .edit-education-area,
 .edit-occupation-area,
-.edit-smoking-habits-area, 
-.edit-drinking-habits-area {
+.edit-smokingHabits-area, 
+.edit-drinkingHabits-area {
   flex: 0 0 auto;
   width: 33.33333333334%;
   max-width: 100%;
