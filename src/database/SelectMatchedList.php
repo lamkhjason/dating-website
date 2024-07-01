@@ -5,6 +5,8 @@
 include_once("Pdo.php");
 include_once("../components/CheckValue.php");
 
+$search = "";
+$input = "";
 if (isset($_POST["SearchSubmit"])) {
   $input = $_POST["SearchUserName"];
   $search = "AND u.username LIKE '%$input%'";
