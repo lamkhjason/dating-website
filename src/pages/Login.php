@@ -37,6 +37,8 @@
         </div>
       </form>
       <div class="error-message"><?php displayErrorMessage();?></div>
+      <button class="" onclick="setTheme('yellow')"></button>
+      <button class="" onclick="setTheme('light-blue')"></button>
     </main>
   </body>
 </html>
