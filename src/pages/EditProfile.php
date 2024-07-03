@@ -1,9 +1,10 @@
 <?php
 // ファイル名： EditProfile.php
 // コード内容： プロフィール編集画面（html部分）
+include_once("../components/CheckValue.php");
 ?>
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="<?php echo getThemeColor();?>">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,6 @@
   </head>
   <body>
     <?php
-    include_once("../components/CheckValue.php");
     include_once("../database/SelectProfileItem.php");
     include_once("../components/CommonTools.php");
     include_once("../components/FormLayout.php");
@@ -22,6 +22,8 @@
     <main class="main-content">
       <form method="POST" action="../database/UpdateEditProfile.php" class="form-row">
         <div class="page-title">プロフィール編集</div>
+        <button type="submit" class="" name="colorSubmit" value="yellow">yellow</button>
+          <button type="submit" class="" name="colorSubmit" value="blue">blue</button>
         <?php 
         foreach ($profile as $itemKey => $arrayValue) {
           echo "<div class='edit-$itemKey-area'>";
@@ -42,6 +44,9 @@
           <a type="button" href='Profile.php' class="btn-return-profile">
             プロフィール画面に戻る
           </a>
+          <!-- <button class="" onclick="setTheme('yellow')"></button>
+          <button class="" onclick="setTheme('light-blue')"></button> -->
+          
         </div>
       </form>
       <div class="error-message"><?php displayErrorMessage();?></div>

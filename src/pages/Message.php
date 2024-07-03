@@ -1,9 +1,10 @@
 <?php 
 // ファイル名： Message.php
 // コード内容： メッセージ画面（html部分）
+include_once("../components/CheckValue.php");
 ?>
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="<?php echo getThemeColor();?>">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

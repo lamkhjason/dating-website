@@ -41,3 +41,9 @@ if (isset($_POST["editProfileSubmit"])) {
   header("Location: ../pages/EditProfile.php");
   exit;
 }
+
+if (isset($_POST["colorSubmit"])) {
+  setThemeColor($_POST["colorSubmit"]);
+  header("Location: ../pages/EditProfile.php");
+  exit;
+}

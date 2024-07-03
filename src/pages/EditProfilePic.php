@@ -1,9 +1,10 @@
 <?php
 // ファイル名： EditProfilePic.php
 // コード内容： プロフィール写真編集画面（html部分）
+include_once("../components/CheckValue.php");
 ?>
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="<?php echo getThemeColor();?>">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,6 @@
   </head>
   <body>
     <?php
-    include_once("../components/CheckValue.php");
     include_once("../database/SelectProfileItem.php");
     include_once("../components/CommonTools.php");
     ?>

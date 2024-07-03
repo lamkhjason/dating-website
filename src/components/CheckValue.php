@@ -69,3 +69,12 @@ function checkPicType($picName) {
   
   return $validType;
 }
+
+function setThemeColor($color) {
+  $_SESSION["themeColor"] = $color;
+}
+
+// セッションに保管されているログインIDを返す
+function getThemeColor() {
+  return $_SESSION["themeColor"];
+}
