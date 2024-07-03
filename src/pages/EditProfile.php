@@ -21,9 +21,10 @@ include_once("../components/CheckValue.php");
     ?>
     <main class="main-content">
       <form method="POST" action="../database/UpdateEditProfile.php" class="form-row">
-        <div class="page-title">プロフィール編集</div>
         <button type="submit" class="" name="colorSubmit" value="yellow">yellow</button>
-          <button type="submit" class="" name="colorSubmit" value="blue">blue</button>
+        <button type="submit" class="" name="colorSubmit" value="blue">blue</button>
+        <button type="submit" class="" name="colorSubmit" value="pink">pink</button>
+        <div class="page-title">プロフィール編集</div>
         <?php 
         foreach ($profile as $itemKey => $arrayValue) {
           echo "<div class='edit-$itemKey-area'>";

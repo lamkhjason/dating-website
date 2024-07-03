@@ -16,6 +16,12 @@
   /* --text-color: #212529; */
 }
 
+:root.pink {
+  --bg-color: lightpink;
+  --top-bar-color: pink;
+  /* --text-color: #212529; */
+}
+
 *,
 *::before,
 *::after {
