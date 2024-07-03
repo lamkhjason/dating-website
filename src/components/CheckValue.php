@@ -76,5 +76,10 @@ function setThemeColor($color) {
 
 // セッションに保管されているログインIDを返す
 function getThemeColor() {
-  return $_SESSION["themeColor"];
+  if (isset($_SESSION["themeColor"])) {
+    $color = $_SESSION["themeColor"];
+  } else {
+    $color = "";
+  }
+  return $color;
 }
