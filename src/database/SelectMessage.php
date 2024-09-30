@@ -39,7 +39,7 @@ if (isset($messageUserId)) {
       FROM Messages m LEFT JOIN Users u ON m.sender_id = u.user_id 
       LEFT JOIN Profile_Pictures pp ON m.sender_id = pp.user_id 
       WHERE m.sender_id = :loginUser AND m.receiver_id = :messageUser 
-      OR m.sender_id = :messageUser AND m.receiver_id = :loginUser 
+      OR m.sender_id = :messageUser AND m.receiver_id = :loginUser GROUP BY m.timestamp
       ORDER BY m.timestamp ASC";
       $stmt = $conn->prepare($SelectMessageSql);
       $stmt->bindValue(":loginUser", $loginUserId, PDO::PARAM_INT);

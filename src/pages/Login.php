@@ -1,6 +1,7 @@
 <?php 
 // ファイル名： Login.php
 // コード内容： ログイン画面（html部分）
+include_once("../components/CheckValue.php");
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -14,7 +15,6 @@
   </head>
   <body>
     <?php 
-    include_once("../components/CheckValue.php");
     include_once("../components/CommonTools.php");
     include_once("../components/FormLayout.php");
     ?>
