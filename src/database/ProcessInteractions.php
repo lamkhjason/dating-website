@@ -9,6 +9,12 @@ $loginUserId = getUserIdSession();
 $targetUserId = $_POST["targetUserId"];
 $likeSubmit = $_POST["likeSubmit"];
 
+if ($likeSubmit === "like") {
+  $likeSubmit = "like";
+} elseif ($likeSubmit === "dislike") {
+  $likeSubmit = "dislike";
+}
+
 if (isset($likeSubmit)) {
   try{
     // いいねをDBに登録
@@ -21,7 +27,7 @@ if (isset($likeSubmit)) {
     $insert->bindValue(':interaction_type', $likeSubmit, PDO::PARAM_STR);
     $result = $insert->execute();
     
-    if ($result) {
+    if ($result && ($likeSubmit === "like")) {
       // 互いをいいねしたかを確認
       $checkMatchingSql = 
         "SELECT user_id FROM Interactions WHERE user_id = :target_user_id 
